@@ -1,0 +1,593 @@
+﻿"Test Paper","Attempt","Source File","Question Number","Result","Marked Unsure (#icon-saved)","Domain","Question","Correct Answer(s)","Keyword Tip (Correct Answer)","Your Answer(s)","Overall Explanation","Explanation Images","Option 1","Option 1 Label","Option 1 Explanation","Option 2","Option 2 Label","Option 2 Explanation","Option 3","Option 3 Label","Option 3 Explanation","Option 4","Option 4 Label","Option 4 Explanation","Option 5","Option 5 Label","Option 5 Explanation","Option 6","Option 6 Label","Option 6 Explanation"
+"Practice Test #2 (AWS Certified Developer Associate - DVA-C02)","Attempt 1","6a.html","Question 1","Incorrect","No","Deployment","A developer wants to package the code and dependencies for the application-specific Lambda functions as container images to be hosted on Amazon Elastic Container Registry (ECR).
+Which of the following options are correct for the given requirement? (Select two)","AWS Lambda service does not support Lambda functions that use multi-architecture container images
+
+To deploy a container image to Lambda, the container image must implement the Lambda Runtime API","","You can deploy Lambda function as a container image, with a maximum size of 15 GB
+
+Lambda supports both Windows and Linux-based container images","Correct options:
+To deploy a container image to Lambda, the container image must implement the Lambda Runtime API - To deploy a container image to Lambda, the container image must implement the Lambda Runtime API. The AWS open-source runtime interface clients implement the API. You can add a runtime interface client to your preferred base image to make it compatible with Lambda.
+AWS Lambda service does not support Lambda functions that use multi-architecture container images - Lambda provides multi-architecture base images. However, the image you build for your function must target only one of the architectures. Lambda does not support functions that use multi-architecture container images.
+Incorrect options:
+Lambda supports both Windows and Linux-based container images - Lambda currently supports only Linux-based container images.
+You can test the containers locally using the Lambda Runtime API - You can test the containers locally using the Lambda Runtime Interface Emulator.
+You can deploy Lambda function as a container image, with a maximum size of 15 GB - You can deploy Lambda function as container image with the maximum size of 10GB.
+Reference:
+https://docs.aws.amazon.com/lambda/latest/dg/images-create.html","","You can deploy Lambda function as a container image, with a maximum size of 15 GB","Your selection is incorrect","","AWS Lambda service does not support Lambda functions that use multi-architecture container images","Correct selection","","Lambda supports both Windows and Linux-based container images","Your selection is incorrect","","You can test the containers locally using the Lambda Runtime API","","","To deploy a container image to Lambda, the container image must implement the Lambda Runtime API","Correct selection","","","",""
+"Practice Test #2 (AWS Certified Developer Associate - DVA-C02)","Attempt 1","6a.html","Question 2","Incorrect","No","Security","A developer is looking at establishing access control for an API that connects to a Lambda function downstream.
+Which of the following represents a mechanism that CANNOT be used for authenticating with the API Gateway?","AWS Security Token Service (STS)","","Cognito User Pools","Correct option:
+Amazon API Gateway is an AWS service for creating, publishing, maintaining, monitoring, and securing REST, HTTP, and WebSocket APIs at any scale. API developers can create APIs that access AWS or other web services, as well as data stored in the AWS Cloud.
+How API Gateway Works:
+via - https://aws.amazon.com/api-gateway/
+AWS Security Token Service (STS) - AWS Security Token Service (AWS STS) is a web service that enables you to request temporary, limited-privilege credentials for AWS Identity and Access Management (IAM) users or for users that you authenticate (federated users). However, it is not supported by API Gateway.
+API Gateway supports the following mechanisms for authentication and authorization:
+via - https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-control-access-to-api.html
+Incorrect options:
+Standard AWS IAM roles and policies - Standard AWS IAM roles and policies offer flexible and robust access controls that can be applied to an entire API or individual methods. IAM roles and policies can be used for controlling who can create and manage your APIs, as well as who can invoke them.
+Lambda Authorizer - Lambda authorizers are Lambda functions that control access to REST API methods using bearer token authentication—as well as information described by headers, paths, query strings, stage variables, or context variables request parameters. Lambda authorizers are used to control who can invoke REST API methods.
+Cognito User Pools - Amazon Cognito user pools let you create customizable authentication and authorization solutions for your REST APIs. Amazon Cognito user pools are used to control who can invoke REST API methods.
+References:
+https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-control-access-to-api.html
+https://docs.aws.amazon.com/STS/latest/APIReference/welcome.html","./6a_files/New-API-GW-Diagram.c9fc9835d2a9aa00ef90d0ddc4c6402a2536de0d.png
+./6a_files/pt2-q55-i1.jpg","Lambda Authorizer","","","Standard AWS IAM roles and policies","","","Cognito User Pools","Your answer is incorrect","","AWS Security Token Service (STS)","Correct answer","","","","","","",""
+"Practice Test #2 (AWS Certified Developer Associate - DVA-C02)","Attempt 1","6a.html","Question 3","Incorrect","No","Development with AWS Services","A startup has been experimenting with DynamoDB in its new test environment. The development team has discovered that some of the write operations have been overwriting existing items that have the specified primary key. This has messed up their data, leading to data discrepancies.
+Which DynamoDB write option should be selected to prevent this kind of overwriting?","Conditional writes","","Batch writes","Correct option:
+Conditional writes - DynamoDB optionally supports conditional writes for write operations (PutItem, UpdateItem, DeleteItem). A conditional write succeeds only if the item attributes meet one or more expected conditions. Otherwise, it returns an error.
+For example, you might want a PutItem operation to succeed only if there is not already an item with the same primary key. Or you could prevent an UpdateItem operation from modifying an item if one of its attributes has a certain value. Conditional writes are helpful in cases where multiple users attempt to modify the same item. This is the right choice for the current scenario.
+Incorrect options:
+Batch writes - Bath operations (read and write) help reduce the number of network round trips from your application to DynamoDB. In addition, DynamoDB performs the individual read or write operations in parallel. Applications benefit from this parallelism without having to manage concurrency or threading. But, this is of no use in the current scenario of overwriting changes.
+Atomic Counters - Atomic Counters is a numeric attribute that is incremented, unconditionally, without interfering with other write requests. You might use an atomic counter to track the number of visitors to a website. This functionality is not useful for the current scenario.
+Use Scan operation - A Scan operation in Amazon DynamoDB reads every item in a table or a secondary index. By default, a Scan operation returns all of the data attributes for every item in the table or index. This is given as a distractor and not related to DynamoDB item updates.
+Reference:
+https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithItems.html#WorkingWithItems.ConditionalUpdate","","Atomic Counters","","","Conditional writes","Correct answer","","Use Scan operation","","","Batch writes","Your answer is incorrect","","","","","","",""
+"Practice Test #2 (AWS Certified Developer Associate - DVA-C02)","Attempt 1","6a.html","Question 7","Incorrect","No","Deployment","Other than the Resources section, which of the following sections in a Serverless Application Model (SAM) Template is mandatory?","Transform","","Mappings","Correct option:
+Transform
+The AWS Serverless Application Model (AWS SAM) is an open-source framework that you can use to build serverless applications on AWS.
+A serverless application is a combination of Lambda functions, event sources, and other resources that work together to perform tasks. Note that a serverless application is more than just a Lambda function—it can include additional resources such as APIs, databases, and event source mappings.
+Serverless Application Model (SAM) Templates include several major sections. Transform and Resources are the only required sections.
+Please review this note for more details:
+via - https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-specification-template-anatomy.html
+Incorrect options:
+Parameters
+Mappings
+Globals
+These three options contradict the details provided in the explanation above, so these options are not correct.
+Reference:
+https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-specification-template-anatomy.html","./6a_files/pt2-q5-i1.jpg","Transform","Correct answer","","Mappings","Your answer is incorrect","","Globals","","","Parameters","","","","","","","",""
+"Practice Test #2 (AWS Certified Developer Associate - DVA-C02)","Attempt 1","6a.html","Question 17","Incorrect","No","Development with AWS Services","A development team is building a game where players can buy items with virtual coins. For every virtual coin bought by a user, both the players table as well as the items table in DynamodDB need to be updated simultaneously using an all-or-nothing operation.
+As a developer associate, how will you implement this functionality?","Use TransactWriteItems API of DynamoDB Transactions","","Use BatchWriteItem API to update multiple tables simultaneously","Correct option: Use TransactWriteItems API of DynamoDB Transactions
+With Amazon DynamoDB transactions, you can group multiple actions together and submit them as a single all-or-nothing TransactWriteItems or TransactGetItems operation.
+TransactWriteItems is a synchronous and idempotent write operation that groups up to 25 write actions in a single all-or-nothing operation. These actions can target up to 25 distinct items in one or more DynamoDB tables within the same AWS account and in the same Region. The aggregate size of the items in the transaction cannot exceed 4 MB. The actions are completed atomically so that either all of them succeed or none of them succeeds.
+You can optionally include a client token when you make a TransactWriteItems call to ensure that the request is idempotent. Making your transactions idempotent helps prevent application errors if the same operation is submitted multiple times due to a connection time-out or other connectivity issue.
+Incorrect options:
+Use BatchWriteItem API to update multiple tables simultaneously - A TransactWriteItems operation differs from a BatchWriteItem operation in that all the actions it contains must be completed successfully, or no changes are made at all. With a BatchWriteItem operation, it is possible that only some of the actions in the batch succeed while the others do not.
+Capture the transactions in the players table using DynamoDB streams and then sync with the items table
+Capture the transactions in the items table using DynamoDB streams and then sync with the players table
+Many applications benefit from capturing changes to items stored in a DynamoDB table, at the point in time when such changes occur. DynamoDB supports streaming of item-level change data capture records in near-real-time. You can build applications that consume these streams and take action based on the contents. DynamoDB streams cannot be used to capture transactions in DynamoDB, therefore both these options are incorrect.
+Reference:
+https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/transaction-apis.html#transaction-apis-txwriteitems","","Use BatchWriteItem API to update multiple tables simultaneously","Your answer is incorrect","","Use TransactWriteItems API of DynamoDB Transactions","Correct answer","","Capture the transactions in the players table using DynamoDB streams and then sync with the items table","","","Capture the transactions in the items table using DynamoDB streams and then sync with the players table","","","","","","","",""
+"Practice Test #2 (AWS Certified Developer Associate - DVA-C02)","Attempt 1","6a.html","Question 18","Incorrect","No","Development with AWS Services","As an AWS certified developer associate, you are working on an AWS CloudFormation template that will create resources for a company's cloud infrastructure. Your template is composed of three stacks which are Stack-A, Stack-B, and Stack-C. Stack-A will provision a VPC, a security group, and subnets for public web applications that will be referenced in Stack-B and Stack-C.
+After running the stacks you decide to delete them, in which order should you do it?","Stack B, then Stack C, then Stack A","","Stack A, Stack C then Stack B","Correct option:
+AWS CloudFormation gives developers and businesses an easy way to create a collection of related AWS and third-party resources and provision them in an orderly and predictable fashion.
+How CloudFormation Works:
+via - https://aws.amazon.com/cloudformation/
+Stack B, then Stack C, then Stack A
+All of the imports must be removed before you can delete the exporting stack or modify the output value. In this case, you must delete Stack B as well as Stack C, before you delete Stack A.
+via - https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-stack-exports.html
+Incorrect options:
+Stack A, then Stack B, then Stack C - All of the imports must be removed before you can delete the exporting stack or modify the output value. In this case, you cannot delete Stack A first because that's being referenced in the other Stacks.
+Stack A, Stack C then Stack B - All of the imports must be removed before you can delete the exporting stack or modify the output value. In this case, you cannot delete Stack A first because that's being referenced in the other Stacks.
+Stack C then Stack A then Stack B - Stack C is fine but you should delete Stack B before Stack A because all of the imports must be removed before you can delete the exporting stack or modify the output value.
+Reference: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-stack-exports.html","./6a_files/product-page-diagram_CloudFormation.ad3a4c93b4fdd3366da3da0de4fb084d89a5d761.png
+./6a_files/pt2-q23-i1.jpg","Stack A, Stack C then Stack B","Your answer is incorrect","","Stack C then Stack A then Stack B","","","Stack A, then Stack B, then Stack C","","","Stack B, then Stack C, then Stack A","Correct answer","","","","","","",""
+"Practice Test #2 (AWS Certified Developer Associate - DVA-C02)","Attempt 1","6a.html","Question 19","Incorrect","No","Development with AWS Services","A development team is working on an AWS Lambda function that accesses DynamoDB. The Lambda function must do an upsert, that is, it must retrieve an item and update some of its attributes or create the item if it does not exist.
+Which of the following represents the solution with MINIMUM IAM permissions that can be used for the Lambda function to achieve this functionality?","dynamodb:UpdateItem, dynamodb:GetItem","","dynamodb:UpdateItem, dynamodb:GetItem, dynamodb:PutItem","Correct option:
+dynamodb:UpdateItem, dynamodb:GetItem - With Amazon DynamoDB transactions, you can group multiple actions together and submit them as a single all-or-nothing TransactWriteItems or TransactGetItems operation.
+You can use AWS Identity and Access Management (IAM) to restrict the actions that transactional operations can perform in Amazon DynamoDB. Permissions for Put, Update, Delete, and Get actions are governed by the permissions used for the underlying PutItem, UpdateItem, DeleteItem, and GetItem operations. For the ConditionCheck action, you can use the dynamodb:ConditionCheck permission in IAM policies.
+UpdateItem action of DynamoDB APIs, edits an existing item's attributes or adds a new item to the table if it does not already exist. You can put, delete, or add attribute values. You can also perform a conditional update on an existing item (insert a new attribute name-value pair if it doesn't exist, or replace an existing name-value pair if it has certain expected attribute values).
+There is no need to inlcude the dynamodb:PutItem action for the given use-case.
+So, the IAM policy must include permissions to get and update the item in the DynamoDB table.
+Actions defined by DynamoDB:
+via - https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazondynamodb.html
+Incorrect options:
+dynamodb:AddItem, dynamodb:GetItem
+dynamodb:GetRecords, dynamodb:PutItem, dynamodb:UpdateTable
+dynamodb:UpdateItem, dynamodb:GetItem, dynamodb:PutItem
+These three options contradict the explanation provided above, so these options are incorrect.
+References:
+https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazondynamodb.html
+https://docs.amazonaws.cn/en_us/amazondynamodb/latest/developerguide/transaction-apis-iam.html
+https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazondynamodb.html","./6a_files/pt6-q48-i1.jpg","dynamodb:UpdateItem, dynamodb:GetItem","Correct answer","","dynamodb:AddItem, dynamodb:GetItem","","","dynamodb:GetRecords, dynamodb:PutItem, dynamodb:UpdateTable","","","dynamodb:UpdateItem, dynamodb:GetItem, dynamodb:PutItem","Your answer is incorrect","","","","","","",""
+"Practice Test #2 (AWS Certified Developer Associate - DVA-C02)","Attempt 1","6a.html","Question 20","Incorrect","No","Development with AWS Services","The development team at a HealthCare company has deployed EC2 instances in AWS Account A. These instances need to access patient data with Personally Identifiable Information (PII) on multiple S3 buckets in another AWS Account B.
+As a Developer Associate, which of the following solutions would you recommend for the given use-case?","Create an IAM role with S3 access in Account B and set Account A as a trusted entity. Create another role (instance profile) in Account A and attach it to the EC2 instances in Account A and add an inline policy to this role to assume the role from Account B","","Create an IAM role (instance profile) in Account A and set Account B as a trusted entity. Attach this role to the EC2 instances in Account A and add an inline policy to this role to access S3 data from Account B","Correct option:
+Create an IAM role with S3 access in Account B and set Account A as a trusted entity. Create another role (instance profile) in Account A and attach it to the EC2 instances in Account A and add an inline policy to this role to assume the role from Account B
+You can give EC2 instances in one account (""account A"") permissions to assume a role from another account (""account B"") to access resources such as S3 buckets. You need to create an IAM role in Account B and set Account A as a trusted entity. Then attach a policy to this IAM role such that it delegates access to Amazon S3 like so -
+{
+    ""Version"": ""2012-10-17"",
+    ""Statement"": [
+        {
+            ""Effect"": ""Allow"",
+            ""Action"": ""s3:*"",
+            ""Resource"": [
+                ""arn:aws:s3:::awsexamplebucket1"",
+                ""arn:aws:s3:::awsexamplebucket1/*"",
+                ""arn:aws:s3:::awsexamplebucket2"",
+                ""arn:aws:s3:::awsexamplebucket2/*""
+            ]
+        }
+    ]
+}
+
+Then you can create another role (instance profile) in Account A and attach it to the EC2 instances in Account A and add an inline policy to this role to assume the role from Account B like so -
+{
+    ""Version"": ""2012-10-17"",
+    ""Statement"": [
+        {
+            ""Effect"": ""Allow"",
+            ""Action"": ""sts:AssumeRole"",
+            ""Resource"": ""arn:aws:iam::AccountB_ID:role/ROLENAME""
+        }
+    ]
+}
+
+Incorrect options:
+Create an IAM role (instance profile) in Account A and set Account B as a trusted entity. Attach this role to the EC2 instances in Account A and add an inline policy to this role to access S3 data from Account B - This option contradicts the explanation provided earlier in the explanation, hence this option is incorrect.
+Copy the underlying AMI for the EC2 instances from Account A into Account B. Launch EC2 instances in Account B using this AMI and then access the PII data on Amazon S3 in Account B - Copying the AMI is a distractor as this does not solve the use-case outlined in the problem statement.
+Add a bucket policy to all the Amazon S3 buckets in Account B to allow access from EC2 instances in Account A - Just adding a bucket policy in Account B is not enough, as you also need to create an IAM policy in Account A to access S3 objects in Account B.
+Please review this reference material for a deep-dive on cross-account access to objects that are in Amazon S3 buckets - https://aws.amazon.com/premiumsupport/knowledge-center/cross-account-access-s3/
+References:
+https://aws.amazon.com/premiumsupport/knowledge-center/s3-instance-access-bucket/","","Copy the underlying AMI for the EC2 instances from Account A into Account B. Launch EC2 instances in Account B using this AMI and then access the PII data on Amazon S3 in Account B","","","Create an IAM role (instance profile) in Account A and set Account B as a trusted entity. Attach this role to the EC2 instances in Account A and add an inline policy to this role to access S3 data from Account B","Your answer is incorrect","","Add a bucket policy to all the Amazon S3 buckets in Account B to allow access from EC2 instances in Account A","","","Create an IAM role with S3 access in Account B and set Account A as a trusted entity. Create another role (instance profile) in Account A and attach it to the EC2 instances in Account A and add an inline policy to this role to assume the role from Account B","Correct answer","","","","","","",""
+"Practice Test #2 (AWS Certified Developer Associate - DVA-C02)","Attempt 1","6a.html","Question 21","Incorrect","No","Development with AWS Services","As a Senior Developer, you are tasked with creating several API Gateway powered APIs along with your team of developers. The developers are working on the API in the development environment, but they find the changes made to the APIs are not reflected when the API is called.
+As a Developer Associate, which of the following solutions would you recommend for this use-case?","Redeploy the API to an existing stage or to a new stage","","Use Stage Variables for development state of API","Correct option:
+Redeploy the API to an existing stage or to a new stage
+After creating your API, you must deploy it to make it callable by your users. To deploy an API, you create an API deployment and associate it with a stage. A stage is a logical reference to a lifecycle state of your API (for example, dev, prod, beta, v2). API stages are identified by the API ID and stage name. Every time you update an API, you must redeploy the API to an existing stage or to a new stage. Updating an API includes modifying routes, methods, integrations, authorizers, and anything else other than stage settings.
+Incorrect options:
+Developers need IAM permissions on API execution component of API Gateway - Access control access to Amazon API Gateway APIs is done with IAM permissions. To call a deployed API or to refresh the API caching, you must grant the API caller permissions to perform required IAM actions supported by the API execution component of API Gateway. In the current scenario, developers do not need permissions on ""execution components"" but on ""management components"" of API Gateway that help them to create, deploy, and manage an API. Hence, this statement is an incorrect option.
+Enable Lambda authorizer to access API - A Lambda authorizer (formerly known as a custom authorizer) is an API Gateway feature that uses a Lambda function to control access to your API. So, this feature too helps in access control, but in the current scenario its the developers and not the users who are facing the issue. So, this statement is an incorrect option.
+Use Stage Variables for development state of API - Stage variables are name-value pairs that you can define as configuration attributes associated with a deployment stage of a REST API. They act like environment variables and can be used in your API setup and mapping templates. Stage variables are not connected to the scenario described in the current use case.
+References:
+https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-deploy-api.html
+https://docs.aws.amazon.com/apigateway/latest/developerguide/permissions.html
+https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-use-lambda-authorizer.html
+https://docs.aws.amazon.com/apigateway/latest/developerguide/stage-variables.html","","Developers need IAM permissions on API execution component of API Gateway","","","Use Stage Variables for development state of API","Your answer is incorrect","","Enable Lambda authorizer to access API","","","Redeploy the API to an existing stage or to a new stage","Correct answer","","","","","","",""
+"Practice Test #2 (AWS Certified Developer Associate - DVA-C02)","Attempt 1","6a.html","Question 24","Incorrect","No","Troubleshooting and Optimization","A data analytics company is processing real-time Internet-of-Things (IoT) data via Kinesis Producer Library (KPL) and sending the data to a Kinesis Data Streams driven application. The application has halted data processing because of a ProvisionedThroughputExceeded exception.
+Which of the following actions would help in addressing this issue? (Select two)","Configure the data producer to retry with an exponential backoff
+
+Increase the number of shards within your data streams to provide enough capacity","","Use Amazon Kinesis Agent instead of Kinesis Producer Library (KPL) for sending data to Kinesis Data Streams
+
+Configure the data producer to retry with an exponential backoff","Correct option:
+Configure the data producer to retry with an exponential backoff
+Increase the number of shards within your data streams to provide enough capacity
+Amazon Kinesis Data Streams enables you to build custom applications that process or analyze streaming data for specialized needs. You can continuously add various types of data such as clickstreams, application logs, and social media to an Amazon Kinesis data stream from hundreds of thousands of sources.
+How Kinesis Data Streams Work
+via - https://aws.amazon.com/kinesis/data-streams/
+The capacity limits of an Amazon Kinesis data stream are defined by the number of shards within the data stream. The limits can be exceeded by either data throughput or the number of PUT records. While the capacity limits are exceeded, the put data call will be rejected with a ProvisionedThroughputExceeded exception.
+If this is due to a temporary rise of the data stream’s input data rate, retry (with exponential backoff) by the data producer will eventually lead to the completion of the requests.
+If this is due to a sustained rise of the data stream’s input data rate, you should increase the number of shards within your data stream to provide enough capacity for the put data calls to consistently succeed.
+Incorrect options:
+Use Amazon Kinesis Agent instead of Kinesis Producer Library (KPL) for sending data to Kinesis Data Streams - Kinesis Agent works with data producers. Using Kinesis Agent instead of KPL will not help as the constraint is the capacity limit of the Kinesis Data Stream.
+Use Amazon SQS instead of Kinesis Data Streams - This is a distractor as using SQS will not help address the ProvisionedThroughputExceeded exception for the Kinesis Data Stream. This option does not address the issues in the use-case.
+Use Kinesis enhanced fan-out for Kinesis Data Streams - You should use enhanced fan-out if you have, or expect to have, multiple consumers retrieving data from a stream in parallel. Therefore, using enhanced fan-out will not help address the ProvisionedThroughputExceeded exception as the constraint is the capacity limit of the Kinesis Data Stream.
+Please review this note for more details on enhanced fan-out for Kinesis Data Streams:
+via - https://aws.amazon.com/kinesis/data-streams/faqs/
+References:
+https://aws.amazon.com/kinesis/data-streams/
+https://aws.amazon.com/kinesis/data-streams/faqs/","./6a_files/product-page-diagram_Amazon-Kinesis-Data-Streams.074de94302fd60948e1ad070e425eeda73d350e7.png
+./6a_files/pt2-q6-i1.jpg","Use Amazon Kinesis Agent instead of Kinesis Producer Library (KPL) for sending data to Kinesis Data Streams","Your selection is incorrect","","Use Amazon SQS instead of Kinesis Data Streams","","","Configure the data producer to retry with an exponential backoff","Your selection is correct","","Increase the number of shards within your data streams to provide enough capacity","Correct selection","","Use Kinesis enhanced fan-out for Kinesis Data Streams","","","","",""
+"Practice Test #2 (AWS Certified Developer Associate - DVA-C02)","Attempt 1","6a.html","Question 25","Incorrect","No","Security","You have launched several AWS Lambda functions written in Java. A new requirement was given that over 1MB of data should be passed to the functions and should be encrypted and decrypted at runtime.
+Which of the following methods is suitable to address the given use-case?","Use Envelope Encryption and reference the data as file within the code","","Use Envelope Encryption and store as environment variable","Correct option:
+Use Envelope Encryption and reference the data as file within the code
+While AWS KMS does support sending data up to 4 KB to be encrypted directly, envelope encryption can offer significant performance benefits. When you encrypt data directly with AWS KMS it must be transferred over the network. Envelope encryption reduces the network load since only the request and delivery of the much smaller data key go over the network. The data key is used locally in your application or encrypting AWS service, avoiding the need to send the entire block of data to AWS KMS and suffer network latency.
+AWS Lambda environment variables can have a maximum size of 4 KB. Additionally, the direct 'Encrypt' API of KMS also has an upper limit of 4 KB for the data payload. To encrypt 1 MB, you need to use the Encryption SDK and pack the encrypted file with the lambda function.
+Incorrect options:
+Use KMS direct encryption and store as file - You can only encrypt up to 4 kilobytes (4096 bytes) of arbitrary data such as an RSA key, a database password, or other sensitive information, so this option is not correct for the given use-case.
+Use Envelope Encryption and store as an environment variable - Environment variables must not exceed 4 KB, so this option is not correct for the given use-case.
+Use KMS Encryption and store as an environment variable - You can encrypt up to 4 kilobytes (4096 bytes) of arbitrary data such as an RSA key, a database password, or other sensitive information. Lambda Environment variables must not exceed 4 KB. So this option is not correct for the given use-case.
+References:
+https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html
+https://aws.amazon.com/kms/faqs/","","Use KMS Encryption and store as environment variable","","","Use Envelope Encryption and store as environment variable","Your answer is incorrect","","Use KMS direct encryption and store as file","","","Use Envelope Encryption and reference the data as file within the code","Correct answer","","","","","","",""
+"Practice Test #2 (AWS Certified Developer Associate - DVA-C02)","Attempt 1","6a.html","Question 31","Incorrect","No","Troubleshooting and Optimization","An Accounting firm extensively uses Amazon EBS volumes for persistent storage of application data of Amazon EC2 instances. The volumes are encrypted to protect the critical data of the clients. As part of managing the security credentials, the project manager has come across a policy snippet that looks like the following:
+{
+    ""Version"": ""2012-10-17"",
+    ""Statement"": [
+        {
+            ""Sid"": ""Allow for use of this Key"",
+            ""Effect"": ""Allow"",
+            ""Principal"": {
+                ""AWS"": ""arn:aws:iam::111122223333:role/UserRole""
+            },
+            ""Action"": [
+                ""kms:GenerateDataKeyWithoutPlaintext"",
+                ""kms:Decrypt""
+            ],
+            ""Resource"": ""*""
+        },
+        {
+            ""Sid"": ""Allow for EC2 Use"",
+            ""Effect"": ""Allow"",
+            ""Principal"": {
+                ""AWS"": ""arn:aws:iam::111122223333:role/UserRole""
+            },
+            ""Action"": [
+                ""kms:CreateGrant"",
+                ""kms:ListGrants"",
+                ""kms:RevokeGrant""
+            ],
+            ""Resource"": ""*"",
+            ""Condition"": {
+                ""StringEquals"": {
+                ""kms:ViaService"": ""ec2.us-west-2.amazonaws.com""
+            }
+        }
+    ]
+}
+
+Which of the following options are correct regarding the policy?","The first statement provides a specified IAM principal the ability to generate a data key and decrypt that data key from the CMK when necessary","","The second statement in the policy mentions that all the resources stated in the first statement can take the specified role which will provide the ability to create, list, and revoke grants for Amazon EC2","Correct option:
+The first statement provides a specified IAM principal the ability to generate a data key and decrypt that data key from the CMK when necessary - To create and use an encrypted Amazon Elastic Block Store (EBS) volume, you need permissions to use Amazon EBS. The key policy associated with the CMK would need to include these. The above policy is an example of one such policy.
+In this CMK policy, the first statement provides a specified IAM principal the ability to generate a data key and decrypt that data key from the CMK when necessary. These two APIs are necessary to encrypt the EBS volume while it’s attached to an Amazon Elastic Compute Cloud (EC2) instance.
+The second statement in this policy provides the specified IAM principal the ability to create, list, and revoke grants for Amazon EC2. Grants are used to delegate a subset of permissions to AWS services, or other principals, so that they can use your keys on your behalf. In this case, the condition policy explicitly ensures that only Amazon EC2 can use the grants. Amazon EC2 will use them to re-attach an encrypted EBS volume back to an instance if the volume gets detached due to a planned or unplanned outage. These events will be recorded within AWS CloudTrail when, and if, they do occur for your auditing.
+Incorrect options:
+The first statement provides the security group the ability to generate a data key and decrypt that data key from the CMK when necessary
+The second statement in this policy provides the security group (mentioned in the first statement of the policy), the ability to create, list, and revoke grants for Amazon EC2
+The second statement in the policy mentions that all the resources stated in the first statement can take the specified role which will provide the ability to create, list, and revoke grants for Amazon EC2
+These three options contradict the explanation provided above, so these options are incorrect.
+Reference:
+https://d0.awsstatic.com/whitepapers/aws-kms-best-practices.pdf","","The first statement provides a specified IAM principal the ability to generate a data key and decrypt that data key from the CMK when necessary","Correct answer","","The first statement provides the security group the ability to generate a data key and decrypt that data key from the CMK when necessary","","","The second statement in this policy provides the security group (mentioned in first statement of the policy), the ability to create, list, and revoke grants for Amazon EC2","","","The second statement in the policy mentions that all the resources stated in the first statement can take the specified role which will provide the ability to create, list, and revoke grants for Amazon EC2","Your answer is incorrect","","","","","","",""
+"Practice Test #2 (AWS Certified Developer Associate - DVA-C02)","Attempt 1","6a.html","Question 33","Incorrect","No","Deployment","A developer in your company was just promoted to Team Lead and will be in charge of code deployment on EC2 instances via AWS CodeCommit and AWS CodeDeploy. Per the new requirements, the deployment process should be able to change permissions for deployed files as well as verify the deployment success.
+Which of the following actions should the new Developer take?","Define an appspec.yml file in the root directory","","Define a buildspec.yml file in the codebuild/ directory","Correct option:
+Define an appspec.yml file in the root directory: An AppSpec file must be a YAML-formatted file named appspec.yml and it must be placed in the root of the directory structure of an application's source code.
+The AppSpec file is used to:
+Map the source files in your application revision to their destinations on the instance.
+Specify custom permissions for deployed files.
+Specify scripts to be run on each instance at various stages of the deployment process.
+During deployment, the CodeDeploy agent looks up the name of the current event in the hooks section of the AppSpec file. If the event is not found, the CodeDeploy agent moves on to the next step. If the event is found, the CodeDeploy agent retrieves the list of scripts to execute. The scripts are run sequentially, in the order in which they appear in the file. The status of each script is logged in the CodeDeploy agent log file on the instance.
+If a script runs successfully, it returns an exit code of 0 (zero). If the CodeDeploy agent installed on the operating system doesn't match what's listed in the AppSpec file, the deployment fails.
+Incorrect options:
+Define a buildspec.yml file in the root directory - This is a file used by AWS CodeBuild to run a build. This is not relevant to the given use case.
+Define a buildspec.yml file in the codebuild/ directory - This is a file used by AWS CodeBuild to run a build. This is not relevant to the given use case.
+Define an appspec.yml file in the codebuild/ directory - This file is for AWS CodeDeploy and must be placed in the root of the directory structure of an application's source code.
+Reference:
+https://docs.aws.amazon.com/codedeploy/latest/userguide/application-specification-files.html","","Define an appspec.yml file in the root directory","Correct answer","","Define a buildspec.yml file in the root directory","","","Define an appspec.yml file in the codebuild/ directory","","","Define a buildspec.yml file in the codebuild/ directory","Your answer is incorrect","","","","","","",""
+"Practice Test #2 (AWS Certified Developer Associate - DVA-C02)","Attempt 1","6a.html","Question 36","Incorrect","No","Troubleshooting and Optimization","You are a development team lead setting permissions for other IAM users with limited permissions. On the AWS Management Console, you created a dev group where new developers will be added, and on your workstation, you configured a developer profile. You would like to test that this user cannot terminate instances.
+Which of the following options would you execute?","Use the AWS CLI --dry-run option","","Retrieve the policy using the EC2 metadata service and use the IAM policy simulator","Correct option:
+Use the AWS CLI --dry-run option: The --dry-run option checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is DryRunOperation, otherwise, it is UnauthorizedOperation.
+Incorrect options:
+Use the AWS CLI --test option - This is a made-up option and has been added as a distractor.
+Retrieve the policy using the EC2 metadata service and use the IAM policy simulator - EC2 metadata service is used to retrieve dynamic information such as instance-id, local-hostname, public-hostname. This cannot be used to check whether you have the required permissions for the action.
+Using the CLI, create a dummy EC2 and delete it using another CLI call - That would not work as the current EC2 may have permissions that the dummy instance does not have. If permissions were the same it can work but it's not as elegant as using the dry-run option.
+References:
+https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html
+https://docs.aws.amazon.com/cli/latest/reference/ec2/terminate-instances.html","","Retrieve the policy using the EC2 metadata service and use the IAM policy simulator","Your answer is incorrect","","Use the AWS CLI --dry-run option","Correct answer","","Use the AWS CLI --test option","","","Using the CLI, create a dummy EC2 and delete it using another CLI call","","","","","","","",""
+"Practice Test #2 (AWS Certified Developer Associate - DVA-C02)","Attempt 1","6a.html","Question 38","Incorrect","No","Troubleshooting and Optimization","A company has a cloud system in AWS with components that send and receive messages using SQS queues. While reviewing the system you see that it processes a lot of information and would like to be aware of any limits of the system.
+Which of the following represents the maximum number of messages that can be stored in an SQS queue?","no limit","","10000","Correct option:
+""no limit"": There are no message limits for storing in SQS, but 'in-flight messages' do have limits. Make sure to delete messages after you have processed them. There can be a maximum of approximately 120,000 inflight messages (received from a queue by a consumer, but not yet deleted from the queue).
+Incorrect options:
+""10000""
+""100000""
+""10000000""
+These three options contradict the details provided in the explanation above, so these are incorrect.
+Reference:
+https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-limits.html","","10000","Your answer is incorrect","","10000000","","","no limit","Correct answer","","100000","","","","","","","",""
+"Practice Test #2 (AWS Certified Developer Associate - DVA-C02)","Attempt 1","6a.html","Question 40","Incorrect","No","Troubleshooting and Optimization","Recently in your organization, the AWS X-Ray SDK was bundled into each Lambda function to record outgoing calls for tracing purposes. When your team leader goes to the X-Ray service in the AWS Management Console to get an overview of the information collected, they discover that no data is available.
+What is the most likely reason for this issue?","Fix the IAM Role","","Enable X-Ray sampling","Correct option:
+AWS X-Ray helps developers analyze and debug production, distributed applications, such as those built using a microservices architecture. With X-Ray, you can understand how your application and its underlying services are performing to identify and troubleshoot the root cause of performance issues and errors. X-Ray provides an end-to-end view of requests as they travel through your application, and shows a map of your application’s underlying components.
+How X-Ray Works:
+via - https://aws.amazon.com/xray/
+Fix the IAM Role
+Create an IAM role with write permissions and assign it to the resources running your application. You can use AWS Identity and Access Management (IAM) to grant X-Ray permissions to users and compute resources in your account. This should be one of the first places you start by checking that your permissions are properly configured before exploring other troubleshooting options.
+Here is an example of X-Ray Read-Only permissions via an IAM policy:
+{
+    ""Version"": ""2012-10-17"",
+    ""Statement"": [
+        {
+            ""Effect"": ""Allow"",
+            ""Action"": [
+                ""xray:GetSamplingRules"",
+                ""xray:GetSamplingTargets"",
+                ""xray:GetSamplingStatisticSummaries"",
+                ""xray:BatchGetTraces"",
+                ""xray:GetServiceGraph"",
+                ""xray:GetTraceGraph"",
+                ""xray:GetTraceSummaries"",
+                ""xray:GetGroups"",
+                ""xray:GetGroup""
+            ],
+            ""Resource"": [
+                ""*""
+            ]
+        }
+    ]
+}
+
+Another example of write permissions for using X-Ray via an IAM policy:
+{
+    ""Version"": ""2012-10-17"",
+    ""Statement"": [
+        {
+            ""Effect"": ""Allow"",
+            ""Action"": [
+                ""xray:PutTraceSegments"",
+                ""xray:PutTelemetryRecords"",
+                ""xray:GetSamplingRules"",
+                ""xray:GetSamplingTargets"",
+                ""xray:GetSamplingStatisticSummaries""
+            ],
+            ""Resource"": [
+                ""*""
+            ]
+        }
+    ]
+}
+
+Incorrect options:
+Enable X-Ray sampling - If permissions are not configured correctly sampling will not work, so this option is not correct.
+X-Ray only works with AWS Lambda aliases - This is not true, aliases are pointers to specific Lambda function versions. To use the X-Ray SDK on Lambda, bundle it with your function code each time you create a new version.
+Change the security group rules - You grant permissions to your Lambda function to access other resources using an IAM role and not via security groups.
+Reference:
+https://docs.aws.amazon.com/xray/latest/devguide/security_iam_troubleshoot.html","./6a_files/product-page-diagram_AWS-X-Ray_how-it-works.2922edd4bfe011e997dbf32fdf8bd520bcbc85fb.png","Fix the IAM Role","Correct answer","","Enable X-Ray sampling","Your answer is incorrect","","X-Ray only works with AWS Lambda aliases","","","Change the security group rules","","","","","","","",""
+"Practice Test #2 (AWS Certified Developer Associate - DVA-C02)","Attempt 1","6a.html","Question 42","Incorrect","No","Development with AWS Services","A business has their test environment built on Amazon EC2 configured on General purpose SSD volume.
+At which gp2 volume size will their test environment hit the max IOPS?","5.3 TiB","","16 TiB","Correct option:
+The performance of gp2 volumes is tied to volume size, which determines the baseline performance level of the volume and how quickly it accumulates I/O credits; larger volumes have higher baseline performance levels and accumulate I/O credits faster.
+5.3 TiB - General Purpose SSD (gp2) volumes offer cost-effective storage that is ideal for a broad range of workloads. These volumes deliver single-digit millisecond latencies and the ability to burst to 3,000 IOPS for extended periods of time. Between a minimum of 100 IOPS (at 33.33 GiB and below) and a maximum of 16,000 IOPS (at 5,334 GiB and above), baseline performance scales linearly at 3 IOPS per GiB of volume size.
+Maximum IOPS vs Volume Size for General Purpose SSD (gp2) volumes:
+via - https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html
+Incorrect options:
+10.6 TiB - As explained above, this is an incorrect option.
+16 TiB - As explained above, this is an incorrect option.
+2.7 TiB - As explained above, this is an incorrect option.
+Reference:
+https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html","./6a_files/gp2_iops_1.png","10.6 TiB","","","2.7 TiB","","","16 TiB","Your answer is incorrect","","5.3 TiB","Correct answer","","","","","","",""
+"Practice Test #2 (AWS Certified Developer Associate - DVA-C02)","Attempt 1","6a.html","Question 48","Incorrect","No","Development with AWS Services","The development team at an analytics company is using SQS queues for decoupling the various components of application architecture. As the consumers need additional time to process SQS messages, the development team wants to postpone the delivery of new messages to the queue for a few seconds.
+As a Developer Associate, which of the following solutions would you recommend to the development team?","Use delay queues to postpone the delivery of new messages to the queue for a few seconds","","Use dead-letter queues to postpone the delivery of new messages to the queue for a few seconds","Correct option:
+Use delay queues to postpone the delivery of new messages to the queue for a few seconds
+Amazon Simple Queue Service (SQS) is a fully managed message queuing service that enables you to decouple and scale microservices, distributed systems, and serverless applications. SQS offers two types of message queues. Standard queues offer maximum throughput, best-effort ordering, and at-least-once delivery. SQS FIFO queues are designed to guarantee that messages are processed exactly once, in the exact order that they are sent.
+Delay queues let you postpone the delivery of new messages to a queue for several seconds, for example, when your consumer application needs additional time to process messages. If you create a delay queue, any messages that you send to the queue remain invisible to consumers for the duration of the delay period. The default (minimum) delay for a queue is 0 seconds. The maximum is 15 minutes.
+via - https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-delay-queues.html
+Incorrect options:
+Use FIFO queues to postpone the delivery of new messages to the queue for a few seconds - SQS FIFO queues are designed to guarantee that messages are processed exactly once, in the exact order that they are sent. You cannot use FIFO queues to postpone the delivery of new messages to the queue for a few seconds.
+Use dead-letter queues to postpone the delivery of new messages to the queue for a few seconds - Dead-letter queues can be used by other queues (source queues) as a target for messages that can't be processed (consumed) successfully. Dead-letter queues are useful for debugging your application or messaging system because they let you isolate problematic messages to determine why their processing doesn't succeed. You cannot use dead-letter queues to postpone the delivery of new messages to the queue for a few seconds.
+Use visibility timeout to postpone the delivery of new messages to the queue for a few seconds - Visibility timeout is a period during which Amazon SQS prevents other consumers from receiving and processing a given message. The default visibility timeout for a message is 30 seconds. The minimum is 0 seconds. The maximum is 12 hours. You cannot use visibility timeout to postpone the delivery of new messages to the queue for a few seconds.
+Reference:
+https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-delay-queues.html","./6a_files/pt2-q4-i1.jpg","Use visibility timeout to postpone the delivery of new messages to the queue for a few seconds","","","Use dead-letter queues to postpone the delivery of new messages to the queue for a few seconds","Your answer is incorrect","","Use delay queues to postpone the delivery of new messages to the queue for a few seconds","Correct answer","","Use FIFO queues to postpone the delivery of new messages to the queue for a few seconds","","","","","","","",""
+"Practice Test #2 (AWS Certified Developer Associate - DVA-C02)","Attempt 1","6a.html","Question 49","Incorrect","No","Deployment","Your company has embraced cloud-native microservices architectures. New applications must be dockerized and stored in a registry service offered by AWS. The architecture should support dynamic port mapping and support multiple tasks from a single service on the same container instance. All services should run on the same EC2 instance.
+Which of the following options offers the best-fit solution for the given use-case?","Application Load Balancer + ECS","","Classic Load Balancer + ECS","Correct option:
+Application Load Balancer + ECS
+Amazon Elastic Container Service (Amazon ECS) is a highly scalable, fast, container management service that makes it easy to run, stop, and manage Docker containers on a cluster. You can host your cluster on a serverless infrastructure that is managed by Amazon ECS by launching your services or tasks using the Fargate launch type. For more control over your infrastructure, you can host your tasks on a cluster of Amazon Elastic Compute Cloud (Amazon EC2) instances that you manage by using the EC2 launch type.
+via - https://aws.amazon.com/ecs/
+An Application load balancer distributes incoming application traffic across multiple targets, such as EC2 instances, in multiple Availability Zones. A listener checks for connection requests from clients, using the protocol and port that you configure. The rules that you define for a listener determine how the load balancer routes requests to its registered targets. Each rule consists of a priority, one or more actions, and one or more conditions.
+via - https://docs.aws.amazon.com/elasticloadbalancing/latest/application/introduction.html
+When you deploy your services using Amazon Elastic Container Service (Amazon ECS), you can use dynamic port mapping to support multiple tasks from a single service on the same container instance. Amazon ECS manages updates to your services by automatically registering and deregistering containers with your target group using the instance ID and port for each container.
+via - https://aws.amazon.com/premiumsupport/knowledge-center/dynamic-port-mapping-ecs
+Incorrect options:
+Classic Load Balancer + Beanstalk - The Classic Load Balancer doesn't allow you to run multiple copies of a task on the same instance. Instead, with the Classic Load Balancer, you must statically map port numbers on a container instance. So this option is ruled out.
+Application Load Balancer + Beanstalk - You can create docker environments that support multiple containers per Amazon EC2 instance with a multi-container Docker platform for Elastic Beanstalk. However, ECS gives you finer control.
+Classic Load Balancer + ECS - The Classic Load Balancer doesn't allow you to run multiple copies of a task in the same instance. Instead, with the Classic Load Balancer, you must statically map port numbers on a container instance. So this option is ruled out.
+References:
+https://aws.amazon.com/premiumsupport/knowledge-center/dynamic-port-mapping-ecs
+https://docs.aws.amazon.com/elasticloadbalancing/latest/application/tutorial-target-ecs-containers.html
+https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create_deploy_docker_ecs.html","./6a_files/product-page-diagram_ECS_1.86ebd8c223ec8b55aa1903c423fbe4e672f3daf7.png
+./6a_files/component_architecture.png
+./6a_files/pt2-q24-i1.jpg","Classic Load Balancer + ECS","Your answer is incorrect","","Application Load Balancer + Beanstalk","","","Application Load Balancer + ECS","Correct answer","","Classic Load Balancer + Beanstalk","","","","","","","",""
+"Practice Test #2 (AWS Certified Developer Associate - DVA-C02)","Attempt 1","6a.html","Question 52","Incorrect","No","Troubleshooting and Optimization","The app development team at a social gaming mobile app wants to simplify the user sign up process for the app. The team is looking for a fully managed scalable solution for user management in anticipation of the rapid growth that the app foresees.
+As a Developer Associate, which of the following solutions would you suggest so that it requires the LEAST amount of development effort?","Use Cognito User pools to facilitate sign up and user management for the mobile app","","Use Cognito Identity pools to facilitate sign up and user management for the mobile app","Correct option:
+Use Cognito User pools to facilitate sign up and user management for the mobile app
+Amazon Cognito provides authentication, authorization, and user management for your web and mobile apps. Your users can sign in directly with a user name and password, or through a third party such as Facebook, Amazon, Google or Apple.
+A user pool is a user directory in Amazon Cognito. With a user pool, your users can sign in to your web or mobile app through Amazon Cognito, or federate through a third-party identity provider (IdP). Whether your users sign-in directly or through a third party, all members of the user pool have a directory profile that you can access through an SDK.
+Cognito is fully managed by AWS and works out of the box so it meets the requirements for the given use-case.
+via - https://docs.aws.amazon.com/cognito/latest/developerguide/what-is-amazon-cognito.html
+Incorrect options:
+Use Cognito Identity pools to facilitate sign up and user management for the mobile app - You can use Identity pools to grant your users access to other AWS services. With an identity pool, your users can obtain temporary AWS credentials to access AWS services, such as Amazon S3 and DynamoDB. Identity pools support anonymous guest users, as well as the specific identity providers that you can use to authenticate users for identity pools.
+Exam Alert:
+Please review the following note to understand the differences between Cognito User Pools and Cognito Identity Pools:
+via - https://docs.aws.amazon.com/cognito/latest/developerguide/what-is-amazon-cognito.html
+Create a custom solution with EC2 and DynamoDB to facilitate sign up and user management for the mobile app
+Create a custom solution with Lambda and DynamoDB to facilitate sign up and user management for the mobile app
+As the problem statement mentions that the solution needs to be fully managed and should require the least amount of development effort, so you cannot use EC2 or Lambda functions with DynamoDB to create a custom solution.
+Reference:
+https://docs.aws.amazon.com/cognito/latest/developerguide/what-is-amazon-cognito.html","./6a_files/pt2-q2-i1.jpg
+./6a_files/pt2-q2-i2.jpg","Use Cognito Identity pools to facilitate sign up and user management for the mobile app","Your answer is incorrect","","Create a custom solution using EC2 and DynamoDB to facilitate sign up and user management for the mobile app","","","Create a custom solution using Lambda and DynamoDB to facilitate sign up and user management for the mobile app","","","Use Cognito User pools to facilitate sign up and user management for the mobile app","Correct answer","","","","","","",""
+"Practice Test #2 (AWS Certified Developer Associate - DVA-C02)","Attempt 1","6a.html","Question 54","Incorrect","No","Deployment","An e-commerce company manages a microservices application that receives orders from various partners through a customized API for each partner exposed via Amazon API Gateway. The orders are processed by a shared Lambda function.
+How can the company notify each partner regarding the status of their respective orders in the most efficient manner, without affecting other partners' orders? Also, the solution should be scalable to accommodate new partners with minimal code changes required.","Set up an SNS topic and subscribe each partner to the SNS topic. Modify the Lambda function to publish messages with specific attributes to the SNS topic and apply the appropriate filter policy to the topic subscriptions","","Set up a separate SNS topic for each partner and subscribe each partner to the respective SNS topic. Modify the Lambda function to publish messages with specific attributes to the partner's SNS topic and apply the appropriate filter policy to the topic subscriptions","Correct option:
+Set up an SNS topic and subscribe each partner to the SNS topic. Modify the Lambda function to publish messages with specific attributes to the SNS topic and apply the appropriate filter policy to the topic subscriptions
+An Amazon SNS topic is a logical access point that acts as a communication channel. A topic lets you group multiple endpoints (such as AWS Lambda, Amazon SQS, HTTP/S, or an email address). For example, to broadcast the messages of a message-producer system (such as, an e-commerce website) working with multiple other services that require its messages (for example, checkout and fulfillment systems), you can create a topic for your producer system.
+By default, an Amazon SNS topic subscriber receives every message that's published to the topic. To receive only a subset of the messages, a subscriber must assign a filter policy to the topic subscription. A filter policy is a JSON object containing properties that define which messages the subscriber receives. Amazon SNS supports policies that act on the message attributes or the message body, according to the filter policy scope that you set for the subscription. Filter policies for the message body assume that the message payload is a well-formed JSON object.
+For the given use case, you can change the Lambda function to publish messages with specific attributes to the single SNS topic and apply the appropriate filter policy to the topic subscriptions for each of the partners. This is also easily scalable for new partners since only the filter policy needs to be set up for the new partner.
+Incorrect options:
+Set up a separate SNS topic for each partner. Modify the Lambda function to publish messages for each partner to the partner's SNS topic
+Set up a separate SNS topic for each partner and subscribe each partner to the respective SNS topic. Modify the Lambda function to publish messages with specific attributes to the partner's SNS topic and apply the appropriate filter policy to the topic subscriptions
+Both of these options represent an inefficient solution as there is no need to segregate each partner's updates into a separate SNS topic. A single SNS topic with distinct filter policies is sufficient.
+Set up a separate Lambda function for each partner. Set up an SNS topic and subscribe each partner to the SNS topic. Modify each partner's Lambda function to publish messages with specific attributes to the SNS topic and apply the appropriate filter policy to the topic subscriptions - This is again an inefficient solution as there is no need to create a separate Lambda function for each partner as just a shared Lambda function is sufficient to process the orders and send an update to the single SNS topic with distinct filter policies.
+References:
+https://docs.aws.amazon.com/sns/latest/dg/sns-create-topic.html
+https://docs.aws.amazon.com/sns/latest/dg/sns-message-filtering.html","","Set up a separate SNS topic for each partner and subscribe each partner to the respective SNS topic. Modify the Lambda function to publish messages with specific attributes to the partner's SNS topic and apply the appropriate filter policy to the topic subscriptions","Your answer is incorrect","","Set up a separate Lambda function for each partner. Set up an SNS topic and subscribe each partner to the SNS topic. Modify each partner's Lambda function to publish messages with specific attributes to the SNS topic and apply the appropriate filter policy to the topic subscriptions","","","Set up a separate SNS topic for each partner. Modify the Lambda function to publish messages for each partner to the partner's SNS topic","","","Set up an SNS topic and subscribe each partner to the SNS topic. Modify the Lambda function to publish messages with specific attributes to the SNS topic and apply the appropriate filter policy to the topic subscriptions","Correct answer","","","","","","",""
+"Practice Test #2 (AWS Certified Developer Associate - DVA-C02)","Attempt 1","6a.html","Question 55","Incorrect","No","Development with AWS Services","As a senior architect, you are responsible for the development, support, maintenance, and implementation of all database applications written using NoSQL technology. A new project demands a throughput requirement of 10 strongly consistent reads per second of 6KB in size each.
+How many read capacity units will you need when configuring your DynamoDB table?","20","","30","Correct option:
+Before proceeding with the calculations, please review the following:
+via - https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughput.html
+20
+One read capacity unit represents one strongly consistent read per second for an item up to 4 KB in size. If you need to read an item that is larger than 4 KB, DynamoDB will need to consume additional read capacity units.
+1) Item Size / 4KB, rounding to the nearest whole number.
+So, in the above case, 6KB / 4 KB = 1.5 or 2 read capacity units.
+2) 1 read capacity unit per item (since strongly consistent read) × No of reads per second
+So, in the above case, 2 x 10 = 20 read capacity units.
+Incorrect options:
+60
+30
+10
+These three options contradict the details provided in the explanation above, so these are incorrect.
+Reference:
+https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughput.html","./6a_files/pt2-q44-i1.jpg
+./6a_files/pt2-q44-i2.jpg","30","Your answer is incorrect","","60","","","10","","","20","Correct answer","","","","","","",""
+"Practice Test #2 (AWS Certified Developer Associate - DVA-C02)","Attempt 1","6a.html","Question 56","Incorrect","No","Troubleshooting and Optimization","You create an Auto Scaling group to work with an Application Load Balancer. The scaling group is configured with a minimum size value of 5, a maximum value of 20, and the desired capacity value of 10. One of the 10 EC2 instances has been reported as unhealthy.
+Which of the following actions will take place?","The ASG will terminate the EC2 Instance","","The ASG will detach the EC2 instance from the group, and leave it running","Correct option:
+The ASG will terminate the EC2 Instance
+To maintain the same number of instances, Amazon EC2 Auto Scaling performs a periodic health check on running instances within an Auto Scaling group. When it finds that an instance is unhealthy, it terminates that instance and launches a new one. Amazon EC2 Auto Scaling creates a new scaling activity for terminating the unhealthy instance and then terminates it. Later, another scaling activity launches a new instance to replace the terminated instance.
+Incorrect options:
+The ASG will detach the EC2 instance from the group, and leave it running - The goal of the auto-scaling group is to get rid of the bad instance and replace it
+The ASG will keep the instance running and re-start the application - The ASG does not have control of your application
+The ASG will format the root EBS drive on the EC2 instance and run the User Data again - This will not happen, the ASG cannot assume the format of your EBS drive, and User Data only runs once at instance first boot.
+References:
+https://aws.amazon.com/premiumsupport/knowledge-center/auto-scaling-terminate-instance
+https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-maintain-instance-levels.html#replace-unhealthy-instance","","The ASG will format the root EBS drive on the EC2 instance and run the User Data again","","","The ASG will detach the EC2 instance from the group, and leave it running","Your answer is incorrect","","The ASG will terminate the EC2 Instance","Correct answer","","The ASG will keep the instance running and re-start the application","","","","","","","",""
+"Practice Test #2 (AWS Certified Developer Associate - DVA-C02)","Attempt 1","6a.html","Question 58","Incorrect","No","Development with AWS Services","The technology team at an investment bank uses DynamoDB to facilitate high-frequency trading where multiple trades can try and update an item at the same time.
+Which of the following actions would make sure that only the last updated value of any item is used in the application?","Use ConsistentRead = true while doing GetItem operation for any item","","Use ConsistentRead = true while doing UpdateItem operation for any item","Correct option:
+Use ConsistentRead = true while doing GetItem operation for any item
+DynamoDB supports eventually consistent and strongly consistent reads.
+Eventually Consistent Reads
+When you read data from a DynamoDB table, the response might not reflect the results of a recently completed write operation. The response might include some stale data. If you repeat your read request after a short time, the response should return the latest data.
+Strongly Consistent Reads
+When you request a strongly consistent read, DynamoDB returns a response with the most up-to-date data, reflecting the updates from all prior write operations that were successful.
+DynamoDB uses eventually consistent reads by default. Read operations (such as GetItem, Query, and Scan) provide a ConsistentRead parameter. If you set this parameter to true, DynamoDB uses strongly consistent reads during the operation. As per the given use-case, to make sure that only the last updated value of any item is used in the application, you should use strongly consistent reads by setting ConsistentRead = true for GetItem operation.
+via - https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.ReadConsistency.html
+Incorrect options:
+Use ConsistentRead = true while doing UpdateItem operation for any item
+Use ConsistentRead = true while doing PutItem operation for any item
+Use ConsistentRead = false while doing PutItem operation for any item
+As mentioned in the explanation above, strongly consistent reads apply only while using the read operations (such as GetItem, Query, and Scan). So these three options are incorrect.
+Reference:
+https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.ReadConsistency.html","./6a_files/pt2-q9-i1.jpg","Use ConsistentRead = true while doing PutItem operation for any item","","","Use ConsistentRead = false while doing PutItem operation for any item","","","Use ConsistentRead = true while doing GetItem operation for any item","Correct answer","","Use ConsistentRead = true while doing UpdateItem operation for any item","Your answer is incorrect","","","","","","",""
+"Practice Test #2 (AWS Certified Developer Associate - DVA-C02)","Attempt 1","6a.html","Question 59","Incorrect","No","Troubleshooting and Optimization","A company has created an Amazon S3 bucket that holds customer data. The team lead has just enabled access logging to this bucket. The bucket size has grown substantially after starting access logging. Since no new files have been added to the bucket, the perplexed team lead is looking for an answer.
+Which of the following reasons explains this behavior?","S3 access logging is pointing to the same bucket and is responsible for the substantial growth of bucket size","","Erroneous Bucket policies for batch uploads can sometimes be responsible for the exponential growth of S3 Bucket size","Correct option:
+S3 access logging is pointing to the same bucket and is responsible for the substantial growth of bucket size - When your source bucket and target bucket are the same bucket, additional logs are created for the logs that are written to the bucket. The extra logs about logs might make it harder to find the log that you are looking for. This configuration would drastically increase the size of the S3 bucket.
+via - https://aws.amazon.com/premiumsupport/knowledge-center/s3-server-access-logs-same-bucket/
+Incorrect options:
+Erroneous Bucket policies for batch uploads can sometimes be responsible for the exponential growth of S3 Bucket size - This is an incorrect statement. A bucket policy is a resource-based AWS Identity and Access Management (IAM) policy. You add a bucket policy to a bucket to grant other AWS accounts or IAM users access permissions for the bucket and the objects in it. A bucket policy, for batch processes or normal processes, will not increase the size of the bucket or the objects in it.
+A DDOS attack on your S3 bucket can potentially blow up the size of data in the bucket if the bucket security is compromised during the attack - This is an incorrect statement. AWS handles DDoS attacks on all of its managed services. However, a DDoS attack will not increase the size of the bucket.
+Object Encryption has been enabled and each object is stored twice as part of this configuration - Encryption does not increase a bucket's size, that too, on daily basis, as if the case in the current scenario
+References:
+https://docs.aws.amazon.com/AmazonS3/latest/dev/ServerLogs.html
+https://docs.aws.amazon.com/AmazonS3/latest/user-guide/set-permissions.html","./6a_files/pt2-q57-i1.jpg","A DDoS attack on your S3 bucket can potentially blow up the size of data in the bucket if the bucket security is compromised during the attack","","","Erroneous Bucket policies for batch uploads can sometimes be responsible for the exponential growth of S3 Bucket size","Your answer is incorrect","","Object Encryption has been enabled and each object is stored twice as part of this configuration","","","S3 access logging is pointing to the same bucket and is responsible for the substantial growth of bucket size","Correct answer","","","","","","",""
+"Practice Test #2 (AWS Certified Developer Associate - DVA-C02)","Attempt 1","6a.html","Question 60","Incorrect","No","Security","Consider an application that enables users to store their mobile phone images in the cloud and supports tens of thousands of users. The application should utilize an Amazon API Gateway REST API that leverages AWS Lambda functions for photo processing while storing photo details in Amazon DynamoDB. The application should allow users to create an account, upload images, and retrieve previously uploaded images, with images ranging in size from 500 KB to 5 MB.
+How will you design the application with the least operational overhead?","Leverage Cognito user pools to manage user accounts and set up an Amazon Cognito user pool authorizer in API Gateway to control access to the API. Set up a Lambda function to store the images in Amazon S3 and save the image object's S3 key as part of the photo details in a DynamoDB table. Have the Lambda function retrieve previously uploaded images by querying DynamoDB for the S3 key","","Use Cognito identity pools to create an IAM user for each user of the application during the sign-up process. Leverage IAM authentication in API Gateway to control access to the API. Set up a Lambda function to store the images in Amazon S3 and save the image object's S3 key as part of the photo details in a DynamoDB table. Have the Lambda function retrieve previously uploaded images by querying DynamoDB for the S3 key","Correct option:
+Leverage Cognito user pools to manage user accounts and set up an Amazon Cognito user pool authorizer in API Gateway to control access to the API. Set up a Lambda function to store the images in Amazon S3 and save the image object's S3 key as part of the photo details in a DynamoDB table. Have the Lambda function retrieve previously uploaded images by querying DynamoDB for the S3 key
+A user pool is a user directory in Amazon Cognito. With a user pool, your users can sign in to your web or mobile app through Amazon Cognito. Your users can also sign in through social identity providers like Google, Facebook, Amazon, or Apple, and SAML identity providers. Whether your users sign in directly or through a third party, all members of the user pool have a directory profile that you can access through a Software Development Kit (SDK).
+User pools provide:
+Sign-up and sign-in services.
+A built-in, customizable web UI to sign in users.
+Social sign-in with Facebook, Google, Login with Amazon, and Sign in with Apple, as well as sign-in with SAML identity providers from your user pool.
+User directory management and user profiles.
+Security features such as multi-factor authentication (MFA), checks for compromised credentials, account takeover protection, and phone and email verification.
+Customized workflows and user migration through AWS Lambda triggers.
+To use an Amazon Cognito user pool with your Amazon API Gateway API, you must first create an authorizer of the COGNITO_USER_POOLS type and then configure an API method to use that authorizer. After the API is deployed, the client must first sign the user into the user pool, obtain an identity or access token for the user, and then call the API method with one of the tokens, which are typically set to the request's Authorization header.
+For the given use case, you can use a Cognito user pool to manage user accounts and configure an Amazon Cognito user pool authorizer in API Gateway to control access to the API. You should use a Lambda function to store the actual images on S3 and the image metadata on DynamoDB. Finally, you can get the images using the Lambda function that leverages the metadata stored in DynamoDB.
+Incorrect options:
+Use Cognito identity pools to manage user accounts and set up an Amazon Cognito identity pool authorizer in API Gateway to control access to the API. Set up a Lambda function to store the images in Amazon S3 and save the image object's S3 key as part of the photo details in a DynamoDB table. Have the Lambda function retrieve previously uploaded images by querying DynamoDB for the S3 key
+Use Cognito identity pools to create an IAM user for each user of the application during the sign-up process. Leverage IAM authentication in API Gateway to control access to the API. Set up a Lambda function to store the images in Amazon S3 and save the image object's S3 key as part of the photo details in a DynamoDB table. Have the Lambda function retrieve previously uploaded images by querying DynamoDB for the S3 key
+Amazon Cognito identity pools (federated identities) enable you to create unique identities for your users and federate them with identity providers. With an identity pool, you can obtain temporary, limited-privilege AWS credentials to access other AWS services. You cannot use identity pools to manage users or to create IAM users. So both of these options are incorrect.
+via - https://aws.amazon.com/premiumsupport/knowledge-center/cognito-user-pools-identity-pools/
+Leverage Cognito user pools to manage user accounts and set up an Amazon Cognito user pool authorizer in API Gateway to control access to the API. Set up a Lambda function to store the images as well as the image metadata in a DynamoDB table. Have the Lambda function retrieve previously uploaded images from DynamoDB - You cannot use DynamoDB to store images as the maximum allowed item size is 400KB and the images range in size from 500KB to 5MB. You should also note that storing images on DynamoDB is an anti-pattern. So this option is incorrect.
+References:
+https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools.html
+https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-identity.html
+https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-integrate-with-cognito.html
+https://aws.amazon.com/premiumsupport/knowledge-center/cognito-user-pools-identity-pools/","./6a_files/pt2-q29-i1.jpg","Leverage Cognito user pools to manage user accounts and set up an Amazon Cognito user pool authorizer in API Gateway to control access to the API. Set up a Lambda function to store the images as well as the image metadata in a DynamoDB table. Have the Lambda function retrieve previously uploaded images from DynamoDB","","","Leverage Cognito user pools to manage user accounts and set up an Amazon Cognito user pool authorizer in API Gateway to control access to the API. Set up a Lambda function to store the images in Amazon S3 and save the image object's S3 key as part of the photo details in a DynamoDB table. Have the Lambda function retrieve previously uploaded images by querying DynamoDB for the S3 key","Correct answer","","Use Cognito identity pools to create an IAM user for each user of the application during the sign-up process. Leverage IAM authentication in API Gateway to control access to the API. Set up a Lambda function to store the images in Amazon S3 and save the image object's S3 key as part of the photo details in a DynamoDB table. Have the Lambda function retrieve previously uploaded images by querying DynamoDB for the S3 key","Your answer is incorrect","","Use Cognito identity pools to manage user accounts and set up an Amazon Cognito identity pool authorizer in API Gateway to control access to the API. Set up a Lambda function to store the images in Amazon S3 and save the image object's S3 key as part of the photo details in a DynamoDB table. Have the Lambda function retrieve previously uploaded images by querying DynamoDB for the S3 key","","","","","","","",""
+"Practice Test #2 (AWS Certified Developer Associate - DVA-C02)","Attempt 1","6a.html","Question 62","Incorrect","No","Development with AWS Services","While defining a business workflow as state machine on AWS Step Functions, a developer has configured several states.
+Which of the following would you identify as the state that represents a single unit of work performed by a state machine?","""HelloWorld"": {
+  ""Type"": ""Task"",
+  ""Resource"": ""arn:aws:lambda:us-east-1:123456789012:function:HelloFunction"",
+  ""Next"": ""AfterHelloWorldState"",
+  ""Comment"": ""Run the HelloWorld Lambda function""
+}
+","","""wait_until"" : {
+  ""Type"": ""Wait"",
+  ""Timestamp"": ""2016-03-14T01:59:00Z"",
+  ""Next"": ""NextState""
+}
+","Correct option:
+""HelloWorld"": {
+  ""Type"": ""Task"",
+  ""Resource"": ""arn:aws:lambda:us-east-1:123456789012:function:HelloFunction"",
+  ""Next"": ""AfterHelloWorldState"",
+  ""Comment"": ""Run the HelloWorld Lambda function""
+}
+
+A Task state (""Type"": ""Task"") represents a single unit of work performed by a state machine.
+All work in your state machine is done by tasks. A task performs work by using an activity or an AWS Lambda function, or by passing parameters to the API actions of other services.
+AWS Step Functions can invoke Lambda functions directly from a task state. A Lambda function is a cloud-native task that runs on AWS Lambda. You can write Lambda functions in a variety of programming languages, using the AWS Management Console or by uploading code to Lambda.
+Incorrect options:
+""wait_until"" : {
+  ""Type"": ""Wait"",
+  ""Timestamp"": ""2016-03-14T01:59:00Z"",
+  ""Next"": ""NextState""
+}
+
+A Wait state (""Type"": ""Wait"") delays the state machine from continuing for a specified time.
+""No-op"": {
+  ""Type"": ""Task"",
+  ""Result"": {
+    ""x-datum"": 0.381018,
+    ""y-datum"": 622.2269926397355
+  },
+  ""ResultPath"": ""$.coords"",
+  ""Next"": ""End""
+}
+
+Resource field is a required parameter for Task state. This definition is not of a Task but of type Pass.
+""FailState"": {
+  ""Type"": ""Fail"",
+  ""Cause"": ""Invalid response."",
+  ""Error"": ""ErrorA""
+}
+
+A Fail state (""Type"": ""Fail"") stops the execution of the state machine and marks it as a failure unless it is caught by a Catch block. Because Fail states always exit the state machine, they have no Next field and don't require an End field.
+Reference:
+https://docs.aws.amazon.com/step-functions/latest/dg/amazon-states-language-task-state.html","","""wait_until"" : {
+  ""Type"": ""Wait"",
+  ""Timestamp"": ""2016-03-14T01:59:00Z"",
+  ""Next"": ""NextState""
+}
+","Your answer is incorrect","","""HelloWorld"": {
+  ""Type"": ""Task"",
+  ""Resource"": ""arn:aws:lambda:us-east-1:123456789012:function:HelloFunction"",
+  ""Next"": ""AfterHelloWorldState"",
+  ""Comment"": ""Run the HelloWorld Lambda function""
+}
+","Correct answer","","""No-op"": {
+  ""Type"": ""Task"",
+  ""Result"": {
+    ""x-datum"": 0.381018,
+    ""y-datum"": 622.2269926397355
+  },
+  ""ResultPath"": ""$.coords"",
+  ""Next"": ""End""
+}
+","","","""FailState"": {
+  ""Type"": ""Fail"",
+  ""Cause"": ""Invalid response."",
+  ""Error"": ""ErrorA""
+}
+","","","","","","","",""
+"Practice Test #2 (AWS Certified Developer Associate - DVA-C02)","Attempt 1","6a.html","Question 63","Incorrect","No","Development with AWS Services","The development team at a multi-national retail company wants to support trusted third-party authenticated users from the supplier organizations to create and update records in specific DynamoDB tables in the company's AWS account.
+As a Developer Associate, which of the following solutions would you suggest for the given use-case?","Use Cognito Identity pools to enable trusted third-party authenticated users to access DynamoDB","","Create a new IAM group in the company's AWS account for each of the third-party authenticated users from the supplier organizations. The users can then use the IAM group credentials to access DynamoDB","Correct option:
+Use Cognito Identity pools to enable trusted third-party authenticated users to access DynamoDB
+Amazon Cognito identity pools (federated identities) enable you to create unique identities for your users and federate them with identity providers. With an identity pool, you can obtain temporary, limited-privilege AWS credentials to access other AWS services. Amazon Cognito identity pools support the following identity providers:
+Public providers: Login with Amazon (Identity Pools), Facebook (Identity Pools), Google (Identity Pools), Sign in with Apple (Identity Pools).
+Amazon Cognito User Pools
+Open ID Connect Providers (Identity Pools)
+SAML Identity Providers (Identity Pools)
+Developer Authenticated Identities (Identity Pools)
+Exam Alert:
+Please review the following note to understand the differences between Cognito User Pools and Cognito Identity Pools:
+via - https://docs.aws.amazon.com/cognito/latest/developerguide/what-is-amazon-cognito.html
+Incorrect options:
+Use Cognito User pools to enable trusted third-party authenticated users to access DynamoDB - A user pool is a user directory in Amazon Cognito. With a user pool, your users can sign in to your web or mobile app through Amazon Cognito, or federate through a third-party identity provider (IdP). Cognito User Pools cannot be used to obtain temporary AWS credentials to access AWS services, such as Amazon S3 and DynamoDB.
+Create a new IAM user in the company's AWS account for each of the third-party authenticated users from the supplier organizations. The users can then use the IAM user credentials to access DynamoDB
+Create a new IAM group in the company's AWS account for each of the third-party authenticated users from the supplier organizations. The users can then use the IAM group credentials to access DynamoDB
+Both these options involve setting up IAM resources such as IAM users or IAM groups just to provide access to DynamoDB tables. As the users are already trusted third-party authenticated users, Cognito Identity Pool can address this use-case in an elegant way.
+Reference:
+https://docs.aws.amazon.com/cognito/latest/developerguide/what-is-amazon-cognito.html","./6a_files/pt2-q10-i1.jpg","Use Cognito Identity pools to enable trusted third-party authenticated users to access DynamoDB","Correct answer","","Use Cognito User pools to enable trusted third-party authenticated users to access DynamoDB","","","Create a new IAM group in the company's AWS account for each of the third-party authenticated users from the supplier organizations. The users can then use the IAM group credentials to access DynamoDB","Your answer is incorrect","","Create a new IAM user in the company's AWS account for each of the third-party authenticated users from the supplier organizations. The users can then use the IAM user credentials to access DynamoDB","","","","","","","",""
+"Practice Test #2 (AWS Certified Developer Associate - DVA-C02)","Attempt 1","6a.html","Question 65","Incorrect","No","Security","A developer is defining the signers that can create signed URLs for their Amazon CloudFront distributions.
+Which of the following statements should the developer consider while defining the signers? (Select two)","When you use the root user to manage CloudFront key pairs, you can only have up to two active CloudFront key pairs per AWS account
+
+When you create a signer, the public key is with CloudFront and private key is used to sign a portion of URL","","When you create a signer, the public key is with CloudFront and private key is used to sign a portion of URL
+
+You can also use AWS Identity and Access Management (IAM) permissions policies to restrict what the root user can do with CloudFront key pairs","Correct options:
+When you create a signer, the public key is with CloudFront and private key is used to sign a portion of URL - Each signer that you use to create CloudFront signed URLs or signed cookies must have a public–private key pair. The signer uses its private key to sign the URL or cookies, and CloudFront uses the public key to verify the signature.
+When you create signed URLs or signed cookies, you use the private key from the signer’s key pair to sign a portion of the URL or the cookie. When someone requests a restricted file, CloudFront compares the signature in the URL or cookie with the unsigned URL or cookie, to verify that it hasn’t been tampered with. CloudFront also verifies that the URL or cookie is valid, meaning, for example, that the expiration date and time haven’t passed.
+When you use the root user to manage CloudFront key pairs, you can only have up to two active CloudFront key pairs per AWS account - When you use the root user to manage CloudFront key pairs, you can only have up to two active CloudFront key pairs per AWS account.
+Whereas, with CloudFront key groups, you can associate a higher number of public keys with your CloudFront distribution, giving you more flexibility in how you use and manage the public keys. By default, you can associate up to four key groups with a single distribution, and you can have up to five public keys in a key group.
+Incorrect options:
+You can also use AWS Identity and Access Management (IAM) permissions policies to restrict what the root user can do with CloudFront key pairs - When you use the AWS account root user to manage CloudFront key pairs, you can’t restrict what the root user can do or the conditions in which it can do them. You can’t apply IAM permissions policies to the root user, which is one reason why AWS best practices recommend against using the root user.
+CloudFront key pairs can be created with any account that has administrative permissions and full access to CloudFront resources - CloudFront key pairs can only be created using the root user account and hence is not a best practice to create CloudFront key pairs as signers.
+Both the signers (trusted key groups and CloudFront key pairs) can be managed using the CloudFront APIs - With CloudFront key groups, you can manage public keys, key groups, and trusted signers using the CloudFront API. You can use the API to automate key creation and key rotation. When you use the AWS root user, you have to use the AWS Management Console to manage CloudFront key pairs, so you can’t automate the process.
+Reference:
+https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-trusted-signers.html","","CloudFront key pairs can be created with any account that has administrative permissions and full access to CloudFront resources","","","When you use the root user to manage CloudFront key pairs, you can only have up to two active CloudFront key pairs per AWS account","Correct selection","","When you create a signer, the public key is with CloudFront and private key is used to sign a portion of URL","Your selection is correct","","Both the signers (trusted key groups and CloudFront key pairs) can be managed using the CloudFront APIs","","","You can also use AWS Identity and Access Management (IAM) permissions policies to restrict what the root user can do with CloudFront key pairs","Your selection is incorrect","","","",""

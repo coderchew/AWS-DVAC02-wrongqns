@@ -1,0 +1,833 @@
+﻿"Test Paper","Attempt","Source File","Question Number","Result","Marked Unsure (#icon-saved)","Domain","Question","Correct Answer(s)","Keyword Tip (Correct Answer)","Your Answer(s)","Overall Explanation","Explanation Images","Option 1","Option 1 Label","Option 1 Explanation","Option 2","Option 2 Label","Option 2 Explanation","Option 3","Option 3 Label","Option 3 Explanation","Option 4","Option 4 Label","Option 4 Explanation","Option 5","Option 5 Label","Option 5 Explanation","Option 6","Option 6 Label","Option 6 Explanation"
+"Practice Test #1 (AWS Certified Developer Associate - DVA-C02)","Attempt 1","5a.html","Question 2","Incorrect","No","Development with AWS Services","A startup with newly created AWS account is testing different EC2 instances. They have used Burstable performance instance - T2.micro - for 35 seconds and stopped the instance.
+At the end of the month, what is the instance usage duration that the company is charged for?","0 seconds","","60 seconds","Correct option:
+Burstable performance instances, which are T3, T3a, and T2 instances, are designed to provide a baseline level of CPU performance with the ability to burst to a higher level when required by your workload. Burstable performance instances are the only instance types that use credits for CPU usage.
+0 seconds - AWS states that, if your AWS account is less than 12 months old, you can use a t2.micro instance for free within certain usage limits.
+Incorrect options:
+35 seconds
+60 seconds
+30 seconds
+These three options contradict the explanation provided earlier, so these are incorrect.
+Reference:
+https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances.html","","35 seconds","","","30 seconds","","","60 seconds","Your answer is incorrect","","0 seconds","Correct answer","","","","","","",""
+"Practice Test #1 (AWS Certified Developer Associate - DVA-C02)","Attempt 1","5a.html","Question 6","Incorrect","No","Deployment","A Developer at a company is working on a CloudFormation template to set up resources. Resources will be defined using code and provisioned based on certain conditions defined in the Conditions section.
+Which section of a CloudFormation template cannot be associated with Condition?","Parameters","","Outputs","Correct option:
+Parameters
+Parameters enable you to input custom values to your CloudFormation template each time you create or update a stack. Please see this note to understand how to define a parameter in a template:
+via - https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/parameters-section-structure.html
+The optional Conditions section contains statements that define the circumstances under which entities are created or configured. For example, you can create a condition and then associate it with a resource or output so that AWS CloudFormation only creates the resource or output if the condition is true.
+You might use conditions when you want to reuse a template that can create resources in different contexts, such as a test environment versus a production environment. In your template, you can add an EnvironmentType input parameter, which accepts either prod or test as inputs. For the production environment, you might include Amazon EC2 instances with certain capabilities; however, for the test environment, you want to use reduced capabilities to save money.
+Conditions cannot be used within the Parameters section. After you define all your conditions, you can associate them with resources and resource properties only in the Resources and Outputs sections of a template.
+Please review this note for more details:
+via - https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/conditions-section-structure.html
+Please visit https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/parameters-section-structure.html for more information on the parameter structure.
+Incorrect options:
+Resources - Resources section describes the resources that you want to provision in your AWS CloudFormation stacks. You can associate conditions with the resources that you want to conditionally create.
+Conditions - You actually define conditions in this section of the CloudFormation template
+Outputs - The optional Outputs section declares output values that you can import into other stacks (to create cross-stack references), return in response (to describe stack calls), or view on the AWS CloudFormation console. For example, you can output the S3 bucket name for a stack to make the bucket easier to find. You can associate conditions with the outputs that you want to conditionally create.
+References:
+https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/parameters-section-structure.html
+https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/conditions-section-structure.html","./5a_files/pt1-q11-i1.jpg
+./5a_files/pt1-q11-i2.jpg","Conditions","","","Parameters","Correct answer","","Resources","","","Outputs","Your answer is incorrect","","","","","","",""
+"Practice Test #1 (AWS Certified Developer Associate - DVA-C02)","Attempt 1","5a.html","Question 12","Incorrect","No","Troubleshooting and Optimization","A firm runs its technology operations on a fleet of Amazon EC2 instances. The firm needs a certain software to be available on the instances to support their daily workflows. The developer team has been told to use the user data feature of EC2 instances.
+Which of the following are true about the user data EC2 configuration? ( Select two)","By default, scripts entered as user data are executed with root user privileges
+
+By default, user data runs only during the boot cycle when you first launch an instance","","By default, scripts entered as user data are executed with root user privileges
+
+When an instance is running, you can update user data by using root user credentials","Correct options:
+User Data is generally used to perform common automated configuration tasks and even run scripts after the instance starts. When you launch an instance in Amazon EC2, you can pass two types of user data - shell scripts and cloud-init directives. You can also pass this data into the launch wizard as plain text or as a file.
+By default, scripts entered as user data are executed with root user privileges - Scripts entered as user data are executed as the root user, hence do not need the sudo command in the script. Any files you create will be owned by root; if you need non-root users to have file access, you should modify the permissions accordingly in the script.
+By default, user data runs only during the boot cycle when you first launch an instance - By default, user data scripts and cloud-init directives run only during the boot cycle when you first launch an instance. You can update your configuration to ensure that your user data scripts and cloud-init directives run every time you restart your instance.
+Incorrect options:
+By default, user data is executed every time an EC2 instance is re-started - As discussed above, this is not a default configuration of the system. But, can be achieved by explicitly configuring the instance.
+When an instance is running, you can update user data by using root user credentials - You can't change the user data if the instance is running (even by using root user credentials), but you can view it.
+By default, scripts entered as user data do not have root user privileges for executing - Scripts entered as user data are executed as the root user, hence do not need the sudo command in the script.
+Reference:
+https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html","","By default, user data is executed every time an EC2 instance is re-started","","","By default, scripts entered as user data are executed with root user privileges","Your selection is correct","","By default, scripts entered as user data do not have root user privileges for executing","","","When an instance is running, you can update user data by using root user credentials","Your selection is incorrect","","By default, user data runs only during the boot cycle when you first launch an instance","Correct selection","","","",""
+"Practice Test #1 (AWS Certified Developer Associate - DVA-C02)","Attempt 1","5a.html","Question 13","Incorrect","No","Development with AWS Services","An organization has hosted its EC2 instances in two AZs. AZ1 has two instances and AZ2 has 8 instances. The Elastic Load Balancer managing the instances in the two AZs has cross-zone load balancing enabled in its configuration.
+What percentage traffic will each of the instances in AZ1 receive?","10","","20","Correct option:
+A load balancer accepts incoming traffic from clients and routes requests to its registered targets (such as EC2 instances) in one or more Availability Zones.
+The nodes for a load balancer distribute requests from clients to registered targets. When cross-zone load balancing is enabled, each load balancer node distributes traffic across the registered targets in all enabled Availability Zones. When cross-zone load balancing is disabled, each load balancer node distributes traffic only across the registered targets in its Availability Zone. With Application Load Balancers, cross-zone load balancing is always enabled.
+10 - When cross-zone load balancing is enabled, each of the 10 targets receives 10% of the traffic. This is because each load balancer node can route its 50% of the client traffic to all 10 targets (present in both AZs).
+Cross-Zone Load Balancing Overview:
+via - https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/how-elastic-load-balancing-works.html
+Incorrect options:
+25 - If cross-zone load balancing is disabled, each of the two targets in AZ1 will receive 25% of the traffic. Because the load balancer is only able to send to the targets registered in AZ1 (AZ2 instances are not accessible for load balancer on AZ1)
+20 - Invalid option, given only as a distractor.
+15 - Invalid option, given only as a distractor.
+Reference:
+https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/how-elastic-load-balancing-works.html","./5a_files/pt1-q30-i1.jpg","15","","","10","Correct answer","","25","","","20","Your answer is incorrect","","","","","","",""
+"Practice Test #1 (AWS Certified Developer Associate - DVA-C02)","Attempt 1","5a.html","Question 14","Incorrect","No","Development with AWS Services","Amazon Simple Queue Service (SQS) has a set of APIs for various actions supported by the service.
+As a developer associate, which of the following would you identify as correct regarding the CreateQueue API? (Select two)","The visibility timeout value for the queue is in seconds, which defaults to 30 seconds
+
+You can't change the queue type after you create it","","The length of time, in seconds, for which the delivery of all messages in the queue is delayed is configured using MessageRetentionPeriod attribute
+
+You can't change the queue type after you create it","Correct options:
+You can't change the queue type after you create it - You can't change the queue type after you create it and you can't convert an existing standard queue into a FIFO queue. You must either create a new FIFO queue for your application or delete your existing standard queue and recreate it as a FIFO queue.
+The visibility timeout value for the queue is in seconds, which defaults to 30 seconds - The visibility timeout for the queue is in seconds. Valid values are: An integer from 0 to 43,200 (12 hours), the Default value is 30.
+Incorrect options:
+The dead-letter queue of a FIFO queue must also be a FIFO queue. Whereas, the dead-letter queue of a standard queue can be a standard queue or a FIFO queue - The dead-letter queue of a FIFO queue must also be a FIFO queue. Similarly, the dead-letter queue of a standard queue must also be a standard queue.
+The length of time, in seconds, for which the delivery of all messages in the queue is delayed is configured using MessageRetentionPeriod attribute - The length of time, in seconds, for which the delivery of all messages in the queue is delayed is configured using DelaySeconds attribute. MessageRetentionPeriod attribute controls the length of time, in seconds, for which Amazon SQS retains a message.
+Queue tags are case insensitive. A new tag with a key identical to that of an existing tag overwrites the existing tag - Queue tags are case-sensitive. A new tag with a key identical to that of an existing tag overwrites the existing tag. To be able to tag a queue on creation, you must have the sqs:CreateQueue and sqs:TagQueue permissions.
+Reference:
+https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_CreateQueue.html","","The visibility timeout value for the queue is in seconds, which defaults to 30 seconds","Correct selection","","The length of time, in seconds, for which the delivery of all messages in the queue is delayed is configured using MessageRetentionPeriod attribute","Your selection is incorrect","","The dead-letter queue of a FIFO queue must also be a FIFO queue. Whereas, the dead-letter queue of a standard queue can be a standard queue or a FIFO queue","","","Queue tags are case insensitive. A new tag with a key identical to that of an existing tag overwrites the existing tag","","","You can't change the queue type after you create it","Your selection is correct","","","",""
+"Practice Test #1 (AWS Certified Developer Associate - DVA-C02)","Attempt 1","5a.html","Question 17","Incorrect","No","Deployment","After a test deployment in ElasticBeanstalk environment, a developer noticed that all accumulated Amazon EC2 burst balances were lost.
+Which of the following options can lead to this behavior?","The deployment was either run with immutable updates or in traffic splitting mode","","The deployment was run as a All-at-once deployment, flushing all the accumulated EC2 burst balances","Correct option:
+The deployment was either run with immutable updates or in traffic splitting mode - Immutable deployments perform an immutable update to launch a full set of new instances running the new version of the application in a separate Auto Scaling group, alongside the instances running the old version. Immutable deployments can prevent issues caused by partially completed rolling deployments.
+Traffic-splitting deployments let you perform canary testing as part of your application deployment. In a traffic-splitting deployment, Elastic Beanstalk launches a full set of new instances just like during an immutable deployment. It then forwards a specified percentage of incoming client traffic to the new application version for a specified evaluation period.
+Some policies replace all instances during the deployment or update. This causes all accumulated Amazon EC2 burst balances to be lost. It happens in the following cases:
+Managed platform updates with instance replacement enabled
+Immutable updates
+Deployments with immutable updates or traffic splitting enabled
+Incorrect options:
+The deployment was run as a Rolling deployment, resulting in the resetting of EC2 burst balances - With rolling deployments, Elastic Beanstalk splits the environment's Amazon EC2 instances into batches and deploys the new version of the application to one batch at a time. Rolling deployments do not result in loss of EC2 burst balances.
+The deployment was run as a All-at-once deployment, flushing all the accumulated EC2 burst balances - The traditional All-at-once deployment, wherein all the instances are updated simultaneously, does not result in loss of EC2 burst balances.
+When a canary deployment fails, it resets the EC2 burst balances to zero - This is incorrect and given only as a distractor.
+Reference:
+https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.rolling-version-deploy.html","","When a canary deployment fails, it resets the EC2 burst balances to zero","","","The deployment was run as a All-at-once deployment, flushing all the accumulated EC2 burst balances","Your answer is incorrect","","The deployment was run as a Rolling deployment, resulting in the resetting of EC2 burst balances","","","The deployment was either run with immutable updates or in traffic splitting mode","Correct answer","","","","","","",""
+"Practice Test #1 (AWS Certified Developer Associate - DVA-C02)","Attempt 1","5a.html","Question 18","Incorrect","No","Troubleshooting and Optimization","You have deployed a Java application to an EC2 instance where it uses the X-Ray SDK. When testing from your personal computer, the application sends data to X-Ray but when the application runs from within EC2, the application fails to send data to X-Ray.
+Which of the following does NOT help with debugging the issue?","X-Ray sampling","","CloudTrail","Correct option:
+X-Ray sampling
+By customizing sampling rules, you can control the amount of data that you record, and modify sampling behavior on the fly without modifying or redeploying your code. Sampling rules tell the X-Ray SDK how many requests to record for a set of criteria. X-Ray SDK applies a sampling algorithm to determine which requests get traced however because our application is failing to send data to X-Ray it does not help in determining the cause of failure.
+X-Ray Overview:
+via - https://docs.aws.amazon.com/xray/latest/devguide/aws-xray.html
+Incorrect options:
+EC2 X-Ray Daemon - The AWS X-Ray daemon is a software application that listens for traffic on UDP port 2000, gathers raw segment data, and relays it to the AWS X-Ray API. The daemon logs could help with figuring out the problem.
+EC2 Instance Role - The X-Ray daemon uses the AWS SDK to upload trace data to X-Ray, and it needs AWS credentials with permission to do that. On Amazon EC2, the daemon uses the instance's instance profile role automatically. Eliminates API permission issues (in case the role doesn't have IAM permissions to write data to the X-Ray service)
+CloudTrail - With CloudTrail, you can log, continuously monitor, and retain account activity related to actions across your AWS infrastructure. You can use AWS CloudTrail to answer questions such as - “Who made an API call to modify this resource?”. CloudTrail provides event history of your AWS account activity thereby enabling governance, compliance, operational auditing, and risk auditing of your AWS account. You can check CloudTrail to see if any API call is being denied on X-Ray.
+Reference:
+https://docs.aws.amazon.com/xray/latest/devguide/aws-xray.html","./5a_files/architecture-dataflow.png","CloudTrail","Your answer is incorrect","","EC2 Instance Role","","","EC2 X-Ray Daemon","","","X-Ray sampling","Correct answer","","","","","","",""
+"Practice Test #1 (AWS Certified Developer Associate - DVA-C02)","Attempt 1","5a.html","Question 19","Incorrect","No","Development with AWS Services","A gaming company wants to store information about all the games that the company has released. Each game has a name, version number, and category (such as sports, puzzles, strategy, etc). The game information also can include additional properties about the supported platforms and technical specifications. This additional information is inconsistent across games.
+You have been hired as an AWS Certified Developer Associate to build a solution that addresses the following use cases:
+For a given name and version number, get all details about the game that has that name and version number.
+For a given name, get all details about all games that have that name.
+For a given category, get all details about all games in that category.
+What will you recommend as the most efficient solution?","Set up an Amazon DynamoDB table with a primary key that consists of the name as the partition key and the version number as the sort key. Create a global secondary index that has the category as the partition key and the name as the sort key","","Set up an Amazon DynamoDB table with a primary key that consists of the category as the partition key and the version number as the sort key. Create a global secondary index that has the name as the partition key","Correct option:
+Set up an Amazon DynamoDB table with a primary key that consists of the name as the partition key and the version number as the sort key. Create a global secondary index that has the category as the partition key and the name as the sort key
+When you create a DynamoDB table, in addition to the table name, you must specify the primary key of the table. The primary key uniquely identifies each item in the table, so that no two items can have the same key. You can create one or more secondary indexes on a table. A secondary index lets you query the data in the table using an alternate key, in addition to queries against the primary key. DynamoDB doesn't require that you use indexes, but they give your applications more flexibility when querying your data.
+via - https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.CoreComponents.html
+You should note that a global secondary index (GSI) contains a selection of attributes from the base table, but they are organized by a primary key that is different from that of the table. The Global secondary indexes allow you to perform queries on attributes that are not part of the table's primary key.
+via - https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GSI.html
+Incorrect options:
+Set up an Amazon DynamoDB table with a primary key that consists of the category as the partition key and the version number as the sort key. Create a global secondary index that has the name as the partition key - The DynamoDB table for this option has the primary key and GSI that do not solve for the condition - ""For a given name and version number, get all details about the game that has that name and version number"". This option does not allow for efficient querying of a specific game by its name and version number as you need multiple queries which would be less efficient than the single query allowed by the correct option.
+Set up an Amazon RDS MySQL instance having a games table that contains columns for name, version number, and category. Configure the name column as the primary key - This option is not the right fit as it does not allow you to efficiently query on the version number and category columns.
+Permanently store the name, version number, and category information about the games in an Amazon Elasticache for Memcached instance - You cannot use Elasticache for Memcached to permanently store values meant to be persisted in a database (relational or NoSQL). Elasticache is a caching layer. So this option is incorrect.
+References:
+https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.CoreComponents.html
+https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GSI.html
+https://aws.amazon.com/premiumsupport/knowledge-center/primary-key-dynamodb-table/","./5a_files/pt1-q32-i1.jpg
+./5a_files/pt1-q32-i2.jpg
+./5a_files/pt1-q32-i3.jpg","Set up an Amazon RDS MySQL instance having a games table that contains columns for name, version number, and category. Configure the name column as the primary key","","","Set up an Amazon DynamoDB table with a primary key that consists of the category as the partition key and the version number as the sort key. Create a global secondary index that has the name as the partition key","Your answer is incorrect","","Set up an Amazon DynamoDB table with a primary key that consists of the name as the partition key and the version number as the sort key. Create a global secondary index that has the category as the partition key and the name as the sort key","Correct answer","","Permanently store the name, version number, and category information about the games in an Amazon Elasticache for Memcached instance","","","","","","","",""
+"Practice Test #1 (AWS Certified Developer Associate - DVA-C02)","Attempt 1","5a.html","Question 20","Incorrect","No","Security","The development team has just configured and attached the IAM policy needed to access AWS Billing and Cost Management for all users under the Finance department. But, the users are unable to see AWS Billing and Cost Management service in the AWS console.
+What could be the reason for this issue?","You need to activate IAM user access to the Billing and Cost Management console for all the users who need access","","IAM user should be created under AWS Billing and Cost Management and not under AWS account to have access to Billing console","Correct option:
+You need to activate IAM user access to the Billing and Cost Management console for all the users who need access - By default, IAM users do not have access to the AWS Billing and Cost Management console. You or your account administrator must grant users access. You can do this by activating IAM user access to the Billing and Cost Management console and attaching an IAM policy to your users. Then, you need to activate IAM user access for IAM policies to take effect. You only need to activate IAM user access once.
+Incorrect options:
+The users might have another policy that restricts them from accessing the Billing information - This is an incorrect option, as deduced from the given use-case.
+Only root user has access to AWS Billing and Cost Management console - This is an incorrect statement. AWS Billing and Cost Management access can be provided to any user through user activation and policies, as discussed above.
+IAM user should be created under AWS Billing and Cost Management and not under the AWS account to have access to Billing console - IAM is a feature of your AWS account. All IAM users are created and managed from a single place, irrespective of the services they wish to you.
+Reference:
+https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/control-access-billing.html","","Only root user has access to AWS Billing and Cost Management console","","","IAM user should be created under AWS Billing and Cost Management and not under AWS account to have access to Billing console","Your answer is incorrect","","The users might have another policy that restricts them from accessing the Billing information","","","You need to activate IAM user access to the Billing and Cost Management console for all the users who need access","Correct answer","","","","","","",""
+"Practice Test #1 (AWS Certified Developer Associate - DVA-C02)","Attempt 1","5a.html","Question 21","Incorrect","No","Troubleshooting and Optimization","A company wants to improve the performance of its popular API service that offers unauthenticated read access to daily updated statistical information via Amazon API Gateway and AWS Lambda.
+What measures can the company take?","Enable API caching in API Gateway","","Configure API Gateway to use Elasticache for Memcached","Correct option:
+Enable API caching in API Gateway
+API Gateway provides a few strategies for optimizing your API to improve responsiveness, like response caching and payload compression. You can enable API caching in Amazon API Gateway to cache your endpoint's responses. With caching, you can reduce the number of calls made to your endpoint and also improve the latency of requests to your API.
+Incorrect options:
+Set up usage plans and API keys in API Gateway - After you create, test, and deploy your APIs, you can use API Gateway usage plans to make them available as product offerings for your customers. You can configure usage plans and API keys to allow customers to access selected APIs, and begin throttling requests to those APIs based on defined limits and quotas. These can be set at the API, or API method level. This option is incorrect as usage plans and API keys cannot be used to improve the responsiveness of the API.
+Configure API Gateway to use Elasticache for Memcached - This option has been added as a distractor. Elasticache for Memcached cannot be used with API Gateway to improve the responsiveness of the API for the given use case. You should note that Elasticache for Memcached is a downstream service in the request flow.
+Configure API Gateway to use Gateway VPC Endpoint - This option has been added as a distractor. Gateway endpoints provide reliable connectivity to Amazon S3 and DynamoDB without requiring an internet gateway or a NAT device for your VPC. Gateway endpoints do not enable AWS PrivateLink.
+References:
+https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-caching.html
+https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-api-usage-plans.html","","Set up usage plans and API keys in API Gateway","","","Configure API Gateway to use Elasticache for Memcached","Your answer is incorrect","","Configure API Gateway to use Gateway VPC Endpoint","","","Enable API caching in API Gateway","Correct answer","","","","","","",""
+"Practice Test #1 (AWS Certified Developer Associate - DVA-C02)","Attempt 1","5a.html","Question 23","Incorrect","No","Development with AWS Services","An IT company is configuring Auto Scaling for its Amazon EC2 instances spread across different AZs and Regions.
+Which of the following scenarios are NOT correct about EC2 Auto Scaling? (Select two)","An Auto Scaling group can contain EC2 instances in only one Availability Zone of a Region
+
+Auto Scaling groups that span across multiple Regions need to be enabled for all the Regions specified","","Amazon EC2 Auto Scaling attempts to distribute instances evenly between the Availability Zones that are enabled for your Auto Scaling group
+
+An Auto Scaling group can contain EC2 instances in one or more Availability Zones within the same Region","Correct options:
+Auto Scaling groups that span across multiple Regions need to be enabled for all the Regions specified - This is not valid for Auto Scaling groups. Auto Scaling groups cannot span across multiple Regions.
+An Auto Scaling group can contain EC2 instances in only one Availability Zone of a Region - This is not valid for Auto Scaling groups. An Auto Scaling group can contain EC2 instances in one or more Availability Zones within the same Region.
+Amazon EC2 Auto Scaling Overview:
+via - https://docs.aws.amazon.com/autoscaling/ec2/userguide/what-is-amazon-ec2-auto-scaling.html
+Incorrect options:
+An Auto Scaling group can contain EC2 instances in one or more Availability Zones within the same Region - This is a valid statement. Auto Scaling groups can span across the availability Zones of a Region.
+Amazon EC2 Auto Scaling attempts to distribute instances evenly between the Availability Zones that are enabled for your Auto Scaling group - When one Availability Zone becomes unhealthy or unavailable, Auto Scaling launches new instances in an unaffected Availability Zone. When the unhealthy Availability Zone returns to a healthy state, Auto Scaling automatically redistributes the application instances evenly across all of the designated Availability Zones.
+For Auto Scaling groups in a VPC, the EC2 instances are launched in subnets - For Auto Scaling groups in a VPC, the EC2 instances are launched in subnets. Customers can select the subnets for your EC2 instances when you create or update the Auto Scaling group.
+References:
+https://docs.aws.amazon.com/autoscaling/ec2/userguide/what-is-amazon-ec2-auto-scaling.html
+https://docs.aws.amazon.com/autoscaling/ec2/userguide/auto-scaling-benefits.html","./5a_files/pt1-q27-i1.jpg","An Auto Scaling group can contain EC2 instances in only one Availability Zone of a Region","Correct selection","","Auto Scaling groups that span across multiple Regions need to be enabled for all the Regions specified","Correct selection","","Amazon EC2 Auto Scaling attempts to distribute instances evenly between the Availability Zones that are enabled for your Auto Scaling group","Your selection is incorrect","","An Auto Scaling group can contain EC2 instances in one or more Availability Zones within the same Region","Your selection is incorrect","","For Auto Scaling groups in a VPC, the EC2 instances are launched in subnets","","","","",""
+"Practice Test #1 (AWS Certified Developer Associate - DVA-C02)","Attempt 1","5a.html","Question 24","Incorrect","No","Security","A development team has configured inbound traffic for the relevant ports in both the Security Group of the EC2 instance as well as the Network Access Control List (NACL) of the subnet for the EC2 instance. The team is, however, unable to connect to the service running on the Amazon EC2 instance.
+As a developer associate, which of the following will you recommend to fix this issue?","Security Groups are stateful, so allowing inbound traffic to the necessary ports enables the connection. Network ACLs are stateless, so you must allow both inbound and outbound traffic","","Network ACLs are stateful, so allowing inbound traffic to the necessary ports enables the connection. Security Groups are stateless, so you must allow both inbound and outbound traffic","Correct option:
+Security Groups are stateful, so allowing inbound traffic to the necessary ports enables the connection. Network ACLs are stateless, so you must allow both inbound and outbound traffic - Security groups are stateful, so allowing inbound traffic to the necessary ports enables the connection. Network ACLs are stateless, so you must allow both inbound and outbound traffic.
+To enable the connection to a service running on an instance, the associated network ACL must allow both inbound traffic on the port that the service is listening on as well as allow outbound traffic from ephemeral ports. When a client connects to a server, a random port from the ephemeral port range (1024-65535) becomes the client's source port.
+The designated ephemeral port then becomes the destination port for return traffic from the service, so outbound traffic from the ephemeral port must be allowed in the network ACL.
+By default, network ACLs allow all inbound and outbound traffic. If your network ACL is more restrictive, then you need to explicitly allow traffic from the ephemeral port range.
+If you accept traffic from the internet, then you also must establish a route through an internet gateway. If you accept traffic over VPN or AWS Direct Connect, then you must establish a route through a virtual private gateway.
+Incorrect options:
+Network ACLs are stateful, so allowing inbound traffic to the necessary ports enables the connection. Security Groups are stateless, so you must allow both inbound and outbound traffic - This is incorrect as already discussed.
+IAM Role defined in the Security Group is different from the IAM Role that is given access in the Network ACLs - This is a made-up option and just added as a distractor.
+Rules associated with Network ACLs should never be modified from the command line. An attempt to modify rules from the command line blocks the rule and results in an erratic behavior - This option is a distractor. AWS does not support modifying rules of Network ACLs from the command line tool.
+Reference:
+https://aws.amazon.com/premiumsupport/knowledge-center/resolve-connection-sg-acl-inbound/","","Network ACLs are stateful, so allowing inbound traffic to the necessary ports enables the connection. Security Groups are stateless, so you must allow both inbound and outbound traffic","Your answer is incorrect","","Rules associated with Network ACLs should never be modified from the command line. An attempt to modify rules from the command line blocks the rule and results in an erratic behavior","","","IAM Role defined in the Security Group is different from the IAM Role that is given access in the Network ACLs","","","Security Groups are stateful, so allowing inbound traffic to the necessary ports enables the connection. Network ACLs are stateless, so you must allow both inbound and outbound traffic","Correct answer","","","","","","",""
+"Practice Test #1 (AWS Certified Developer Associate - DVA-C02)","Attempt 1","5a.html","Question 26","Incorrect","No","Security","A development team lead is responsible for managing access for her IAM principals. At the start of the cycle, she has granted excess privileges to users to keep them motivated for trying new things. She now wants to ensure that the team has only the minimum permissions required to finish their work.
+Which of the following will help her identify unused IAM roles and remove them without disrupting any service?","IAM Access Analyzer","","AWS Trusted Advisor","Correct option:
+IAM Access Analyzer
+IAM Access Analyzer simplifies inspecting unused access to guide you toward least privilege. Security teams can use IAM Access Analyzer to gain visibility into unused access across their AWS organization and automate how they rightsize permissions. When the unused access analyzer is enabled, IAM Access Analyzer continuously analyzes your accounts to identify unused access and creates a centralized dashboard with findings. The findings highlight unused roles, unused access keys for IAM users, and unused passwords for IAM users. For active IAM roles and users, the findings provide visibility into unused services and actions.
+Incorrect options:
+AWS Trusted Advisor - AWS Trusted Advisor is an online tool that provides you real-time guidance to help you provision your resources following AWS best practices on cost optimization, security, fault tolerance, service limits, and performance improvement.
+Amazon Inspector - Amazon Inspector is an automated security assessment service that helps improve the security and compliance of applications deployed on AWS. Amazon Inspector automatically assesses applications for exposure, vulnerabilities, and deviations from best practices.
+AWS Security Hub - AWS Security Hub provides you with a comprehensive view of your security state in AWS and helps you assess your AWS environment against security industry standards and best practices.
+Reference:
+https://aws.amazon.com/iam/access-analyzer/","","IAM Access Analyzer","Correct answer","","AWS Trusted Advisor","Your answer is incorrect","","Amazon Inspector","","","AWS Security Hub","","","","","","","",""
+"Practice Test #1 (AWS Certified Developer Associate - DVA-C02)","Attempt 1","5a.html","Question 30","Incorrect","No","Security","A developer is configuring a bucket policy that denies upload object permission to any requests that do not include the x-amz-server-side-encryption header requesting server-side encryption with SSE-KMS for an Amazon S3 bucket - examplebucket.
+Which of the following policies is the right fit for the given requirement?","{
+   ""Version"":""2012-10-17"",
+   ""Id"":""PutObjectPolicy"",
+   ""Statement"":[{
+         ""Sid"":""DenyUnEncryptedObjectUploads"",
+         ""Effect"":""Deny"",
+         ""Principal"":""*"",
+         ""Action"":""s3:PutObject"",
+         ""Resource"":""arn:aws:s3:::examplebucket/*"",
+         ""Condition"":{
+            ""StringNotEquals"":{
+               ""s3:x-amz-server-side-encryption"":""aws:kms""
+            }
+         }
+      }
+   ]
+}
+","","{
+   ""Version"":""2012-10-17"",
+   ""Id"":""PutObjectPolicy"",
+   ""Statement"":[{
+         ""Sid"":""DenyUnEncryptedObjectUploads"",
+         ""Effect"":""Deny"",
+         ""Principal"":""*"",
+         ""Action"":""s3:GetObject"",
+         ""Resource"":""arn:aws:s3:::examplebucket/*"",
+         ""Condition"":{
+            ""StringNotEquals"":{
+               ""s3:x-amz-server-side-encryption"":""aws:AES256""
+            }
+         }
+      }
+   ]
+}
+","Correct option:
+{ ""Version"":""2012-10-17"", ""Id"":""PutObjectPolicy"", ""Statement"":[{ ""Sid"":""DenyUnEncryptedObjectUploads"", ""Effect"":""Deny"", ""Principal"":"""", ""Action"":""s3:PutObject"", ""Resource"":""arn:aws:s3:::examplebucket/"", ""Condition"":{ ""StringNotEquals"":{ ""s3:x-amz-server-side-encryption"":""aws:kms"" } } } ] } - This bucket policy denies upload object (s3:PutObject) permission if the request does not include the x-amz-server-side-encryption header requesting server-side encryption with SSE-KMS. To ensure that a particular AWS KMS CMK be used to encrypt the objects in a bucket, you can use the s3:x-amz-server-side-encryption-aws-kms-key-id condition key. To specify the AWS KMS CMK, you must use a key Amazon Resource Name (ARN) that is in the ""arn:aws:kms:region:acct-id:key/key-id"" format.
+When you upload an object, you can specify the AWS KMS CMK using the x-amz-server-side-encryption-aws-kms-key-id header. If the header is not present in the request, Amazon S3 assumes the AWS-managed CMK.
+Incorrect options:
+{ ""Version"":""2012-10-17"", ""Id"":""PutObjectPolicy"", ""Statement"":[{ ""Sid"":""DenyUnEncryptedObjectUploads"", ""Effect"":""Deny"", ""Principal"":"""", ""Action"":""s3:PutObject"", ""Resource"":""arn:aws:s3:::examplebucket/"", ""Condition"":{ ""StringEquals"":{ ""s3:x-amz-server-side-encryption"":""aws:kms"" } } } ] } - The condition is incorrect in this policy. The condition should use StringNotEquals.
+{ ""Version"":""2012-10-17"", ""Id"":""PutObjectPolicy"", ""Statement"":[{ ""Sid"":""DenyUnEncryptedObjectUploads"", ""Effect"":""Deny"", ""Principal"":"""", ""Action"":""s3:GetObject"", ""Resource"":""arn:aws:s3:::examplebucket/"", ""Condition"":{ ""StringNotEquals"":{ ""s3:x-amz-server-side-encryption"":""aws:AES256"" } } } ] } - AES256 is used for Amazon S3-managed encryption keys (SSE-S3). Amazon S3 server-side encryption uses one of the strongest block ciphers available to encrypt your data, 256-bit Advanced Encryption Standard (AES-256).
+{ ""Version"":""2012-10-17"", ""Id"":""PutObjectPolicy"", ""Statement"":[{ ""Sid"":""DenyUnEncryptedObjectUploads"", ""Effect"":""Deny"", ""Principal"":"""", ""Action"":""s3:PutObject"", ""Resource"":""arn:aws:s3:::examplebucket/"", ""Condition"":{ ""StringNotEquals"":{ ""s3:x-amz-server-side-encryption"":""false"" } } } ] } - The condition is incorrect in this policy. The condition should use ""s3:x-amz-server-side-encryption"":""aws:kms"".
+Reference:
+https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingKMSEncryption.html","","{
+   ""Version"":""2012-10-17"",
+   ""Id"":""PutObjectPolicy"",
+   ""Statement"":[{
+         ""Sid"":""DenyUnEncryptedObjectUploads"",
+         ""Effect"":""Deny"",
+         ""Principal"":""*"",
+         ""Action"":""s3:GetObject"",
+         ""Resource"":""arn:aws:s3:::examplebucket/*"",
+         ""Condition"":{
+            ""StringNotEquals"":{
+               ""s3:x-amz-server-side-encryption"":""aws:AES256""
+            }
+         }
+      }
+   ]
+}
+","Your answer is incorrect","","{
+   ""Version"":""2012-10-17"",
+   ""Id"":""PutObjectPolicy"",
+   ""Statement"":[{
+         ""Sid"":""DenyUnEncryptedObjectUploads"",
+         ""Effect"":""Deny"",
+         ""Principal"":""*"",
+         ""Action"":""s3:PutObject"",
+         ""Resource"":""arn:aws:s3:::examplebucket/*"",
+         ""Condition"":{
+            ""StringNotEquals"":{
+               ""s3:x-amz-server-side-encryption"":""false""
+            }
+         }
+      }
+   ]
+}
+","","","{
+   ""Version"":""2012-10-17"",
+   ""Id"":""PutObjectPolicy"",
+   ""Statement"":[{
+         ""Sid"":""DenyUnEncryptedObjectUploads"",
+         ""Effect"":""Deny"",
+         ""Principal"":""*"",
+         ""Action"":""s3:PutObject"",
+         ""Resource"":""arn:aws:s3:::examplebucket/*"",
+         ""Condition"":{
+            ""StringNotEquals"":{
+               ""s3:x-amz-server-side-encryption"":""aws:kms""
+            }
+         }
+      }
+   ]
+}
+","Correct answer","","{
+   ""Version"":""2012-10-17"",
+   ""Id"":""PutObjectPolicy"",
+   ""Statement"":[{
+         ""Sid"":""DenyUnEncryptedObjectUploads"",
+         ""Effect"":""Deny"",
+         ""Principal"":""*"",
+         ""Action"":""s3:PutObject"",
+         ""Resource"":""arn:aws:s3:::examplebucket/*"",
+         ""Condition"":{
+            ""StringEquals"":{
+               ""s3:x-amz-server-side-encryption"":""aws:kms""
+            }
+         }
+      }
+   ]
+}
+","","","","","","","",""
+"Practice Test #1 (AWS Certified Developer Associate - DVA-C02)","Attempt 1","5a.html","Question 31","Incorrect","No","Development with AWS Services","You are creating a Cloud Formation template to deploy your CMS application running on an EC2 instance within your AWS account. Since the application will be deployed across multiple regions, you need to create a map of all the possible values for the base AMI.
+How will you invoke the !FindInMap function to fulfill this use case?","!FindInMap [ MapName, TopLevelKey, SecondLevelKey ]","","!FindInMap [ MapName ]","Correct option:
+!FindInMap [ MapName, TopLevelKey, SecondLevelKey ] - The intrinsic function Fn::FindInMap returns the value corresponding to keys in a two-level map that is declared in the Mappings section. YAML Syntax for the full function name: Fn::FindInMap: [ MapName, TopLevelKey, SecondLevelKey ]
+Short form of the above syntax is : !FindInMap [ MapName, TopLevelKey, SecondLevelKey ]
+Where,
+MapName - Is the logical name of a mapping declared in the Mappings section that contains the keys and values. TopLevelKey - The top-level key name. Its value is a list of key-value pairs. SecondLevelKey - The second-level key name, which is set to one of the keys from the list assigned to TopLevelKey.
+Consider the following YAML template:
+Mappings:
+  RegionMap:
+    us-east-1:
+      HVM64: ""ami-0ff8a91507f77f867""
+      HVMG2: ""ami-0a584ac55a7631c0c""
+    us-west-1:
+      HVM64: ""ami-0bdb828fd58c52235""
+      HVMG2: ""ami-066ee5fd4a9ef77f1""
+    eu-west-1:
+      HVM64: ""ami-047bb4163c506cd98""
+      HVMG2: ""ami-31c2f645""
+    ap-southeast-1:
+      HVM64: ""ami-08569b978cc4dfa10""
+      HVMG2: ""ami-0be9df32ae9f92309""
+    ap-northeast-1:
+      HVM64: ""ami-06cd52961ce9f0d85""
+      HVMG2: ""ami-053cdd503598e4a9d""
+Resources:
+  myEC2Instance:
+    Type: ""AWS::EC2::Instance""
+    Properties:
+      ImageId: !FindInMap
+        - RegionMap
+        - !Ref 'AWS::Region'
+        - HVM64
+      InstanceType: m1.small
+
+The example template contains an AWS::EC2::Instance resource whose ImageId property is set by the FindInMap function.
+MapName is set to the map of interest, ""RegionMap"" in this example. TopLevelKey is set to the region where the stack is created, which is determined by using the ""AWS::Region"" pseudo parameter. SecondLevelKey is set to the desired architecture, ""HVM64"" for this example.
+FindInMap returns the AMI assigned to FindInMap. For a HVM64 instance in us-east-1, FindInMap would return ""ami-0ff8a91507f77f867"".
+Incorrect options:
+!FindInMap [ MapName, TopLevelKey ]
+!FindInMap [ MapName ]
+!FindInMap [ MapName, TopLevelKey, SecondLevelKey, ThirdLevelKey ]
+These three options contradict the explanation provided above, hence these options are incorrect.
+Reference:
+https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-findinmap.html","","!FindInMap [ MapName ]","Your answer is incorrect","","!FindInMap [ MapName, TopLevelKey, SecondLevelKey ]","Correct answer","","!FindInMap [ MapName, TopLevelKey, SecondLevelKey, ThirdLevelKey ]","","","!FindInMap [ MapName, TopLevelKey ]","","","","","","","",""
+"Practice Test #1 (AWS Certified Developer Associate - DVA-C02)","Attempt 1","5a.html","Question 36","Incorrect","No","Deployment","As an AWS Certified Developer Associate, you have been asked to create an AWS Elastic Beanstalk environment to handle deployment for an application that has high traffic and high availability needs. You need to deploy the new version using Beanstalk while making sure that performance and availability are not affected.
+Which of the following is the MOST optimal way to do this while keeping the solution cost-effective?","Deploy using 'Rolling with additional batch' deployment policy","","Deploy using 'Immutable' deployment policy","Correct option:
+AWS Elastic Beanstalk offers several deployment policies and settings. Choosing the right deployment policy for your application is a tradeoff based on a few considerations and depends on your business needs.
+Deploy using 'Rolling with additional batch' deployment policy - With this method, Elastic Beanstalk launches an extra batch of instances, then performs a rolling deployment. Launching the extra batch takes time, and ensures that the same bandwidth is retained throughout the deployment. This policy also avoids any reduced availability, although at a cost of an even longer deployment time compared to the Rolling method. Finally, this option is suitable if you must maintain the same bandwidth throughout the deployment.
+Overview of Elastic Beanstalk Deployment Policies:
+via - https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.deploy-existing-version.html
+Incorrect options:
+Deploy using 'Immutable' deployment policy - A slower deployment method, that ensures your new application version is always deployed to new instances, instead of updating existing instances. It also has the additional advantage of a quick and safe rollback in case the deployment fails. With this method, Elastic Beanstalk performs an immutable update to deploy your application. In an immutable update, a second Auto Scaling group is launched in your environment and the new version serves traffic alongside the old version until the new instances pass health checks.
+Deploy using 'All at once' deployment policy - This is the quickest deployment method. Suitable if you can accept a short loss of service, and if quick deployments are important to you. With this method, Elastic Beanstalk deploys the new application version to each instance. Then, the web proxy or application server might need to restart. As a result, your application might be unavailable to users (or have low availability) for a short time.
+Deploy using 'Rolling' deployment policy - With this method, your application is deployed to your environment one batch of instances at a time. Most bandwidth is retained throughout the deployment. Avoids downtime and minimizes reduced availability, at a cost of a longer deployment time. Suitable if you can't accept any period of completely lost service. The use case states that the application has high traffic and high availability requirements, so full capacity must be maintained during deployments, hence rolling with additional batch deployment is a better fit than the rolling deployment.
+Reference:
+https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.deploy-existing-version.html","./5a_files/pt1-q61-i1.jpg","Deploy using 'All at once' deployment policy","","","Deploy using 'Rolling with additional batch' deployment policy","Correct answer","","Deploy using 'Rolling' deployment policy","","","Deploy using 'Immutable' deployment policy","Your answer is incorrect","","","","","","",""
+"Practice Test #1 (AWS Certified Developer Associate - DVA-C02)","Attempt 1","5a.html","Question 38","Incorrect","No","Security","Which of the following security credentials can only be created by the AWS Account root user?","CloudFront Key Pairs","","IAM User Access Keys","Correct option:
+For Amazon CloudFront, you use key pairs to create signed URLs for private content, such as when you want to distribute restricted content that someone paid for.
+CloudFront Key Pairs - IAM users can't create CloudFront key pairs. You must log in using root credentials to create key pairs.
+To create signed URLs or signed cookies, you need a signer. A signer is either a trusted key group that you create in CloudFront, or an AWS account that contains a CloudFront key pair. AWS recommends that you use trusted key groups with signed URLs and signed cookies instead of using CloudFront key pairs.
+Incorrect options:
+EC2 Instance Key Pairs - You use key pairs to access Amazon EC2 instances, such as when you use SSH to log in to a Linux instance. These key pairs can be created from the IAM user login and do not need root user access.
+IAM User Access Keys - Access keys consist of two parts: an access key ID and a secret access key. You use access keys to sign programmatic requests that you make to AWS if you use AWS CLI commands (using the SDKs) or using AWS API operations. IAM users can create their own Access Keys, does not need root access.
+IAM User passwords - Every IAM user has access to his own credentials and can reset the password whenever they need to.
+References:
+https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys
+https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-trusted-signers.html","","IAM User Access Keys","Your answer is incorrect","","EC2 Instance Key Pairs","","","IAM User passwords","","","CloudFront Key Pairs","Correct answer","","","","","","",""
+"Practice Test #1 (AWS Certified Developer Associate - DVA-C02)","Attempt 1","5a.html","Question 39","Incorrect","No","Security","To enable HTTPS connections for his web application deployed on the AWS Cloud, a developer is in the process of creating server certificate.
+Which AWS entities can be used to deploy SSL/TLS server certificates? (Select two)","AWS Certificate Manager
+
+IAM","","AWS CloudFormation
+
+AWS Certificate Manager","Correct options:
+AWS Certificate Manager - AWS Certificate Manager (ACM) is the preferred tool to provision, manage, and deploy server certificates. With ACM you can request a certificate or deploy an existing ACM or external certificate to AWS resources. Certificates provided by ACM are free and automatically renew. In a supported Region, you can use ACM to manage server certificates from the console or programmatically.
+IAM - IAM is used as a certificate manager only when you must support HTTPS connections in a Region that is not supported by ACM. IAM securely encrypts your private keys and stores the encrypted version in IAM SSL certificate storage. IAM supports deploying server certificates in all Regions, but you must obtain your certificate from an external provider for use with AWS. You cannot upload an ACM certificate to IAM. Additionally, you cannot manage your certificates from the IAM Console.
+Incorrect options:
+AWS Secrets Manager - AWS Secrets Manager helps you protect secrets needed to access your applications, services, and IT resources. The service enables you to easily rotate, manage, and retrieve database credentials, API keys, and other secrets throughout their lifecycle. Users and applications retrieve secrets with a call to Secrets Manager APIs, eliminating the need to hardcode sensitive information in plain text. It cannot be used to discover and protect your sensitive data in AWS.
+AWS Systems Manager - AWS Systems Manager gives you visibility and control of your infrastructure on AWS. Systems Manager provides a unified user interface so you can view operational data from multiple AWS services and allows you to automate operational tasks such as running commands, managing patches, and configuring servers across AWS Cloud as well as on-premises infrastructure.
+AWS CloudFormation - AWS CloudFormation allows you to use programming languages or a simple text file to model and provision, in an automated and secure manner, all the resources needed for your applications across all Regions and accounts. Think infrastructure as code; think CloudFormation. You cannot use CloudFormation for running commands or managing patches on servers.
+Reference:
+https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_server-certs.html","","AWS Secrets Manager","","","AWS CloudFormation","Your selection is incorrect","","AWS Certificate Manager","Your selection is correct","","IAM","Correct selection","","AWS Systems Manager","","","","",""
+"Practice Test #1 (AWS Certified Developer Associate - DVA-C02)","Attempt 1","5a.html","Question 41","Incorrect","No","Security","The manager at an IT company wants to set up member access to user-specific folders in an Amazon S3 bucket - bucket-a. So, user x can only access files in his folder - bucket-a/user/user-x/ and user y can only access files in her folder - bucket-a/user/user-y/ and so on.
+As a Developer Associate, which of the following IAM constructs would you recommend so that the policy snippet can be made generic for all team members and the manager does not need to create separate IAM policy for each team member?","IAM policy variables","","IAM policy resource","Correct option:
+IAM policy variables
+Instead of creating individual policies for each user, you can use policy variables and create a single policy that applies to multiple users (a group policy). Policy variables act as placeholders. When you make a request to AWS, the placeholder is replaced by a value from the request when the policy is evaluated.
+As an example, the following policy gives each of the users in the group full programmatic access to a user-specific object (their own ""home directory"") in Amazon S3.
+via - https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_variables.html
+Incorrect options:
+IAM policy principal - You can use the Principal element in a policy to specify the principal that is allowed or denied access to a resource (In IAM, a principal is a person or application that can make a request for an action or operation on an AWS resource. The principal is authenticated as the AWS account root user or an IAM entity to make requests to AWS). You cannot use the Principal element in an IAM identity-based policy. You can use it in the trust policies for IAM roles and in resource-based policies.
+IAM policy condition - The Condition element (or Condition block) lets you specify conditions for when a policy is in effect, like so - ""Condition"" : { ""StringEquals"" : { ""aws:username"" : ""johndoe"" }}. This can not be used to address the requirements of the given use-case.
+IAM policy resource - The Resource element specifies the object or objects that the statement covers. You specify a resource using an ARN. This can not be used to address the requirements of the given use-case.
+Reference:
+https://aws.amazon.com/blogs/security/writing-iam-policies-grant-access-to-user-specific-folders-in-an-amazon-s3-bucket/","./5a_files/pt1-q40-i1.jpg","IAM policy principal","","","IAM policy resource","Your answer is incorrect","","IAM policy condition","","","IAM policy variables","Correct answer","","","","","","",""
+"Practice Test #1 (AWS Certified Developer Associate - DVA-C02)","Attempt 1","5a.html","Question 43","Incorrect","No","Troubleshooting and Optimization","A multi-national company has multiple business units with each unit having its own AWS account. The development team at the company would like to debug and trace data across accounts and visualize it in a centralized account.
+As a Developer Associate, which of the following solutions would you suggest for the given use-case?","X-Ray","","CloudTrail","Correct option:
+X-Ray
+AWS X-Ray helps developers analyze and debug production, distributed applications, such as those built using a microservices architecture. With X-Ray, you can understand how your application and its underlying services are performing to identify and troubleshoot the root cause of performance issues and errors. X-Ray provides an end-to-end view of requests as they travel through your application, and shows a map of your application’s underlying components.
+You can use X-Ray to collect data across AWS Accounts. The X-Ray agent can assume a role to publish data into an account different from the one in which it is running. This enables you to publish data from various components of your application into a central account.
+How X-Ray Works:
+via - https://aws.amazon.com/xray/
+Incorrect options:
+VPC Flow Logs: VPC Flow Logs is a feature that enables you to capture information about the IP traffic going to and from network interfaces in your VPC. Flow log data is used to analyze network traces and helps with network security. Flow log data can be published to Amazon CloudWatch Logs or Amazon S3. You cannot use VPC Flow Logs to debug and trace data across accounts.
+EventBridge: Amazon EventBridge delivers a near real-time stream of system events that describe changes in Amazon Web Services (AWS) resources. These help to trigger notifications based on changes happening in AWS services. You cannot use EventBridge to debug and trace data across accounts.
+CloudTrail: With CloudTrail, you can log, continuously monitor, and retain account activity related to actions across your AWS infrastructure. You can use AWS CloudTrail to answer questions such as - “Who made an API call to modify this resource?”. CloudTrail provides event history of your AWS account activity thereby enabling governance, compliance, operational auditing, and risk auditing of your AWS account. You cannot use CloudTrail to debug and trace data across accounts.
+Reference:
+https://aws.amazon.com/xray/","./5a_files/product-page-diagram_AWS-X-Ray_how-it-works.2922edd4bfe011e997dbf32fdf8bd520bcbc85fb.png","CloudTrail","Your answer is incorrect","","VPC Flow Logs","","","X-Ray","Correct answer","","EventBridge","","","","","","","",""
+"Practice Test #1 (AWS Certified Developer Associate - DVA-C02)","Attempt 1","5a.html","Question 45","Incorrect","No","Troubleshooting and Optimization","An e-commerce company has developed an API that is hosted on Amazon ECS. Variable traffic spikes on the application are causing order processing to take too long. The application processes orders using Amazon SQS queues. The ApproximateNumberOfMessagesVisible metric spikes at very high values throughout the day which triggers the CloudWatch alarm. Other ECS metrics for the API containers are well within limits.
+As a Developer Associate, which of the following will you recommend for improving performance while keeping costs low?","Use backlog per instance metric with target tracking scaling policy","","Use ECS step scaling policy","Correct option:
+Use backlog per instance metric with target tracking scaling policy - If you use a target tracking scaling policy based on a custom Amazon SQS queue metric, dynamic scaling can adjust to the demand curve of your application more effectively.
+The issue with using a CloudWatch Amazon SQS metric like ApproximateNumberOfMessagesVisible for target tracking is that the number of messages in the queue might not change proportionally to the size of the Auto Scaling group that processes messages from the queue. That's because the number of messages in your SQS queue does not solely define the number of instances needed. The number of instances in your Auto Scaling group can be driven by multiple factors, including how long it takes to process a message and the acceptable amount of latency (queue delay).
+The solution is to use a backlog per instance metric with the target value being the acceptable backlog per instance to maintain. You can calculate these numbers as follows:
+Backlog per instance: To calculate your backlog per instance, start with the ApproximateNumberOfMessages queue attribute to determine the length of the SQS queue (number of messages available for retrieval from the queue). Divide that number by the fleet's running capacity, which for an Auto Scaling group is the number of instances in the InService state, to get the backlog per instance.
+Acceptable backlog per instance: To calculate your target value, first determine what your application can accept in terms of latency. Then, take the acceptable latency value and divide it by the average time that an EC2 instance takes to process a message.
+To illustrate with an example, let's say that the current ApproximateNumberOfMessages is 1500 and the fleet's running capacity is 10. If the average processing time is 0.1 seconds for each message and the longest acceptable latency is 10 seconds, then the acceptable backlog per instance is 10 / 0.1, which equals 100. This means that 100 is the target value for your target tracking policy. If the backlog per instance is currently at 150 (1500 / 10), your fleet scales out, and it scales out by five instances to maintain proportion to the target value.
+Incorrect options:
+Use Docker swarm - A Docker swarm is a container orchestration tool, meaning that it allows the user to manage multiple containers deployed across multiple host machines. A swarm consists of multiple Docker hosts which run in swarm mode and act as managers (to manage membership and delegation) and workers (which run swarm services).
+Use ECS service scheduler - Amazon ECS provides a service scheduler (for long-running tasks and applications), the ability to run tasks manually (for batch jobs or single run tasks), with Amazon ECS placing tasks on your cluster for you. You can specify task placement strategies and constraints that allow you to run tasks in the configuration you choose, such as spread out across Availability Zones. It is also possible to integrate with custom or third-party schedulers.
+Use ECS step scaling policy - Although Amazon ECS Service Auto Scaling supports using Application Auto Scaling step scaling policies, AWS recommends using target tracking scaling policies instead. For example, if you want to scale your service when CPU utilization falls below or rises above a certain level, create a target tracking scaling policy based on the CPU utilization metric provided by Amazon ECS.
+With step scaling policies, you create and manage the CloudWatch alarms that trigger the scaling process. If the target tracking alarms don't work for your use case, you can use step scaling. You can also use target tracking scaling with step scaling for an advanced scaling policy configuration. For example, you can configure a more aggressive response when utilization reaches a certain level.
+Step Scaling scales your cluster on various lengths of steps based on different ranges of thresholds. Target tracking on the other hand intelligently picks the smart lengths needed for the given configuration.
+References:
+https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-using-sqs-queue.html","","Use ECS service scheduler","","","Use backlog per instance metric with target tracking scaling policy","Correct answer","","Use ECS step scaling policy","Your answer is incorrect","","Use Docker swarm","","","","","","","",""
+"Practice Test #1 (AWS Certified Developer Associate - DVA-C02)","Attempt 1","5a.html","Question 47","Incorrect","No","Troubleshooting and Optimization","A development team wants to deploy an AWS Lambda function that requires significant CPU utilization.
+As a Developer Associate, which of the following would you suggest for reducing the average runtime of the function?","Deploy the function with its memory allocation set to the maximum amount","","Deploy the function with its CPU allocation set to the maximum amount","Correct option:
+Deploy the function with its memory allocation set to the maximum amount - Lambda allocates CPU power in proportion to the amount of memory configured. Memory is the amount of memory available to your Lambda function at runtime. You can increase or decrease the memory and CPU power allocated to your function using the Memory (MB) setting. To configure the memory for your function, set a value between 128 MB and 10,240 MB in 1-MB increments. At 1,769 MB, a function has the equivalent of one vCPU (one vCPU-second of credits per second).
+Configuring function memory from AWS console:
+via - https://docs.aws.amazon.com/lambda/latest/dg/configuration-memory.html
+Incorrect options:
+Deploy the function into multiple AWS Regions - Deploying the Lambda function to multiple AWS Regions does not increase the compute capacity or CPU utilization capacity of Lambda. So, this option is irrelevant.
+Deploy the function using Lambda layers - A Lambda layer is a .zip file archive that can contain additional code or data. A layer can contain libraries, a custom runtime, data, or configuration files. Layers promote code sharing and separation of responsibilities so that you can iterate faster on writing business logic. Layers do not increase the computational capacity of Lambda.
+Deploy the function with its CPU allocation set to the maximum amount - This statement is given as a distractor. CPU allocation is an invalid parameter. As discussed above, the CPU is allocated in proportion to the memory allocated to the function.
+References:
+https://docs.aws.amazon.com/lambda/latest/dg/configuration-memory.html
+https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html","./5a_files/pt6-q47-i1.jpg","Deploy the function using Lambda layers","","","Deploy the function into multiple AWS Regions","","","Deploy the function with its CPU allocation set to the maximum amount","Your answer is incorrect","","Deploy the function with its memory allocation set to the maximum amount","Correct answer","","","","","","",""
+"Practice Test #1 (AWS Certified Developer Associate - DVA-C02)","Attempt 1","5a.html","Question 48","Incorrect","No","Development with AWS Services","A retail company is migrating its on-premises database to Amazon RDS for PostgreSQL. The company has read-heavy workloads. The development team at the company is looking at refactoring the code to achieve optimum read performance for SQL queries.
+Which solution will address this requirement with the least current as well as future development effort?","Set up Amazon RDS with one or more read replicas. Refactor the application code so that the queries use the endpoint for the read replicas","","Configure Elasticache for Redis to act as a caching layer for Amazon RDS. Refactor the application code so that the queries use the Elasticache for Redis endpoint","Correct option:
+Set up Amazon RDS with one or more read replicas. Refactor the application code so that the queries use the endpoint for the read replicas
+Amazon RDS uses the PostgreSQL DB engine's built-in replication functionality to create a special type of DB instance called a read replica from a source DB instance. The source DB instance becomes the primary DB instance. Updates made to the primary DB instance are asynchronously copied to the read replica. You can reduce the load on your primary DB instance by routing read queries from your applications to the read replica. Using read replicas, you can elastically scale out beyond the capacity constraints of a single DB instance for read-heavy database workloads. For the given use case, you can achieve optimum read performance for SQL queries by using the read-replica endpoint for the read-heavy workload.
+via - https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReadRepl.html
+Incorrect options:
+Configure Elasticache for Redis to act as a caching layer for Amazon RDS. Refactor the application code so that the queries use the Elasticache for Redis endpoint
+Configure Elasticache for Memcached to act as a caching layer for Amazon RDS. Refactor the application code so that the queries use the Elasticache for Memcached endpoint
+Both Redis and Memcached are popular, open-source, in-memory data stores (also known as in-memory caches). These are not relational databases and cannot be used to run SQL queries. So, both these options are incorrect.
+Set up Amazon RDS in the multi-AZ configuration with a single standby instance. Refactor the application code so that the queries use the standby instance endpoint - In an Amazon RDS Multi-AZ deployment with a single standby instance, Amazon RDS automatically creates a primary database (DB) instance and synchronously replicates the data to an instance in a different AZ. When it detects a failure, Amazon RDS automatically fails over to a standby instance without manual intervention. You cannot route the read queries from an application to the standby instance of a multi-AZ RDS database as it's not accessible for the read traffic in the single standby instance configuration.
+References:
+https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReadRepl.html
+https://aws.amazon.com/premiumsupport/knowledge-center/requests-rds-read-replicas/
+https://aws.amazon.com/rds/features/multi-az/
+https://aws.amazon.com/blogs/database/readable-standby-instances-in-amazon-rds-multi-az-deployments-a-new-high-availability-option/","./5a_files/read-replica.png","Configure Elasticache for Memcached to act as a caching layer for Amazon RDS. Refactor the application code so that the queries use the Elasticache for Memcached endpoint","","","Configure Elasticache for Redis to act as a caching layer for Amazon RDS. Refactor the application code so that the queries use the Elasticache for Redis endpoint","Your answer is incorrect","","Set up Amazon RDS in the multi-AZ configuration with a single standby instance. Refactor the application code so that the queries use the standby instance endpoint","","","Set up Amazon RDS with one or more read replicas. Refactor the application code so that the queries use the endpoint for the read replicas","Correct answer","","","","","","",""
+"Practice Test #1 (AWS Certified Developer Associate - DVA-C02)","Attempt 1","5a.html","Question 51","Incorrect","No","Development with AWS Services","An E-commerce business, has its applications built on a fleet of Amazon EC2 instances, spread across various Regions and AZs. The technical team has suggested using Elastic Load Balancers for better architectural design.
+What characteristics of an Elastic Load Balancer make it a winning choice? (Select two)","Build a highly available system
+
+Separate public traffic from private traffic","","Build a highly available system
+
+Deploy EC2 instances across multiple AWS Regions","Correct options:
+A load balancer accepts incoming traffic from clients and routes requests to its registered targets (such as EC2 instances) in one or more Availability Zones. The load balancer also monitors the health of its registered targets and ensures that it routes traffic only to healthy targets. When the load balancer detects an unhealthy target, it stops routing traffic to that target. It then resumes routing traffic to that target when it detects that the target is healthy again.
+Elastic Load Balancing supports three types of load balancers:
+Application Load Balancers
+Network Load Balancers
+Classic Load Balancers
+Separate public traffic from private traffic - The nodes of an internet-facing load balancer have public IP addresses. Load balancers route requests to your targets using private IP addresses. Therefore, your targets do not need public IP addresses to receive requests from users over the internet.
+Build a highly available system - Elastic Load Balancing provides fault tolerance for your applications by automatically balancing traffic across targets – Amazon EC2 instances, containers, IP addresses, and Lambda functions – in multiple Availability Zones while ensuring only healthy targets receive traffic.
+Incorrect options:
+The Load Balancer communicates with the underlying EC2 instances using their public IPs - This is an incorrect statement. The Load Balancer communicates with the underlying EC2 instances using their private IPs.
+Improve vertical scalability of the system - This is an incorrect statement. Elastic Load Balancers can connect with Auto Scaling groups to provide horizontal scaling.
+Deploy EC2 instances across multiple AWS Regions - A Load Balancer can target EC2 instances only within an AWS Region.
+References:
+https://aws.amazon.com/elasticloadbalancing/
+https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/how-elastic-load-balancing-works.html","","Improve vertical scalability of the system","","","The Load Balancer communicates with the underlying EC2 instances using their public IPs","","","Build a highly available system","Your selection is correct","","Deploy EC2 instances across multiple AWS Regions","Your selection is incorrect","","Separate public traffic from private traffic","Correct selection","","","",""
+"Practice Test #1 (AWS Certified Developer Associate - DVA-C02)","Attempt 1","5a.html","Question 55","Incorrect","No","Security","A cybersecurity firm wants to run their applications on single-tenant hardware to meet security guidelines.
+Which of the following is the MOST cost-effective way of isolating their Amazon EC2 instances to a single tenant?","Dedicated Instances","","On-Demand Instances","Correct option:
+Dedicated Instances - Dedicated Instances are Amazon EC2 instances that run in a virtual private cloud (VPC) on hardware that's dedicated to a single customer. Dedicated Instances that belong to different AWS accounts are physically isolated at a hardware level, even if those accounts are linked to a single-payer account. However, Dedicated Instances may share hardware with other instances from the same AWS account that are not Dedicated Instances.
+A Dedicated Host is also a physical server that's dedicated for your use. With a Dedicated Host, you have visibility and control over how instances are placed on the server.
+Differences between Dedicated Hosts and Dedicated Instances:
+via - https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/dedicated-hosts-overview.html#dedicated-hosts-dedicated-instances
+Incorrect options:
+Spot Instances - A Spot Instance is an unused EC2 instance that is available for less than the On-Demand price. Your Spot Instance runs whenever capacity is available and the maximum price per hour for your request exceeds the Spot price. Any instance present with unused capacity will be allocated. Even though this is cost-effective, it does not fulfill the single-tenant hardware requirement of the client and hence is not the correct option.
+Dedicated Hosts - An Amazon EC2 Dedicated Host is a physical server with EC2 instance capacity fully dedicated to your use. Dedicated Hosts allow you to use your existing software licenses on EC2 instances. With a Dedicated Host, you have visibility and control over how instances are placed on the server. This option is costlier than the Dedicated Instance and hence is not the right choice for the current requirement.
+On-Demand Instances - With On-Demand Instances, you pay for compute capacity by the second with no long-term commitments. You have full control over its lifecycle—you decide when to launch, stop, hibernate, start, reboot, or terminate it. Hardware isolation is not possible and on-demand has one of the costliest instance charges and hence is not the correct answer for current requirements.
+High Level Overview of EC2 Instance Purchase Options:
+via - https://aws.amazon.com/ec2/pricing/
+References:
+https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/dedicated-instance.html
+https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-purchasing-options.html","./5a_files/pt1-q21-i1.jpg
+./5a_files/pt1-q21-i2.jpg","Dedicated Hosts","","","On-Demand Instances","Your answer is incorrect","","Dedicated Instances","Correct answer","","Spot Instances","","","","","","","",""
+"Practice Test #1 (AWS Certified Developer Associate - DVA-C02)","Attempt 1","5a.html","Question 56","Incorrect","No","Deployment","You are a developer in a manufacturing company that has several servers on-site. The company decides to move new development to the cloud using serverless technology. You decide to use the AWS Serverless Application Model (AWS SAM) and work with an AWS SAM template file to represent your serverless architecture.
+Which of the following is NOT a valid serverless resource type?","AWS::Serverless::UserPool","","AWS::Serverless::Api","Correct option:
+AWS::Serverless::UserPool
+The AWS Serverless Application Model (SAM) is an open-source framework for building serverless applications. It provides shorthand syntax to express functions, APIs, databases, and event source mappings. With just a few lines per resource, you can define the application you want and model it using YAML.
+SAM supports the following resource types:
+AWS::Serverless::Api
+AWS::Serverless::Application
+AWS::Serverless::Function
+AWS::Serverless::HttpApi
+AWS::Serverless::LayerVersion
+AWS::Serverless::SimpleTable
+AWS::Serverless::StateMachine
+UserPool applies to the Cognito service which is used for authentication for mobile app and web. There is no resource named UserPool in the Serverless Application Model.
+Incorrect options:
+AWS::Serverless::Function - This resource creates a Lambda function, IAM execution role, and event source mappings that trigger the function.
+AWS::Serverless::Api - This creates a collection of Amazon API Gateway resources and methods that can be invoked through HTTPS endpoints. It is useful for advanced use cases where you want full control and flexibility when you configure your APIs.
+AWS::Serverless::SimpleTable - This creates a DynamoDB table with a single attribute primary key. It is useful when data only needs to be accessed via a primary key.
+Reference:
+https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-specification-resources-and-properties.html","","AWS::Serverless::UserPool","Correct answer","","AWS::Serverless::SimpleTable","","","AWS::Serverless::Api","Your answer is incorrect","","AWS::Serverless::Function","","","","","","","",""
+"Practice Test #1 (AWS Certified Developer Associate - DVA-C02)","Attempt 1","5a.html","Question 58","Incorrect","No","Development with AWS Services","A multi-national company has just moved to AWS Cloud and it has configured forecast-based AWS Budgets alerts for cost management. However, no alerts have been received even though the account and the budgets have been created almost three weeks ago.
+What could be the issue with the AWS Budgets configuration?","AWS requires approximately 5 weeks of usage data to generate budget forecasts","","Account has to be part of AWS Organizations to receive AWS Budgets alerts","Correct option:
+AWS Budgets lets customers set custom budgets and receive alerts if their costs or usage exceed (or are forecasted to exceed) their budgeted amount.
+AWS requires approximately 5 weeks of usage data to generate budget forecasts - AWS requires approximately 5 weeks of usage data to generate budget forecasts. If you set a budget to alert based on a forecasted amount, this budget alert isn't triggered until you have enough historical usage information.
+Incorrect options:
+Budget forecast has been created from an account that does not have enough privileges - This is an incorrect statement. If the user account does not have enough privileges, the user will not be able to create the budget at all.
+Amazon CloudWatch could be down and hence alerts are not being sent - Amazon CloudWatch is fully managed by AWS, this option has been added as a distractor.
+Account has to be part of AWS Organizations to receive AWS Budget alerts - This is an incorrect statement. Stand-alone accounts too can create budgets and being part of an Organization is not mandatory to use AWS Budgets.
+Reference:
+https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/budgets-best-practices.html","","Account has to be part of AWS Organizations to receive AWS Budgets alerts","Your answer is incorrect","","Amazon CloudWatch could be down and hence alerts are not being sent","","","AWS requires approximately 5 weeks of usage data to generate budget forecasts","Correct answer","","Budget forecast has been created from an account that does not have enough privileges","","","","","","","",""
+"Practice Test #1 (AWS Certified Developer Associate - DVA-C02)","Attempt 1","5a.html","Question 63","Incorrect","No","Deployment","A developer has been asked to create a web application to be deployed on EC2 instances. The developer just wants to focus on writing application code without worrying about server provisioning, configuration and deployment.
+As a Developer Associate, which AWS service would you recommend for the given use-case?","Elastic Beanstalk","","CodeDeploy","Correct option:
+Elastic Beanstalk
+AWS Elastic Beanstalk provides an environment to easily deploy and run applications in the cloud. It is integrated with developer tools and provides a one-stop experience for you to manage the lifecycle of your applications.
+AWS Elastic Beanstalk lets you manage all of the resources that run your application as environments where each environment runs only a single application version at a time. When an environment is being created, Elastic Beanstalk provisions all the required resources needed to run the application version. You don't need to worry about server provisioning, configuration, and deployment as that's taken care of by Beanstalk.
+Benefits of Elastic Beanstalk:
+via - https://aws.amazon.com/elasticbeanstalk/
+Incorrect options:
+CloudFormation - AWS CloudFormation is a service that gives developers and businesses an easy way to create a collection of related AWS and third-party resources and provision them in an orderly and predictable fashion. With CloudFormation, you still need to create a template to specify the type of resources you need, hence this option is not correct.
+How CloudFormation Works:
+via - https://aws.amazon.com/cloudformation/
+CodeDeploy - AWS CodeDeploy is a fully managed deployment service that automates software deployments to a variety of compute services such as Amazon EC2, AWS Fargate, AWS Lambda, and your on-premises servers. AWS CodeDeploy makes it easier for you to rapidly release new features, helps you avoid downtime during application deployment, and handles the complexity of updating your applications. It can deploy an application to an instance but it cannot provision the instance.
+Serverless Application Model - The AWS Serverless Application Model (AWS SAM) is an open-source framework for building serverless applications. It provides shorthand syntax to express functions, APIs, databases, and event source mappings. You define the application you want with just a few lines per resource and model it using YAML. As the web application needs to be deployed on EC2 instances, so this option is ruled out.
+References:
+https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/concepts.html
+https://aws.amazon.com/cloudformation/","./5a_files/pt1-q33-i1.jpg
+./5a_files/product-page-diagram_CloudFormation.ad3a4c93b4fdd3366da3da0de4fb084d89a5d761.png","Serverless Application Model","","","CodeDeploy","Your answer is incorrect","","CloudFormation","","","Elastic Beanstalk","Correct answer","","","","","","",""
+"Practice Test #1 (AWS Certified Developer Associate - DVA-C02)","Attempt 1","5a.html","Question 64","Incorrect","No","Deployment","The Technical Lead of your team has reviewed a CloudFormation YAML template written by a new recruit and specified that an invalid section has been added to the template.
+Which of the following represents an invalid section of the CloudFormation template?","'Dependencies' section of the template","","'Parameters' section of the template","Correct option:
+Templates include several major sections. The Resources section is the only required section.
+Sample CloudFormation YAML template:
+via - https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-anatomy.html
+'Dependencies' section of the template - As you can see, there is no section called 'Dependencies' in the template. Although dependencies can be mentioned, there is no section itself for dependencies.
+Incorrect options:
+'Conditions' section of the template - This optional section includes conditions that control whether certain resources are created or whether certain resource properties are assigned a value during stack creation or update. For example, you could conditionally create a resource that depends on whether the stack is for a production or test environment.
+'Resources' section of the template - This is the only required section and specifies the stack resources and their properties, such as an Amazon Elastic Compute Cloud instance or an Amazon Simple Storage Service bucket. You can refer to resources in the Resources and Outputs sections of the template.
+'Parameters' section of the template - This optional section is helpful in passing Values to your template at runtime (when you create or update a stack). You can refer to parameters from the Resources and Outputs sections of the template.
+Reference:
+https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-anatomy.html","./5a_files/pt1-q60-i1.jpg","'Dependencies' section of the template","Correct answer","","'Conditions' section of the template","","","'Resources' section of the template","","","'Parameters' section of the template","Your answer is incorrect","","","","","","",""
+"Practice Test #1 (AWS Certified Developer Associate - DVA-C02)","Attempt 2","5b.html","Question 2","Incorrect","No","Development with AWS Services","An E-commerce business, has its applications built on a fleet of Amazon EC2 instances, spread across various Regions and AZs. The technical team has suggested using Elastic Load Balancers for better architectural design.
+What characteristics of an Elastic Load Balancer make it a winning choice? (Select two)","Build a highly available system
+
+Separate public traffic from private traffic","","Deploy EC2 instances across multiple AWS Regions
+
+Build a highly available system","Correct options:
+A load balancer accepts incoming traffic from clients and routes requests to its registered targets (such as EC2 instances) in one or more Availability Zones. The load balancer also monitors the health of its registered targets and ensures that it routes traffic only to healthy targets. When the load balancer detects an unhealthy target, it stops routing traffic to that target. It then resumes routing traffic to that target when it detects that the target is healthy again.
+Elastic Load Balancing supports three types of load balancers:
+Application Load Balancers
+Network Load Balancers
+Classic Load Balancers
+Separate public traffic from private traffic - The nodes of an internet-facing load balancer have public IP addresses. Load balancers route requests to your targets using private IP addresses. Therefore, your targets do not need public IP addresses to receive requests from users over the internet.
+Build a highly available system - Elastic Load Balancing provides fault tolerance for your applications by automatically balancing traffic across targets – Amazon EC2 instances, containers, IP addresses, and Lambda functions – in multiple Availability Zones while ensuring only healthy targets receive traffic.
+Incorrect options:
+The Load Balancer communicates with the underlying EC2 instances using their public IPs - This is an incorrect statement. The Load Balancer communicates with the underlying EC2 instances using their private IPs.
+Improve vertical scalability of the system - This is an incorrect statement. Elastic Load Balancers can connect with Auto Scaling groups to provide horizontal scaling.
+Deploy EC2 instances across multiple AWS Regions - A Load Balancer can target EC2 instances only within an AWS Region.
+References:
+https://aws.amazon.com/elasticloadbalancing/
+https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/how-elastic-load-balancing-works.html","","Deploy EC2 instances across multiple AWS Regions","Your selection is incorrect","","Build a highly available system","Your selection is correct","","Separate public traffic from private traffic","Correct selection","","Improve vertical scalability of the system","","","The Load Balancer communicates with the underlying EC2 instances using their public IPs","","","","",""
+"Practice Test #1 (AWS Certified Developer Associate - DVA-C02)","Attempt 2","5b.html","Question 5","Incorrect","No","Troubleshooting and Optimization","A company has built its technology stack on AWS serverless architecture for managing all its business functions. To expedite development for a new business requirement, the company is looking at using pre-built serverless applications.
+Which AWS service represents the easiest solution to address this use-case?","AWS Serverless Application Repository (SAR)","","AWS Marketplace","Correct option:
+AWS Serverless Application Repository (SAR) - The AWS Serverless Application Repository is a managed repository for serverless applications. It enables teams, organizations, and individual developers to store and share reusable applications, and easily assemble and deploy serverless architectures in powerful new ways. Using the Serverless Application Repository, you don't need to clone, build, package, or publish source code to AWS before deploying it. Instead, you can use pre-built applications from the Serverless Application Repository in your serverless architectures, helping you and your teams reduce duplicated work, ensure organizational best practices, and get to market faster. Integration with AWS Identity and Access Management (IAM) provides resource-level control of each application, enabling you to publicly share applications with everyone or privately share them with specific AWS accounts.
+Deploying applications using SAR:
+via - https://aws.amazon.com/serverless/serverlessrepo/
+Incorrect options:
+AWS Marketplace - The AWS Marketplace enables qualified partners to market and sell their software to AWS Customers. AWS Marketplace is an online software store that helps customers find, buy, and immediately start using the software and services that run on AWS. AWS Marketplace is designed for Independent Software Vendors (ISVs), Value-Added Resellers (VARs), and Systems Integrators (SIs) who have software products they want to offer to customers in the cloud.
+AWS AppSync - AWS AppSync is a fully managed service that makes it easy to develop GraphQL APIs by handling the heavy lifting of securely connecting to data sources like AWS DynamoDB, Lambda, and more. Organizations choose to build APIs with GraphQL because it helps them develop applications faster, by giving front-end developers the ability to query multiple databases, microservices, and APIs with a single GraphQL endpoint.
+AWS Service Catalog - AWS Service Catalog allows organizations to create and manage catalogs of IT services that are approved for use on AWS. These IT services can include everything from virtual machine images, servers, software, and databases to complete multi-tier application architectures. AWS Service Catalog allows you to centrally manage deployed IT services and your applications, resources, and metadata. This helps you achieve consistent governance and meet your compliance requirements while enabling users to quickly deploy only the approved IT services they need.
+Reference:
+https://aws.amazon.com/serverless/serverlessrepo/","./5b_files/pt6-q6-i1.jpg","AWS Service Catalog","","","AWS Marketplace","Your answer is incorrect","","AWS Serverless Application Repository (SAR)","Correct answer","","AWS AppSync","","","","","","","",""
+"Practice Test #1 (AWS Certified Developer Associate - DVA-C02)","Attempt 2","5b.html","Question 11","Incorrect","No","Security","Which of the following security credentials can only be created by the AWS Account root user?","CloudFront Key Pairs","","IAM User Access Keys","Correct option:
+For Amazon CloudFront, you use key pairs to create signed URLs for private content, such as when you want to distribute restricted content that someone paid for.
+CloudFront Key Pairs - IAM users can't create CloudFront key pairs. You must log in using root credentials to create key pairs.
+To create signed URLs or signed cookies, you need a signer. A signer is either a trusted key group that you create in CloudFront, or an AWS account that contains a CloudFront key pair. AWS recommends that you use trusted key groups with signed URLs and signed cookies instead of using CloudFront key pairs.
+Incorrect options:
+EC2 Instance Key Pairs - You use key pairs to access Amazon EC2 instances, such as when you use SSH to log in to a Linux instance. These key pairs can be created from the IAM user login and do not need root user access.
+IAM User Access Keys - Access keys consist of two parts: an access key ID and a secret access key. You use access keys to sign programmatic requests that you make to AWS if you use AWS CLI commands (using the SDKs) or using AWS API operations. IAM users can create their own Access Keys, does not need root access.
+IAM User passwords - Every IAM user has access to his own credentials and can reset the password whenever they need to.
+References:
+https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys
+https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-trusted-signers.html","","IAM User passwords","","","CloudFront Key Pairs","Correct answer","","IAM User Access Keys","Your answer is incorrect","","EC2 Instance Key Pairs","","","","","","","",""
+"Practice Test #1 (AWS Certified Developer Associate - DVA-C02)","Attempt 2","5b.html","Question 13","Incorrect","No","Development with AWS Services","An IT company is configuring Auto Scaling for its Amazon EC2 instances spread across different AZs and Regions.
+Which of the following scenarios are NOT correct about EC2 Auto Scaling? (Select two)","Auto Scaling groups that span across multiple Regions need to be enabled for all the Regions specified
+
+An Auto Scaling group can contain EC2 instances in only one Availability Zone of a Region","","An Auto Scaling group can contain EC2 instances in one or more Availability Zones within the same Region
+
+Amazon EC2 Auto Scaling attempts to distribute instances evenly between the Availability Zones that are enabled for your Auto Scaling group","Correct options:
+Auto Scaling groups that span across multiple Regions need to be enabled for all the Regions specified - This is not valid for Auto Scaling groups. Auto Scaling groups cannot span across multiple Regions.
+An Auto Scaling group can contain EC2 instances in only one Availability Zone of a Region - This is not valid for Auto Scaling groups. An Auto Scaling group can contain EC2 instances in one or more Availability Zones within the same Region.
+Amazon EC2 Auto Scaling Overview:
+via - https://docs.aws.amazon.com/autoscaling/ec2/userguide/what-is-amazon-ec2-auto-scaling.html
+Incorrect options:
+An Auto Scaling group can contain EC2 instances in one or more Availability Zones within the same Region - This is a valid statement. Auto Scaling groups can span across the availability Zones of a Region.
+Amazon EC2 Auto Scaling attempts to distribute instances evenly between the Availability Zones that are enabled for your Auto Scaling group - When one Availability Zone becomes unhealthy or unavailable, Auto Scaling launches new instances in an unaffected Availability Zone. When the unhealthy Availability Zone returns to a healthy state, Auto Scaling automatically redistributes the application instances evenly across all of the designated Availability Zones.
+For Auto Scaling groups in a VPC, the EC2 instances are launched in subnets - For Auto Scaling groups in a VPC, the EC2 instances are launched in subnets. Customers can select the subnets for your EC2 instances when you create or update the Auto Scaling group.
+References:
+https://docs.aws.amazon.com/autoscaling/ec2/userguide/what-is-amazon-ec2-auto-scaling.html
+https://docs.aws.amazon.com/autoscaling/ec2/userguide/auto-scaling-benefits.html","./5b_files/pt1-q27-i1.jpg","An Auto Scaling group can contain EC2 instances in one or more Availability Zones within the same Region","Your selection is incorrect","","Auto Scaling groups that span across multiple Regions need to be enabled for all the Regions specified","Correct selection","","For Auto Scaling groups in a VPC, the EC2 instances are launched in subnets","","","Amazon EC2 Auto Scaling attempts to distribute instances evenly between the Availability Zones that are enabled for your Auto Scaling group","Your selection is incorrect","","An Auto Scaling group can contain EC2 instances in only one Availability Zone of a Region","Correct selection","","","",""
+"Practice Test #1 (AWS Certified Developer Associate - DVA-C02)","Attempt 2","5b.html","Question 14","Incorrect","No","Security","You are a developer for a web application written in .NET which uses the AWS SDK. You need to implement an authentication mechanism that returns a JWT (JSON Web Token).
+Which AWS service will help you with token handling and management?","Cognito User Pools","","API Gateway","Correct option:
+""Cognito User Pools""
+After successful authentication, Amazon Cognito returns user pool tokens to your app. You can use the tokens to grant your users access to your own server-side resources, or to the Amazon API Gateway.
+Amazon Cognito user pools implement ID, access, and refresh tokens as defined by the OpenID Connect (OIDC) open standard.
+The ID token is a JSON Web Token (JWT) that contains claims about the identity of the authenticated user such as name, email, and phone_number. You can use this identity information inside your application. The ID token can also be used to authenticate users against your resource servers or server applications.
+via - https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-using-tokens-with-identity-providers.html
+Incorrect options:
+""API Gateway"" - If you are processing tokens server-side and using other programming languages not supported in AWS it may be a good choice. Other than that, go with a service already providing the functionality.
+""Cognito Identity Pools"" - You can use Identity pools to grant your users access to other AWS services. With an identity pool, your users can obtain temporary AWS credentials to access AWS services, such as Amazon S3 and DynamoDB. Identity pools support anonymous guest users, as well as the specific identity providers that you can use to authenticate users for identity pools.
+""Cognito Sync"" - Amazon Cognito Sync is an AWS service and client library that enables cross-device syncing of application-related user data. You can use it to synchronize user profile data across mobile devices and the web without requiring your own backend.
+Exam Alert:
+Please review the following note to understand the differences between Cognito User Pools and Cognito Identity Pools:
+via - https://docs.aws.amazon.com/cognito/latest/developerguide/what-is-amazon-cognito.html
+Reference:
+https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-using-tokens-with-identity-providers.html","./5b_files/pt1-q53-i1.jpg
+./5b_files/pt1-q53-i2.jpg","Cognito Identity Pools","","","Cognito User Pools","Correct answer","","Cognito Sync","","","API Gateway","Your answer is incorrect","","","","","","",""
+"Practice Test #1 (AWS Certified Developer Associate - DVA-C02)","Attempt 2","5b.html","Question 22","Incorrect","No","Development with AWS Services","An application is hosted by a 3rd party and exposed at yourapp.3rdparty.com. You would like to have your users access your application using www.mydomain.com, which you own and manage under Route 53.
+What Route 53 record should you create?","Create a CNAME record","","Create an A record","Correct option:
+Create a CNAME record
+A CNAME record maps DNS queries for the name of the current record, such as acme.example.com, to another domain (example.com or example.net) or subdomain (acme.example.com or zenith.example.org).
+CNAME records can be used to map one domain name to another. Although you should keep in mind that the DNS protocol does not allow you to create a CNAME record for the top node of a DNS namespace, also known as the zone apex. For example, if you register the DNS name example.com, the zone apex is example.com. You cannot create a CNAME record for example.com, but you can create CNAME records for www.example.com, newproduct.example.com, and so on.
+Please review the major differences between CNAME and Alias Records:
+via - https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resource-record-sets-choosing-alias-non-alias.html
+Incorrect options:
+Create an A record - Used to point a domain or subdomain to an IP address. 'A record' cannot be used to map one domain name to another.
+Create a PTR record - A Pointer (PTR) record resolves an IP address to a fully-qualified domain name (FQDN) as an opposite to what A record does. PTR records are also called Reverse DNS records. 'PTR record' cannot be used to map one domain name to another.
+Create an Alias Record - Alias records let you route traffic to selected AWS resources, such as CloudFront distributions and Amazon S3 buckets. They also let you route traffic from one record in a hosted zone to another record. 3rd party websites do not qualify for these as we have no control over those. 'Alias record' cannot be used to map one domain name to another.
+Reference:
+https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resource-record-sets-choosing-alias-non-alias.html","./5b_files/pt1-q34-i1.jpg","Create an Alias Record","","","Create an A record","Your answer is incorrect","","Create a PTR record","","","Create a CNAME record","Correct answer","","","","","","",""
+"Practice Test #1 (AWS Certified Developer Associate - DVA-C02)","Attempt 2","5b.html","Question 26","Incorrect","No","Troubleshooting and Optimization","A firm runs its technology operations on a fleet of Amazon EC2 instances. The firm needs a certain software to be available on the instances to support their daily workflows. The developer team has been told to use the user data feature of EC2 instances.
+Which of the following are true about the user data EC2 configuration? ( Select two)","By default, user data runs only during the boot cycle when you first launch an instance
+
+By default, scripts entered as user data are executed with root user privileges","","By default, scripts entered as user data do not have root user privileges for executing
+
+By default, user data runs only during the boot cycle when you first launch an instance","Correct options:
+User Data is generally used to perform common automated configuration tasks and even run scripts after the instance starts. When you launch an instance in Amazon EC2, you can pass two types of user data - shell scripts and cloud-init directives. You can also pass this data into the launch wizard as plain text or as a file.
+By default, scripts entered as user data are executed with root user privileges - Scripts entered as user data are executed as the root user, hence do not need the sudo command in the script. Any files you create will be owned by root; if you need non-root users to have file access, you should modify the permissions accordingly in the script.
+By default, user data runs only during the boot cycle when you first launch an instance - By default, user data scripts and cloud-init directives run only during the boot cycle when you first launch an instance. You can update your configuration to ensure that your user data scripts and cloud-init directives run every time you restart your instance.
+Incorrect options:
+By default, user data is executed every time an EC2 instance is re-started - As discussed above, this is not a default configuration of the system. But, can be achieved by explicitly configuring the instance.
+When an instance is running, you can update user data by using root user credentials - You can't change the user data if the instance is running (even by using root user credentials), but you can view it.
+By default, scripts entered as user data do not have root user privileges for executing - Scripts entered as user data are executed as the root user, hence do not need the sudo command in the script.
+Reference:
+https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html","","By default, scripts entered as user data do not have root user privileges for executing","Your selection is incorrect","","By default, user data runs only during the boot cycle when you first launch an instance","Your selection is correct","","By default, user data is executed every time an EC2 instance is re-started","","","When an instance is running, you can update user data by using root user credentials","","","By default, scripts entered as user data are executed with root user privileges","Correct selection","","","",""
+"Practice Test #1 (AWS Certified Developer Associate - DVA-C02)","Attempt 2","5b.html","Question 28","Incorrect","No","Development with AWS Services","As part of his development work, an AWS Certified Developer Associate is creating policies and attaching them to IAM identities. After creating necessary Identity-based policies, he is now creating Resource-based policies.
+Which is the only resource-based policy that the IAM service supports?","Trust policy","","Access control list (ACL)","Correct option:
+You manage access in AWS by creating policies and attaching them to IAM identities (users, groups of users, or roles) or AWS resources. A policy is an object in AWS that, when associated with an identity or resource, defines their permissions. Resource-based policies are JSON policy documents that you attach to a resource such as an Amazon S3 bucket. These policies grant the specified principal permission to perform specific actions on that resource and define under what conditions this applies.
+Trust policy - Trust policies define which principal entities (accounts, users, roles, and federated users) can assume the role. An IAM role is both an identity and a resource that supports resource-based policies. For this reason, you must attach both a trust policy and an identity-based policy to an IAM role. The IAM service supports only one type of resource-based policy called a role trust policy, which is attached to an IAM role.
+Incorrect options:
+AWS Organizations Service Control Policies (SCP) - If you enable all features of AWS organization, then you can apply service control policies (SCPs) to any or all of your accounts. SCPs are JSON policies that specify the maximum permissions for an organization or organizational unit (OU). The SCP limits permissions for entities in member accounts, including each AWS account root user. An explicit deny in any of these policies overrides the allow.
+Access control list (ACL) - Access control lists (ACLs) are service policies that allow you to control which principals in another account can access a resource. ACLs cannot be used to control access for a principal within the same account. Amazon S3, AWS WAF, and Amazon VPC are examples of services that support ACLs.
+Permissions boundary - AWS supports permissions boundaries for IAM entities (users or roles). A permissions boundary is an advanced feature for using a managed policy to set the maximum permissions that an identity-based policy can grant to an IAM entity. An entity's permissions boundary allows it to perform only the actions that are allowed by both its identity-based policies and its permissions boundaries.
+References:
+https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#policies_resource-based
+https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_boundaries.html","","AWS Organizations Service Control Policies (SCP)","","","Access control list (ACL)","Your answer is incorrect","","Trust policy","Correct answer","","Permissions boundary","","","","","","","",""
+"Practice Test #1 (AWS Certified Developer Associate - DVA-C02)","Attempt 2","5b.html","Question 29","Incorrect","No","Deployment","The Technical Lead of your team has reviewed a CloudFormation YAML template written by a new recruit and specified that an invalid section has been added to the template.
+Which of the following represents an invalid section of the CloudFormation template?","'Dependencies' section of the template","","'Conditions' section of the template","Correct option:
+Templates include several major sections. The Resources section is the only required section.
+Sample CloudFormation YAML template:
+via - https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-anatomy.html
+'Dependencies' section of the template - As you can see, there is no section called 'Dependencies' in the template. Although dependencies can be mentioned, there is no section itself for dependencies.
+Incorrect options:
+'Conditions' section of the template - This optional section includes conditions that control whether certain resources are created or whether certain resource properties are assigned a value during stack creation or update. For example, you could conditionally create a resource that depends on whether the stack is for a production or test environment.
+'Resources' section of the template - This is the only required section and specifies the stack resources and their properties, such as an Amazon Elastic Compute Cloud instance or an Amazon Simple Storage Service bucket. You can refer to resources in the Resources and Outputs sections of the template.
+'Parameters' section of the template - This optional section is helpful in passing Values to your template at runtime (when you create or update a stack). You can refer to parameters from the Resources and Outputs sections of the template.
+Reference:
+https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-anatomy.html","./5b_files/pt1-q60-i1.jpg","'Conditions' section of the template","Your answer is incorrect","","'Dependencies' section of the template","Correct answer","","'Parameters' section of the template","","","'Resources' section of the template","","","","","","","",""
+"Practice Test #1 (AWS Certified Developer Associate - DVA-C02)","Attempt 2","5b.html","Question 30","Incorrect","No","Troubleshooting and Optimization","You have deployed a Java application to an EC2 instance where it uses the X-Ray SDK. When testing from your personal computer, the application sends data to X-Ray but when the application runs from within EC2, the application fails to send data to X-Ray.
+Which of the following does NOT help with debugging the issue?","X-Ray sampling","","CloudTrail","Correct option:
+X-Ray sampling
+By customizing sampling rules, you can control the amount of data that you record, and modify sampling behavior on the fly without modifying or redeploying your code. Sampling rules tell the X-Ray SDK how many requests to record for a set of criteria. X-Ray SDK applies a sampling algorithm to determine which requests get traced however because our application is failing to send data to X-Ray it does not help in determining the cause of failure.
+X-Ray Overview:
+via - https://docs.aws.amazon.com/xray/latest/devguide/aws-xray.html
+Incorrect options:
+EC2 X-Ray Daemon - The AWS X-Ray daemon is a software application that listens for traffic on UDP port 2000, gathers raw segment data, and relays it to the AWS X-Ray API. The daemon logs could help with figuring out the problem.
+EC2 Instance Role - The X-Ray daemon uses the AWS SDK to upload trace data to X-Ray, and it needs AWS credentials with permission to do that. On Amazon EC2, the daemon uses the instance's instance profile role automatically. Eliminates API permission issues (in case the role doesn't have IAM permissions to write data to the X-Ray service)
+CloudTrail - With CloudTrail, you can log, continuously monitor, and retain account activity related to actions across your AWS infrastructure. You can use AWS CloudTrail to answer questions such as - “Who made an API call to modify this resource?”. CloudTrail provides event history of your AWS account activity thereby enabling governance, compliance, operational auditing, and risk auditing of your AWS account. You can check CloudTrail to see if any API call is being denied on X-Ray.
+Reference:
+https://docs.aws.amazon.com/xray/latest/devguide/aws-xray.html","./5b_files/architecture-dataflow.png","X-Ray sampling","Correct answer","","EC2 Instance Role","","","EC2 X-Ray Daemon","","","CloudTrail","Your answer is incorrect","","","","","","",""
+"Practice Test #1 (AWS Certified Developer Associate - DVA-C02)","Attempt 2","5b.html","Question 31","Incorrect","No","Security","To enable HTTPS connections for his web application deployed on the AWS Cloud, a developer is in the process of creating server certificate.
+Which AWS entities can be used to deploy SSL/TLS server certificates? (Select two)","IAM
+
+AWS Certificate Manager","","AWS Certificate Manager
+
+AWS CloudFormation","Correct options:
+AWS Certificate Manager - AWS Certificate Manager (ACM) is the preferred tool to provision, manage, and deploy server certificates. With ACM you can request a certificate or deploy an existing ACM or external certificate to AWS resources. Certificates provided by ACM are free and automatically renew. In a supported Region, you can use ACM to manage server certificates from the console or programmatically.
+IAM - IAM is used as a certificate manager only when you must support HTTPS connections in a Region that is not supported by ACM. IAM securely encrypts your private keys and stores the encrypted version in IAM SSL certificate storage. IAM supports deploying server certificates in all Regions, but you must obtain your certificate from an external provider for use with AWS. You cannot upload an ACM certificate to IAM. Additionally, you cannot manage your certificates from the IAM Console.
+Incorrect options:
+AWS Secrets Manager - AWS Secrets Manager helps you protect secrets needed to access your applications, services, and IT resources. The service enables you to easily rotate, manage, and retrieve database credentials, API keys, and other secrets throughout their lifecycle. Users and applications retrieve secrets with a call to Secrets Manager APIs, eliminating the need to hardcode sensitive information in plain text. It cannot be used to discover and protect your sensitive data in AWS.
+AWS Systems Manager - AWS Systems Manager gives you visibility and control of your infrastructure on AWS. Systems Manager provides a unified user interface so you can view operational data from multiple AWS services and allows you to automate operational tasks such as running commands, managing patches, and configuring servers across AWS Cloud as well as on-premises infrastructure.
+AWS CloudFormation - AWS CloudFormation allows you to use programming languages or a simple text file to model and provision, in an automated and secure manner, all the resources needed for your applications across all Regions and accounts. Think infrastructure as code; think CloudFormation. You cannot use CloudFormation for running commands or managing patches on servers.
+Reference:
+https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_server-certs.html","","AWS Secrets Manager","","","IAM","Correct selection","","AWS Certificate Manager","Your selection is correct","","AWS Systems Manager","","","AWS CloudFormation","Your selection is incorrect","","","",""
+"Practice Test #1 (AWS Certified Developer Associate - DVA-C02)","Attempt 2","5b.html","Question 37","Incorrect","No","Security","The development team has just configured and attached the IAM policy needed to access AWS Billing and Cost Management for all users under the Finance department. But, the users are unable to see AWS Billing and Cost Management service in the AWS console.
+What could be the reason for this issue?","You need to activate IAM user access to the Billing and Cost Management console for all the users who need access","","IAM user should be created under AWS Billing and Cost Management and not under AWS account to have access to Billing console","Correct option:
+You need to activate IAM user access to the Billing and Cost Management console for all the users who need access - By default, IAM users do not have access to the AWS Billing and Cost Management console. You or your account administrator must grant users access. You can do this by activating IAM user access to the Billing and Cost Management console and attaching an IAM policy to your users. Then, you need to activate IAM user access for IAM policies to take effect. You only need to activate IAM user access once.
+Incorrect options:
+The users might have another policy that restricts them from accessing the Billing information - This is an incorrect option, as deduced from the given use-case.
+Only root user has access to AWS Billing and Cost Management console - This is an incorrect statement. AWS Billing and Cost Management access can be provided to any user through user activation and policies, as discussed above.
+IAM user should be created under AWS Billing and Cost Management and not under the AWS account to have access to Billing console - IAM is a feature of your AWS account. All IAM users are created and managed from a single place, irrespective of the services they wish to you.
+Reference:
+https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/control-access-billing.html","","You need to activate IAM user access to the Billing and Cost Management console for all the users who need access","Correct answer","","Only root user has access to AWS Billing and Cost Management console","","","The users might have another policy that restricts them from accessing the Billing information","","","IAM user should be created under AWS Billing and Cost Management and not under AWS account to have access to Billing console","Your answer is incorrect","","","","","","",""
+"Practice Test #1 (AWS Certified Developer Associate - DVA-C02)","Attempt 2","5b.html","Question 40","Incorrect","No","Development with AWS Services","Amazon Simple Queue Service (SQS) has a set of APIs for various actions supported by the service.
+As a developer associate, which of the following would you identify as correct regarding the CreateQueue API? (Select two)","The visibility timeout value for the queue is in seconds, which defaults to 30 seconds
+
+You can't change the queue type after you create it","","The dead-letter queue of a FIFO queue must also be a FIFO queue. Whereas, the dead-letter queue of a standard queue can be a standard queue or a FIFO queue
+
+You can't change the queue type after you create it","Correct options:
+You can't change the queue type after you create it - You can't change the queue type after you create it and you can't convert an existing standard queue into a FIFO queue. You must either create a new FIFO queue for your application or delete your existing standard queue and recreate it as a FIFO queue.
+The visibility timeout value for the queue is in seconds, which defaults to 30 seconds - The visibility timeout for the queue is in seconds. Valid values are: An integer from 0 to 43,200 (12 hours), the Default value is 30.
+Incorrect options:
+The dead-letter queue of a FIFO queue must also be a FIFO queue. Whereas, the dead-letter queue of a standard queue can be a standard queue or a FIFO queue - The dead-letter queue of a FIFO queue must also be a FIFO queue. Similarly, the dead-letter queue of a standard queue must also be a standard queue.
+The length of time, in seconds, for which the delivery of all messages in the queue is delayed is configured using MessageRetentionPeriod attribute - The length of time, in seconds, for which the delivery of all messages in the queue is delayed is configured using DelaySeconds attribute. MessageRetentionPeriod attribute controls the length of time, in seconds, for which Amazon SQS retains a message.
+Queue tags are case insensitive. A new tag with a key identical to that of an existing tag overwrites the existing tag - Queue tags are case-sensitive. A new tag with a key identical to that of an existing tag overwrites the existing tag. To be able to tag a queue on creation, you must have the sqs:CreateQueue and sqs:TagQueue permissions.
+Reference:
+https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_CreateQueue.html","","The dead-letter queue of a FIFO queue must also be a FIFO queue. Whereas, the dead-letter queue of a standard queue can be a standard queue or a FIFO queue","Your selection is incorrect","","The length of time, in seconds, for which the delivery of all messages in the queue is delayed is configured using MessageRetentionPeriod attribute","","","Queue tags are case insensitive. A new tag with a key identical to that of an existing tag overwrites the existing tag","","","The visibility timeout value for the queue is in seconds, which defaults to 30 seconds","Correct selection","","You can't change the queue type after you create it","Your selection is correct","","","",""
+"Practice Test #1 (AWS Certified Developer Associate - DVA-C02)","Attempt 2","5b.html","Question 41","Incorrect","No","Security","Which of the following best describes how KMS Encryption works?","KMS stores the CMK, and receives data from the clients, which it encrypts and sends back","","KMS receives CMK from the client at every Encrypt call, and encrypts the data with that","Correct option:
+KMS stores the CMK, and receives data from the clients, which it encrypts and sends back
+A customer master key (CMK) is a logical representation of a master key. The CMK includes metadata, such as the key ID, creation date, description, and key state. The CMK also contains the key material used to encrypt and decrypt data. You can generate CMKs in KMS, in an AWS CloudHSM cluster, or import them from your key management infrastructure.
+AWS KMS supports symmetric and asymmetric CMKs. A symmetric CMK represents a 256-bit key that is used for encryption and decryption. An asymmetric CMK represents an RSA key pair that is used for encryption and decryption or signing and verification (but not both), or an elliptic curve (ECC) key pair that is used for signing and verification.
+AWS KMS supports three types of CMKs: customer-managed CMKs, AWS managed CMKs, and AWS owned CMKs.
+Overview of Customer master keys (CMKs):
+via - https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys
+Incorrect options:
+KMS receives CMK from the client at every encrypt call, and encrypts the data with that - You can import your own CMK (Customer Master Key) but it is done once and then you can encrypt/decrypt as needed.
+KMS sends the CMK to the client, which performs the encryption and then deletes the CMK - KMS does not send CMK to the client, KMS itself encrypts, and then decrypts the data.
+KMS generates a new CMK for each Encrypt call and encrypts the data with it - KMS does not generate a new key each time but you can have KMS rotate the keys for you. Best practices discourage extensive reuse of encryption keys so it is good practice to generate new keys.
+References:
+https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys
+https://docs.aws.amazon.com/kms/latest/developerguide/rotate-keys.html","./5b_files/pt1-q14-i1.jpg","KMS sends the CMK to the client, which performs the encryption and then deletes the CMK","","","KMS receives CMK from the client at every Encrypt call, and encrypts the data with that","Your answer is incorrect","","KMS stores the CMK, and receives data from the clients, which it encrypts and sends back","Correct answer","","KMS generates a new CMK for each Encrypt call and encrypts the data with it","","","","","","","",""
+"Practice Test #1 (AWS Certified Developer Associate - DVA-C02)","Attempt 2","5b.html","Question 43","Incorrect","No","Troubleshooting and Optimization","You have created an Elastic Load Balancer that has marked all the EC2 instances in the target group as unhealthy. Surprisingly, when you enter the IP address of the EC2 instances in your web browser, you can access your website.
+What could be the reason your instances are being marked as unhealthy? (Select two)","The route for the health check is misconfigured
+
+The security group of the EC2 instance does not allow for traffic from the security group of the Application Load Balancer","","The EBS volumes have been improperly mounted
+
+The security group of the EC2 instance does not allow for traffic from the security group of the Application Load Balancer","Correct options
+The security group of the EC2 instance does not allow for traffic from the security group of the Application Load Balancer
+The route for the health check is misconfigured
+You must ensure that your load balancer can communicate with registered targets on both the listener port and the health check port. Whenever you add a listener to your load balancer or update the health check port for a target group used by the load balancer to route requests, you must verify that the security groups associated with the load balancer allow traffic on the new port in both directions.
+Application Load Balancer Configuration for Security Groups and Health Check Routes:
+via - https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-update-security-groups.html
+Incorrect options:
+The EBS volumes have been improperly mounted - You can access the website using the IP address which means there is no issue with the EBS volumes. So this option is not correct.
+Your web-app has a runtime that is not supported by the Application Load Balancer - There is no connection between a web app and the application load balancer. This option has been added as a distractor.
+You need to attach Elastic IP to the EC2 instances - This option is a distractor as Elastic IPs do not need to be assigned to EC2 instances while using an Application Load Balancer.
+References:
+https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-update-security-groups.html","./5b_files/pt1-q28-i1.jpg","The EBS volumes have been improperly mounted","Your selection is incorrect","","The route for the health check is misconfigured","Correct selection","","You need to attach Elastic IP to the EC2 instances","","","Your web-app has a runtime that is not supported by the Application Load Balancer","","","The security group of the EC2 instance does not allow for traffic from the security group of the Application Load Balancer","Your selection is correct","","","",""
+"Practice Test #1 (AWS Certified Developer Associate - DVA-C02)","Attempt 2","5b.html","Question 45","Incorrect","No","Development with AWS Services","A gaming company wants to store information about all the games that the company has released. Each game has a name, version number, and category (such as sports, puzzles, strategy, etc). The game information also can include additional properties about the supported platforms and technical specifications. This additional information is inconsistent across games.
+You have been hired as an AWS Certified Developer Associate to build a solution that addresses the following use cases:
+For a given name and version number, get all details about the game that has that name and version number.
+For a given name, get all details about all games that have that name.
+For a given category, get all details about all games in that category.
+What will you recommend as the most efficient solution?","Set up an Amazon DynamoDB table with a primary key that consists of the name as the partition key and the version number as the sort key. Create a global secondary index that has the category as the partition key and the name as the sort key","","Set up an Amazon DynamoDB table with a primary key that consists of the category as the partition key and the version number as the sort key. Create a global secondary index that has the name as the partition key","Correct option:
+Set up an Amazon DynamoDB table with a primary key that consists of the name as the partition key and the version number as the sort key. Create a global secondary index that has the category as the partition key and the name as the sort key
+When you create a DynamoDB table, in addition to the table name, you must specify the primary key of the table. The primary key uniquely identifies each item in the table, so that no two items can have the same key. You can create one or more secondary indexes on a table. A secondary index lets you query the data in the table using an alternate key, in addition to queries against the primary key. DynamoDB doesn't require that you use indexes, but they give your applications more flexibility when querying your data.
+via - https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.CoreComponents.html
+You should note that a global secondary index (GSI) contains a selection of attributes from the base table, but they are organized by a primary key that is different from that of the table. The Global secondary indexes allow you to perform queries on attributes that are not part of the table's primary key.
+via - https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GSI.html
+Incorrect options:
+Set up an Amazon DynamoDB table with a primary key that consists of the category as the partition key and the version number as the sort key. Create a global secondary index that has the name as the partition key - The DynamoDB table for this option has the primary key and GSI that do not solve for the condition - ""For a given name and version number, get all details about the game that has that name and version number"". This option does not allow for efficient querying of a specific game by its name and version number as you need multiple queries which would be less efficient than the single query allowed by the correct option.
+Set up an Amazon RDS MySQL instance having a games table that contains columns for name, version number, and category. Configure the name column as the primary key - This option is not the right fit as it does not allow you to efficiently query on the version number and category columns.
+Permanently store the name, version number, and category information about the games in an Amazon Elasticache for Memcached instance - You cannot use Elasticache for Memcached to permanently store values meant to be persisted in a database (relational or NoSQL). Elasticache is a caching layer. So this option is incorrect.
+References:
+https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.CoreComponents.html
+https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GSI.html
+https://aws.amazon.com/premiumsupport/knowledge-center/primary-key-dynamodb-table/","./5b_files/pt1-q32-i1.jpg
+./5b_files/pt1-q32-i2.jpg
+./5b_files/pt1-q32-i3.jpg","Set up an Amazon RDS MySQL instance having a games table that contains columns for name, version number, and category. Configure the name column as the primary key","","","Permanently store the name, version number, and category information about the games in an Amazon Elasticache for Memcached instance","","","Set up an Amazon DynamoDB table with a primary key that consists of the category as the partition key and the version number as the sort key. Create a global secondary index that has the name as the partition key","Your answer is incorrect","","Set up an Amazon DynamoDB table with a primary key that consists of the name as the partition key and the version number as the sort key. Create a global secondary index that has the category as the partition key and the name as the sort key","Correct answer","","","","","","",""
+"Practice Test #1 (AWS Certified Developer Associate - DVA-C02)","Attempt 2","5b.html","Question 47","Incorrect","No","Development with AWS Services","A retail company is migrating its on-premises database to Amazon RDS for PostgreSQL. The company has read-heavy workloads. The development team at the company is looking at refactoring the code to achieve optimum read performance for SQL queries.
+Which solution will address this requirement with the least current as well as future development effort?","Set up Amazon RDS with one or more read replicas. Refactor the application code so that the queries use the endpoint for the read replicas","","Configure Elasticache for Redis to act as a caching layer for Amazon RDS. Refactor the application code so that the queries use the Elasticache for Redis endpoint","Correct option:
+Set up Amazon RDS with one or more read replicas. Refactor the application code so that the queries use the endpoint for the read replicas
+Amazon RDS uses the PostgreSQL DB engine's built-in replication functionality to create a special type of DB instance called a read replica from a source DB instance. The source DB instance becomes the primary DB instance. Updates made to the primary DB instance are asynchronously copied to the read replica. You can reduce the load on your primary DB instance by routing read queries from your applications to the read replica. Using read replicas, you can elastically scale out beyond the capacity constraints of a single DB instance for read-heavy database workloads. For the given use case, you can achieve optimum read performance for SQL queries by using the read-replica endpoint for the read-heavy workload.
+via - https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReadRepl.html
+Incorrect options:
+Configure Elasticache for Redis to act as a caching layer for Amazon RDS. Refactor the application code so that the queries use the Elasticache for Redis endpoint
+Configure Elasticache for Memcached to act as a caching layer for Amazon RDS. Refactor the application code so that the queries use the Elasticache for Memcached endpoint
+Both Redis and Memcached are popular, open-source, in-memory data stores (also known as in-memory caches). These are not relational databases and cannot be used to run SQL queries. So, both these options are incorrect.
+Set up Amazon RDS in the multi-AZ configuration with a single standby instance. Refactor the application code so that the queries use the standby instance endpoint - In an Amazon RDS Multi-AZ deployment with a single standby instance, Amazon RDS automatically creates a primary database (DB) instance and synchronously replicates the data to an instance in a different AZ. When it detects a failure, Amazon RDS automatically fails over to a standby instance without manual intervention. You cannot route the read queries from an application to the standby instance of a multi-AZ RDS database as it's not accessible for the read traffic in the single standby instance configuration.
+References:
+https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReadRepl.html
+https://aws.amazon.com/premiumsupport/knowledge-center/requests-rds-read-replicas/
+https://aws.amazon.com/rds/features/multi-az/
+https://aws.amazon.com/blogs/database/readable-standby-instances-in-amazon-rds-multi-az-deployments-a-new-high-availability-option/","./5b_files/read-replica.png","Set up Amazon RDS in the multi-AZ configuration with a single standby instance. Refactor the application code so that the queries use the standby instance endpoint","","","Configure Elasticache for Memcached to act as a caching layer for Amazon RDS. Refactor the application code so that the queries use the Elasticache for Memcached endpoint","","","Configure Elasticache for Redis to act as a caching layer for Amazon RDS. Refactor the application code so that the queries use the Elasticache for Redis endpoint","Your answer is incorrect","","Set up Amazon RDS with one or more read replicas. Refactor the application code so that the queries use the endpoint for the read replicas","Correct answer","","","","","","",""
+"Practice Test #1 (AWS Certified Developer Associate - DVA-C02)","Attempt 2","5b.html","Question 49","Incorrect","No","Security","The development team at a company creates serverless solutions using AWS Lambda. Functions are invoked by clients via AWS API Gateway which anyone can access. The team lead would like to control access using a 3rd party authorization mechanism.
+As a Developer Associate, which of the following options would you recommend for the given use-case?","Lambda Authorizer","","Cognito User Pools","Correct option:
+""Lambda Authorizer""
+An Amazon API Gateway Lambda authorizer (formerly known as a custom authorizer) is a Lambda function that you provide to control access to your API. A Lambda authorizer uses bearer token authentication strategies, such as OAuth or SAML. Before creating an API Gateway Lambda authorizer, you must first create the AWS Lambda function that implements the logic to authorize and, if necessary, to authenticate the caller.
+via - https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-use-lambda-authorizer.html
+Incorrect options:
+""IAM permissions with sigv4"" - Signature Version 4 is the process to add authentication information to AWS requests sent by HTTP. You will still need to provide permissions but our requirements have a need for 3rd party authentication which is where Lambda Authorizer comes in to play.
+""Cognito User Pools"" - A Cognito user pool is a user directory in Amazon Cognito. With a user pool, your users can sign in to your web or mobile app through Amazon Cognito, or federate through a third-party identity provider (IdP). Whether your users sign-in directly or through a third party, all members of the user pool have a directory profile that you can access through an SDK. This is managed by AWS, therefore, does not meet our requirements.
+""API Gateway User Pools"" - This is a made-up option, added as a distractor.
+Reference:
+https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-use-lambda-authorizer.html","./5b_files/pt1-q41-i1.jpg","Cognito User Pools","Your answer is incorrect","","Lambda Authorizer","Correct answer","","IAM permissions with sigv4","","","API Gateway User Pools","","","","","","","",""
+"Practice Test #1 (AWS Certified Developer Associate - DVA-C02)","Attempt 2","5b.html","Question 54","Incorrect","No","Security","The manager at an IT company wants to set up member access to user-specific folders in an Amazon S3 bucket - bucket-a. So, user x can only access files in his folder - bucket-a/user/user-x/ and user y can only access files in her folder - bucket-a/user/user-y/ and so on.
+As a Developer Associate, which of the following IAM constructs would you recommend so that the policy snippet can be made generic for all team members and the manager does not need to create separate IAM policy for each team member?","IAM policy variables","","IAM policy resource","Correct option:
+IAM policy variables
+Instead of creating individual policies for each user, you can use policy variables and create a single policy that applies to multiple users (a group policy). Policy variables act as placeholders. When you make a request to AWS, the placeholder is replaced by a value from the request when the policy is evaluated.
+As an example, the following policy gives each of the users in the group full programmatic access to a user-specific object (their own ""home directory"") in Amazon S3.
+via - https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_variables.html
+Incorrect options:
+IAM policy principal - You can use the Principal element in a policy to specify the principal that is allowed or denied access to a resource (In IAM, a principal is a person or application that can make a request for an action or operation on an AWS resource. The principal is authenticated as the AWS account root user or an IAM entity to make requests to AWS). You cannot use the Principal element in an IAM identity-based policy. You can use it in the trust policies for IAM roles and in resource-based policies.
+IAM policy condition - The Condition element (or Condition block) lets you specify conditions for when a policy is in effect, like so - ""Condition"" : { ""StringEquals"" : { ""aws:username"" : ""johndoe"" }}. This can not be used to address the requirements of the given use-case.
+IAM policy resource - The Resource element specifies the object or objects that the statement covers. You specify a resource using an ARN. This can not be used to address the requirements of the given use-case.
+Reference:
+https://aws.amazon.com/blogs/security/writing-iam-policies-grant-access-to-user-specific-folders-in-an-amazon-s3-bucket/","./5b_files/pt1-q40-i1.jpg","IAM policy variables","Correct answer","","IAM policy condition","","","IAM policy principal","","","IAM policy resource","Your answer is incorrect","","","","","","",""
+"Practice Test #1 (AWS Certified Developer Associate - DVA-C02)","Attempt 2","5b.html","Question 55","Incorrect","No","Deployment","CodeCommit is a managed version control service that hosts private Git repositories in the AWS cloud.
+Which of the following credential types is NOT supported by IAM for CodeCommit?","IAM username and password","","SSH Keys","Correct option:
+IAM username and password - IAM username and password credentials cannot be used to access CodeCommit.
+Incorrect options:
+Git credentials - These are IAM -generated user name and password pair you can use to communicate with CodeCommit repositories over HTTPS.
+SSH Keys - Are locally generated public-private key pair that you can associate with your IAM user to communicate with CodeCommit repositories over SSH.
+AWS access keys - You can use these keys with the credential helper included with the AWS CLI to communicate with CodeCommit repositories over HTTPS.
+Reference:
+https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_ssh-keys.html","","Git credentials","","","SSH Keys","Your answer is incorrect","","AWS Access Keys","","","IAM username and password","Correct answer","","","","","","",""
+"Practice Test #1 (AWS Certified Developer Associate - DVA-C02)","Attempt 2","5b.html","Question 61","Incorrect","No","Troubleshooting and Optimization","An organization has offices across multiple locations and the technology team has configured an Application Load Balancer across targets in multiple Availability Zones. The team wants to analyze the incoming requests for latencies and the client's IP address patterns.
+Which feature of the Load Balancer will help collect the required information?","ALB access logs","","CloudWatch metrics","Correct option:
+ALB access logs - Elastic Load Balancing provides access logs that capture detailed information about requests sent to your load balancer. Each log contains information such as the time the request was received, the client's IP address, latencies, request paths, and server responses. You can use these access logs to analyze traffic patterns and troubleshoot issues. Access logging is an optional feature of Elastic Load Balancing that is disabled by default.
+Access logs for your Application Load Balancer:
+via - https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-access-logs.html
+Incorrect options:
+CloudTrail logs - Elastic Load Balancing is integrated with AWS CloudTrail, a service that provides a record of actions taken by a user, role, or an AWS service in Elastic Load Balancing. CloudTrail captures all API calls for Elastic Load Balancing as events. You can use AWS CloudTrail to capture detailed information about the calls made to the Elastic Load Balancing API and store them as log files in Amazon S3. You can use these CloudTrail logs to determine which API calls were made, the source IP address where the API call came from, who made the call, when the call was made, and so on.
+CloudWatch metrics - Elastic Load Balancing publishes data points to Amazon CloudWatch for your load balancers and your targets. CloudWatch enables you to retrieve statistics about those data points as an ordered set of time-series data, known as metrics. You can use metrics to verify that your system is performing as expected. This is the right feature if you wish to track a certain metric.
+ALB request tracing - You can use request tracing to track HTTP requests. The load balancer adds a header with a trace identifier to each request it receives. Request tracing will not help you to analyze latency specific data.
+Reference:
+https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-monitoring.html
+https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-access-logs.html","./5b_files/pt1-q29-i1.jpg","ALB request tracing","","","CloudWatch metrics","Your answer is incorrect","","ALB access logs","Correct answer","","CloudTrail logs","","","","","","","",""
+"Practice Test #1 (AWS Certified Developer Associate - DVA-C02)","Attempt 2","5b.html","Question 62","Incorrect","No","Security","A Developer has been entrusted with the job of securing certain S3 buckets that are shared by a large team of users. Last time, a bucket policy was changed, the bucket was erroneously available for everyone, outside the organization too.
+Which feature/service will help the developer identify similar security issues with minimum effort?","IAM Access Analyzer","","Access Advisor feature on IAM console","Correct option:
+IAM Access Analyzer - AWS IAM Access Analyzer helps you identify the resources in your organization and accounts, such as Amazon S3 buckets or IAM roles, that are shared with an external entity. This lets you identify unintended access to your resources and data, which is a security risk.
+You can set the scope for the analyzer to an organization or an AWS account. This is your zone of trust. The analyzer scans all of the supported resources within your zone of trust. When Access Analyzer finds a policy that allows access to a resource from outside of your zone of trust, it generates an active finding.
+Incorrect options:
+Access Advisor feature on IAM console - To help identify the unused roles, IAM reports the last-used timestamp that represents when a role was last used to make an AWS request. Your security team can use this information to identify, analyze, and then confidently remove unused roles. This helps improve the security posture of your AWS environments. This does not provide information about non-IAM entities such as S3, hence it's not a correct choice here.
+S3 Object Lock - S3 Object Lock enables you to store objects using a ""Write Once Read Many"" (WORM) model. S3 Object Lock can help prevent accidental or inappropriate deletion of data, it is not the right choice for the current scenario.
+S3 Analytics - By using Amazon S3 analytics Storage Class Analysis you can analyze storage access patterns to help you decide when to transition the right data to the right storage class. You cannot use S3 Analytics to identify unintended access to your S3 resources.
+References:
+https://docs.aws.amazon.com/IAM/latest/UserGuide/what-is-access-analyzer.html
+https://docs.aws.amazon.com/AmazonS3/latest/dev/security-best-practices.html","","S3 Analytics","","","S3 Object Lock","","","Access Advisor feature on IAM console","Your answer is incorrect","","IAM Access Analyzer","Correct answer","","","","","","",""

@@ -1,0 +1,1338 @@
+<!doctype html>
+<!--
+  Wrong Questions Test
+
+  Tests the questions recorded as wrong in the CSV files beside this page. The
+  page holds no question content: every question, option, explanation and image
+  path is read from the CSV files each time it opens, and is shown exactly as it
+  appears there. To add a test paper, put its CSV in the folder and reload.
+
+  The layout, class names and data-purpose attributes follow the saved result
+  pages, without their generated suffixes.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wrong Questions Test</title>
+<link rel="icon" href="data:,">
+<style>
+:root {
+  --color-white: oklch(100% 0 0deg);
+  --color-gray-650: oklch(20.35% 0.0139 285.09deg);
+  --color-gray-600: oklch(25.65% 0.0265 278.04deg);
+  --color-gray-550: oklch(29.74% 0.0362 281.74deg);
+  --color-gray-400: oklch(48.09% 0.0371 279.08deg);
+  --color-gray-350: oklch(56.8% 0.0388 277.95deg);
+  --color-gray-300: oklch(67.22% 0.0355 279.77deg);
+  --color-gray-200: oklch(86.72% 0.0192 282.72deg);
+  --color-gray-150: oklch(93.86% 0.0108 280.47deg);
+  --color-gray-100: oklch(97.59% 0.0029 264.54deg);
+  --color-purple-450: oklch(43.47% 0.2239 285.34deg);
+  --color-purple-400: oklch(48.41% 0.2342 293.93deg);
+  --color-blue-100: #eeeffc;
+  --color-green-500: oklch(30.72% 0.0555 158.67deg);
+  --color-green-400: oklch(44.49% 0.0863 157.92deg);
+  --color-green-300: oklch(64.59% 0.1519 154.89deg);
+  --color-green-200: oklch(81.01% 0.0873 162.22deg);
+  --color-green-100: oklch(97.23% 0.0176 170.1deg);
+  --color-red-500: oklch(42.24% 0.1681 30.2666deg);
+  --color-red-400: oklch(55.73% 0.2161 29.71deg);
+  --color-red-200: oklch(84.53% 0.0845 23.47deg);
+  --color-red-100: oklch(95.79% 0.0208 21.17deg);
+  --color-orange-400: oklch(62.76% 0.1418 61.45deg);
+  --color-orange-100: oklch(97.56% 0.0244 83.42deg);
+  --header-height: 5.6rem;
+  --font-text: "Udemy Sans", "Noto Sans JP", Vazirmatn, "SF Pro Text", -apple-system, BlinkMacSystemFont, Roboto, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --font-code: SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { font-size: 62.5%; }
+body {
+  margin: 0;
+  background: var(--color-white);
+  color: var(--color-gray-550);
+  font-family: var(--font-text);
+  font-size: 1.6rem;
+  font-weight: 300;
+  line-height: 1.6;
+}
+h2, h3, h4, p { margin: 0; }
+ul { list-style: none; margin: 0; padding: 0; }
+a { color: var(--color-purple-400); text-decoration: underline; overflow-wrap: anywhere; }
+button, select { font-family: inherit; }
+.ud-sr-only {
+  position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+  overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0;
+}
+.sprite { position: absolute; width: 0; height: 0; }
+
+.ud-heading-xs { font-size: 1.2rem; font-weight: 700; line-height: 1.2; }
+.ud-heading-sm { font-size: 1.4rem; font-weight: 500; line-height: 1.2; }
+.ud-heading-md { font-size: 1.6rem; font-weight: 500; line-height: 1.2; }
+.ud-heading-lg { font-size: 1.8rem; font-weight: 500; line-height: 1.2; }
+.ud-heading-xl { font-size: 2.4rem; font-weight: 500; line-height: 1.1; }
+.ud-text-sm { font-size: 1.4rem; font-weight: 300; line-height: 1.6; }
+.ud-text-md { font-size: 1.6rem; font-weight: 300; line-height: 1.6; }
+
+.ud-icon { display: block; flex: none; fill: currentColor; }
+.ud-icon-xsmall { width: 1.6rem; height: 1.6rem; }
+.ud-icon-small { width: 2rem; height: 2rem; }
+.ud-icon-medium { width: 2.4rem; height: 2.4rem; }
+.ud-icon-color-warning { color: var(--color-orange-400); }
+
+.ud-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  border: 0; border-radius: 0.8rem; background: transparent; color: var(--color-purple-400);
+  font-size: 1.4rem; font-weight: 700; line-height: 1.2; white-space: nowrap; cursor: pointer;
+}
+.ud-btn:focus-visible, .pill-input:focus-visible + .pill, .domain-select:focus-visible,
+[data-purpose="answer"]:has(input:focus-visible), .item-link:focus-visible {
+  outline: 3px solid var(--color-purple-400); outline-offset: 3px;
+}
+.ud-btn[disabled] { cursor: not-allowed; opacity: 0.4; }
+.ud-btn-medium { height: 4rem; padding: 0 1.2rem; }
+.ud-btn-small { height: 3.4rem; padding: 0 1.2rem; }
+.ud-btn-large { height: 4.8rem; padding: 0 1.2rem; }
+.ud-btn-icon { width: 4.8rem; padding: 0; color: var(--color-gray-550); }
+.ud-btn-link { height: 4rem; padding: 0; }
+.ud-btn-link:hover { color: var(--color-purple-450); text-decoration: underline; }
+.ud-btn-ghost { color: var(--color-gray-550); }
+.ud-btn-ghost:hover:not([disabled]) { background: var(--color-gray-150); }
+.ud-btn-primary { background: var(--color-purple-400); color: var(--color-white); }
+.ud-btn-primary:hover:not([disabled]) { background: var(--color-purple-450); }
+.ud-btn-secondary { border: 1px solid var(--color-purple-400); }
+.ud-btn-secondary:hover:not([disabled]) { background: var(--color-blue-100); }
+.ud-btn-white-outline { border: 1px solid var(--color-white); color: var(--color-white); }
+.ud-btn-white-outline:hover { background: var(--color-gray-600); }
+.ud-btn-white-outline:focus-visible { outline-color: var(--color-white); }
+
+.app--header {
+  position: sticky; top: 0; z-index: 20; height: var(--header-height);
+  background: var(--color-gray-650); border-bottom: 1px solid var(--color-gray-400);
+  color: var(--color-white);
+}
+.app--row-content { height: 100%; padding: 0 1.6rem; }
+.header--header { display: flex; align-items: center; justify-content: space-between; gap: 2.4rem; height: 100%; }
+.header--header-text { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.header--actions { display: flex; align-items: center; gap: 1.6rem; flex: none; }
+.header--source { font-size: 1.4rem; white-space: nowrap; }
+
+.app--body { display: flex; align-items: flex-start; }
+.app--main-column { flex: 1; min-width: 0; display: flex; flex-direction: column; min-height: calc(100vh - var(--header-height)); }
+.app--sidebar-column {
+  position: sticky; top: var(--header-height); flex: 0 0 41.6rem; width: 41.6rem;
+  height: calc(100vh - var(--header-height)); overflow-y: auto;
+  border-left: 1px solid var(--color-gray-200); background: var(--color-white);
+}
+
+.revamped-result-page--revamped-result-page { flex: 1; padding: 4.8rem 2.4rem 3.2rem; }
+.quiz-page-layout--content { width: 100%; max-width: 76.4rem; margin: 0 auto; }
+.results-header--title { margin-bottom: 3.2rem; }
+.revamped-result-page--summary { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.4rem 1.2rem; }
+.revamped-result-page--source-line { color: var(--color-gray-350); }
+.revamped-result-page--filter-area {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+  gap: 1.2rem 1.6rem; margin: 1.6rem 0;
+}
+.domain-select-wrap { position: relative; display: inline-flex; max-width: 100%; color: var(--color-purple-400); }
+.domain-select {
+  appearance: none; field-sizing: content; height: 4rem; max-width: 100%; padding: 0 3.6rem 0 1.2rem;
+  border: 1px solid var(--color-purple-400); border-radius: 0.8rem; background: var(--color-white);
+  color: var(--color-purple-400); font-size: 1.4rem; font-weight: 700; cursor: pointer;
+}
+.domain-select:hover { background: var(--color-blue-100); }
+.domain-select-wrap .ud-icon { position: absolute; top: 1.2rem; right: 1.2rem; pointer-events: none; }
+.pill-group-module--pill-group { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+.pill {
+  display: inline-flex; align-items: center; height: 3.4rem; padding: 0 1.2rem;
+  border: 1px solid var(--color-purple-400); border-radius: 100rem; background: var(--color-white);
+  color: var(--color-purple-400); font-size: 1.4rem; font-weight: 700; white-space: nowrap; cursor: pointer;
+}
+.pill:hover { background: var(--color-blue-100); }
+.pill-input:checked + .pill { background: var(--color-purple-400); color: var(--color-white); }
+.pill-input:disabled + .pill { opacity: 0.4; cursor: not-allowed; background: var(--color-white); }
+.result-pane--collapse-all-button { display: flex; justify-content: flex-end; width: 100%; }
+
+.notice {
+  margin: 1.6rem 0; padding: 1.6rem; border: 1px solid var(--color-orange-400);
+  background: var(--color-orange-100); font-size: 1.4rem;
+}
+.notice ul { margin-top: 0.8rem; max-height: 16rem; overflow-y: auto; }
+.notice li + li { margin-top: 0.4rem; }
+.empty-state { padding: 3.2rem 0; color: var(--color-gray-350); text-align: center; }
+
+.load-panel { max-width: 56rem; padding: 3.2rem 0; }
+.load-panel h2 { margin-bottom: 1.6rem; }
+.load-panel p { margin-bottom: 2.4rem; }
+.load-panel-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1.6rem; }
+
+.result-pane--question-result-pane-wrapper { position: relative; }
+.result-pane--question-result-pane-wrapper + .result-pane--question-result-pane-wrapper,
+.result-pane--answer-result-pane + .result-pane--answer-result-pane { margin-top: 1.6rem; }
+.result-pane--accordion-panel { background: var(--color-gray-100); border: 1px solid var(--color-gray-200); }
+.result-pane--star-rating-icon { position: absolute; top: 1.5rem; left: -2.5rem; color: var(--color-orange-400); }
+.result-pane--question-header-wrapper { padding-bottom: 1.6rem; }
+.result-pane--question-header { display: flex; flex-direction: column; }
+.result-pane--question-header-collapsed-text { display: flex; align-items: center; justify-content: space-between; gap: 0.8rem; padding-left: 1.6rem; }
+.result-pane--pane-title { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 0.8rem; min-height: 4.8rem; min-width: 0; }
+.result-pane--answer-status-icon { display: flex; align-items: center; justify-content: center; width: 2.4rem; height: 2.4rem; }
+.result-pane--question-icon-background { display: flex; align-items: center; justify-content: center; width: 2rem; height: 2rem; border-radius: 100rem; background: var(--color-gray-100); }
+.status-unanswered { color: var(--color-gray-300); }
+.status-correct { color: var(--color-green-300); }
+.status-incorrect { color: var(--color-red-400); }
+.status-label-correct { color: var(--color-green-400); }
+.status-label-incorrect { color: var(--color-red-400); }
+.result-pane--pane-end { display: flex; align-items: center; flex: none; }
+.result-pane--position { color: var(--color-gray-350); font-size: 1.4rem; white-space: nowrap; }
+.result-pane--paper-caption, .result-pane--question-format { margin-left: 4.8rem; margin-right: 1.6rem; }
+.result-pane--paper-caption { margin-bottom: 0.8rem; color: var(--color-gray-350); font-size: 1.4rem; line-height: 1.4; }
+.result-pane--question-result-pane-expanded-content { padding: 0.8rem 1.6rem 1.6rem; }
+
+.rt-scaffolding p { white-space: pre-wrap; overflow-wrap: anywhere; }
+.result-pane--question-format p + p, .result-pane--question-format pre + p,
+.rich-block p + p, .rich-block pre + p { margin-top: 0.8rem; }
+.rt-scaffolding pre {
+  margin: 0.8rem 0; padding: 1rem 1.2rem; background: var(--color-gray-200); color: inherit;
+  font-family: var(--font-code); font-size: 1.2rem; font-weight: 300; line-height: 1.6;
+  white-space: pre-wrap; overflow-wrap: anywhere;
+}
+.rt-scaffolding > pre:first-child { margin-top: 0; }
+.rt-scaffolding > pre:last-child { margin-bottom: 0; }
+
+.result-pane--answer-result-pane { background: var(--color-white); }
+.result-pane--answer-by-user-label { display: inline-block; margin: 0 0.8rem 1.6rem 0; padding: 0.4rem 0.8rem; }
+.label-correct { background: var(--color-green-200); color: var(--color-green-500); }
+.label-incorrect { background: var(--color-red-200); color: var(--color-red-500); }
+[data-purpose="answer"] { display: block; padding: 2.4rem; }
+.answer-result-pane--answer-correct { background: var(--color-green-100); border: 1px solid var(--color-green-400); color: var(--color-gray-550); }
+.answer-result-pane--answer-incorrect { background: var(--color-red-100); border: 1px solid var(--color-red-400); color: var(--color-gray-550); }
+.answer-result-pane--answer-skipped { background: var(--color-white); border: 1px solid var(--color-gray-200); color: var(--color-gray-350); }
+.answer-result-pane--answer-body { display: flex; }
+.answer-result-pane--answer-selection-icon { display: flex; align-items: center; margin-right: 1.6rem; color: var(--color-gray-600); }
+.answer-result-pane--answer-skipped .answer-result-pane--answer-selection-icon { color: var(--color-gray-300); }
+.answer-text { min-width: 0; flex: 1; }
+.answer-result-pane--answer-feedback {
+  padding: 2.4rem; border: 1px solid var(--color-gray-200); border-top: 0;
+}
+.answer-result-pane--answer-feedback h4 { margin-bottom: 0.8rem; }
+
+.is-answerable { color: var(--color-gray-550); cursor: pointer; }
+.is-answerable:hover { border-color: var(--color-gray-300); }
+.is-answerable.is-selected { border-color: var(--color-purple-400); background: var(--color-blue-100); }
+.is-answerable.is-selected .answer-result-pane--answer-selection-icon { color: var(--color-purple-400); }
+.is-answerable .answer-result-pane--answer-selection-icon { color: var(--color-gray-300); }
+.answer-actions { display: flex; justify-content: flex-end; margin-top: 1.6rem; }
+
+.result-pane--question-related-fields { display: flex; flex-direction: column; gap: 1.6rem; margin-top: 4.8rem; }
+.overall-explanation-pane--overall-explanation, .domain-pane--domain-pane {
+  padding: 2.4rem; background: var(--color-white); border: 1px solid var(--color-gray-200); min-width: 0;
+}
+.pane-heading { margin-bottom: 0.8rem; }
+.explanation-images { display: flex; flex-direction: column; gap: 1.6rem; margin-top: 1.6rem; }
+.explanation-images:empty { display: none; }
+.open-full-size-image--wrapper { display: inline-flex; max-width: 100%; }
+.open-full-size-image--wrapper img { display: block; max-width: 100%; height: auto; }
+.image-missing { padding: 1.2rem; border: 1px dashed var(--color-gray-300); color: var(--color-gray-350); font-size: 1.4rem; overflow-wrap: anywhere; }
+.attempt-record + .attempt-record { margin-top: 1.6rem; padding-top: 1.6rem; border-top: 1px solid var(--color-gray-200); }
+.attempt-fields { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 0.2rem 1.6rem; margin: 0 0 0.8rem; font-size: 1.4rem; }
+.attempt-fields dt { font-weight: 500; }
+.attempt-fields dd { margin: 0; overflow-wrap: anywhere; }
+
+.curriculum-item-footer {
+  position: sticky; bottom: 0; z-index: 10; display: flex; align-items: center; justify-content: flex-end;
+  flex-wrap: wrap; gap: 0.8rem 1.6rem; min-height: 4.8rem; padding: 0.7rem 1.6rem;
+  background: var(--color-white); border-top: 1px solid var(--color-gray-200);
+}
+.curriculum-item-footer--progress { margin-right: auto; font-size: 1.4rem; }
+.curriculum-item-footer--confirm { display: flex; align-items: center; flex-wrap: wrap; gap: 0.8rem; font-size: 1.4rem; }
+
+.sidebar--title { padding: 1.6rem; font-size: 1.6rem; font-weight: 500; line-height: 1.2; border-bottom: 1px solid var(--color-gray-200); }
+.curriculum-item-link--curriculum-item.is-current { background: var(--color-gray-200); }
+.item-link {
+  display: flex; align-items: flex-start; gap: 1.6rem; width: 100%; padding: 0.8rem 1.6rem;
+  border: 0; background: transparent; color: inherit; font: inherit; text-align: left; cursor: pointer;
+}
+.curriculum-item-link--curriculum-item:not(.is-current) .item-link:hover { background: var(--color-gray-150); }
+.ud-fake-toggle-checkbox {
+  display: flex; align-items: center; justify-content: center; flex: none; width: 1.6rem; height: 1.6rem;
+  margin-top: 0.3rem; border: 2px solid var(--color-gray-400); border-radius: 0.2rem; color: var(--color-white);
+}
+.ud-fake-toggle-checkbox.is-complete { background: var(--color-purple-400); border-color: var(--color-purple-400); }
+.ud-fake-toggle-checkbox .ud-icon { width: 1.2rem; height: 1.2rem; }
+.curriculum-item-link--item-container { min-width: 0; flex: 1; font-size: 1.4rem; line-height: 1.6; overflow-wrap: anywhere; }
+.curriculum-item-link--meta { display: block; color: var(--color-gray-350); font-size: 1.2rem; }
+
+@media (max-width: 1100px) {
+  .app--body { flex-direction: column; }
+  .app--sidebar-column {
+    order: -1; position: static; flex: none; width: 100%; height: auto; max-height: 26rem;
+    border-left: 0; border-bottom: 1px solid var(--color-gray-200);
+  }
+  .app--main-column { width: 100%; min-height: 0; }
+}
+@media (max-width: 600px) {
+  .revamped-result-page--revamped-result-page { padding: 2.4rem 1.6rem 2.4rem; }
+  [data-purpose="answer"], .answer-result-pane--answer-feedback,
+  .overall-explanation-pane--overall-explanation, .domain-pane--domain-pane { padding: 1.6rem; }
+  .result-pane--paper-caption, .result-pane--question-format { margin-left: 1.6rem; }
+  .result-pane--question-result-pane-expanded-content { padding: 0.8rem 0.8rem 1.6rem; }
+  .result-pane--star-rating-icon { top: -1rem; left: -0.8rem; }
+  .header--source { display: none; }
+  .attempt-fields { grid-template-columns: minmax(0, 1fr); }
+  .attempt-fields dd { margin-bottom: 0.4rem; }
+}
+</style>
+</head>
+<body>
+<svg class="sprite" aria-hidden="true" focusable="false"><symbol id="icon-success" viewBox="0 -960 960 960"><path d="m423.23-394.15-92.92-92.93q-8.31-8.3-20.89-8.5-12.57-.19-21.27 8.5-8.69 8.7-8.69 21.08t8.69 21.08l109.77 109.77q10.85 10.84 25.31 10.84t25.31-10.84l222.54-222.54q8.3-8.31 8.5-20.89.19-12.57-8.5-21.27-8.7-8.69-21.08-8.69t-21.08 8.69zM480.07-100q-78.84 0-148.21-29.92t-120.68-81.21-81.25-120.63Q100-401.1 100-479.93q0-78.84 29.92-148.21t81.21-120.68 120.63-81.25Q401.1-860 479.93-860q78.84 0 148.21 29.92t120.68 81.21 81.25 120.63Q860-558.9 860-480.07q0 78.84-29.92 148.21t-81.21 120.68-120.63 81.25Q558.9-100 480.07-100"></path></symbol><symbol id="icon-error" viewBox="0 -960 960 960"><path d="M480-291.54q13.73 0 23.02-9.29t9.29-23.02-9.29-23.02q-9.29-9.28-23.02-9.28t-23.02 9.28q-9.29 9.29-9.29 23.02t9.29 23.02 23.02 9.29m.01-139.23q12.76 0 21.37-8.62 8.62-8.63 8.62-21.38v-181.54q0-12.75-8.63-21.37-8.63-8.63-21.38-8.63-12.76 0-21.37 8.63-8.62 8.62-8.62 21.37v181.54q0 12.75 8.63 21.38 8.63 8.62 21.38 8.62M368.39-140q-14.64 0-27.9-5.62-13.26-5.61-23.1-15.46L161.08-317.39q-9.85-9.84-15.46-23.1-5.62-13.26-5.62-27.9v-223.22q0-14.64 5.62-27.9 5.61-13.26 15.46-23.1l156.31-156.31q9.84-9.85 23.1-15.46 13.26-5.62 27.9-5.62h223.22q14.64 0 27.9 5.62 13.26 5.61 23.1 15.46l156.31 156.31q9.85 9.84 15.46 23.1 5.62 13.26 5.62 27.9v223.22q0 14.64-5.62 27.9-5.61 13.26-15.46 23.1L642.61-161.08q-9.84 9.85-23.1 15.46-13.26 5.62-27.9 5.62zM364-200h232l164-164v-232L596-760H364L200-596v232zm116-280"></path></symbol><symbol id="icon-cancel" viewBox="0 -960 960 960"><path d="m480-437.85 122.92 122.93q8.31 8.3 20.89 8.5 12.57.19 21.27-8.5 8.69-8.7 8.69-21.08t-8.69-21.08L522.15-480l122.93-122.92q8.3-8.31 8.5-20.89.19-12.57-8.5-21.27-8.7-8.69-21.08-8.69t-21.08 8.69L480-522.15 357.08-645.08q-8.31-8.3-20.89-8.5-12.57-.19-21.27 8.5-8.69 8.7-8.69 21.08t8.69 21.08L437.85-480 314.92-357.08q-8.3 8.31-8.5 20.89-.19 12.57 8.5 21.27 8.7 8.69 21.08 8.69t21.08-8.69zm.07 337.85q-78.84 0-148.21-29.92t-120.68-81.21-81.25-120.63Q100-401.1 100-479.93q0-78.84 29.92-148.21t81.21-120.68 120.63-81.25Q401.1-860 479.93-860q78.84 0 148.21 29.92t120.68 81.21 81.25 120.63Q860-558.9 860-480.07q0 78.84-29.92 148.21t-81.21 120.68-120.63 81.25Q558.9-100 480.07-100m-.07-60q134 0 227-93t93-227-93-227-227-93-227 93-93 227 93 227 227 93m0-320"></path></symbol><symbol id="icon-radio-empty" viewBox="0 -960 960 960"><path d="M480.07-100q-78.84 0-148.21-29.92t-120.68-81.21-81.25-120.63Q100-401.1 100-479.93q0-78.84 29.92-148.21t81.21-120.68 120.63-81.25Q401.1-860 479.93-860q78.84 0 148.21 29.92t120.68 81.21 81.25 120.63Q860-558.9 860-480.07q0 78.84-29.92 148.21t-81.21 120.68-120.63 81.25Q558.9-100 480.07-100m-.07-60q134 0 227-93t93-227-93-227-227-93-227 93-93 227 93 227 227 93m0-320"></path></symbol><symbol id="icon-radio-filled" viewBox="0 -960 960 960"><path d="M480-300q74.92 0 127.46-52.54T660-480t-52.54-127.46T480-660t-127.46 52.54T300-480t52.54 127.46T480-300m.07 200q-78.84 0-148.21-29.92t-120.68-81.21-81.25-120.63Q100-401.1 100-479.93q0-78.84 29.92-148.21t81.21-120.68 120.63-81.25Q401.1-860 479.93-860q78.84 0 148.21 29.92t120.68 81.21 81.25 120.63Q860-558.9 860-480.07q0 78.84-29.92 148.21t-81.21 120.68-120.63 81.25Q558.9-100 480.07-100m-.07-60q134 0 227-93t93-227-93-227-227-93-227 93-93 227 93 227 227 93m0-320"></path></symbol><symbol id="icon-checkbox-empty" viewBox="0 -960 960 960"><path d="M212.31-140Q182-140 161-161t-21-51.31v-535.38Q140-778 161-799t51.31-21h535.38Q778-820 799-799t21 51.31v535.38Q820-182 799-161t-51.31 21zm0-60h535.38q4.62 0 8.46-3.85 3.85-3.84 3.85-8.46v-535.38q0-4.62-3.85-8.46-3.84-3.85-8.46-3.85H212.31q-4.62 0-8.46 3.85-3.85 3.84-3.85 8.46v535.38q0 4.62 3.85 8.46 3.84 3.85 8.46 3.85"></path></symbol><symbol id="icon-checkbox-filled" viewBox="0 -960 960 960"><path d="m424-410.15-92.92-92.93q-8.31-8.3-20.89-8.5-12.57-.19-21.27 8.5-8.69 8.7-8.69 21.08t8.69 21.08l109.77 109.77q10.85 10.84 25.31 10.84t25.31-10.84l222.54-222.54q8.3-8.31 8.5-20.89.19-12.57-8.5-21.27-8.7-8.69-21.08-8.69t-21.08 8.69zM212.31-140Q182-140 161-161t-21-51.31v-535.38Q140-778 161-799t51.31-21h535.38Q778-820 799-799t21 51.31v535.38Q820-182 799-161t-51.31 21z"></path></symbol><symbol id="icon-wrong-selection" viewBox="0 -960 960 960"><path d="m480-438.23 123.31 123.31q8.31 8.3 20.88 8.11 12.58-.19 20.89-8.5 8.3-8.31 8.3-20.88 0-12.58-8.3-20.89L521.77-480l123.31-123.31q8.3-8.31 8.3-20.88 0-12.58-8.3-20.89-8.31-8.3-20.89-8.3-12.57 0-20.88 8.3L480-521.77 356.69-645.08q-8.31-8.3-20.69-8.3t-20.69 8.3q-8.31 8.31-8.31 20.89 0 12.57 8.31 20.88L438.23-480 314.92-356.69q-8.3 8.31-8.11 20.69t8.5 20.69 20.88 8.31q12.58 0 20.89-8.31zM212.31-140Q182-140 161-161t-21-51.31v-535.38Q140-778 161-799t51.31-21h535.38Q778-820 799-799t21 51.31v535.38Q820-182 799-161t-51.31 21zm0-60h535.38q4.62 0 8.46-3.85 3.85-3.84 3.85-8.46v-535.38q0-4.62-3.85-8.46-3.84-3.85-8.46-3.85H212.31q-4.62 0-8.46 3.85-3.85 3.84-3.85 8.46v535.38q0 4.62 3.85 8.46 3.84 3.85 8.46 3.85M200-760v560z"></path></symbol><symbol id="icon-tick" viewBox="0 -960 960 960"><path d="m382-339.38 345.54-345.54q8.92-8.93 20.88-9.12t21.27 9.12 9.31 21.38q0 12.08-9.31 21.39l-362.38 363q-10.85 10.84-25.31 10.84t-25.31-10.84l-167-167q-8.92-8.93-8.8-21.2.11-12.26 9.42-21.57t21.38-9.31q12.08 0 21.39 9.31z"></path></symbol><symbol id="icon-collapse" viewBox="0 -960 960 960"><path d="M480-541.85 317.08-378.92q-8.31 8.3-20.89 8.5-12.57.19-21.27-8.5-8.69-8.7-8.69-21.08t8.69-21.08l179.77-179.77q10.85-10.84 25.31-10.84t25.31 10.84l179.77 179.77q8.3 8.31 8.5 20.89.19 12.57-8.5 21.27-8.7 8.69-21.08 8.69t-21.08-8.69z"></path></symbol><symbol id="icon-expand" viewBox="0 -960 960 960"><path d="M480-372.92q-7.23 0-13.46-2.31t-11.85-7.92L274.92-562.92q-8.3-8.31-8.5-20.89-.19-12.57 8.5-21.27 8.7-8.69 21.08-8.69t21.08 8.69L480-442.15l162.92-162.93q8.31-8.3 20.89-8.5 12.57-.19 21.27 8.5 8.69 8.7 8.69 21.08t-8.69 21.08L505.31-383.15q-5.62 5.61-11.85 7.92T480-372.92"></path></symbol><symbol id="icon-saved" viewBox="0 -960 960 960"><path d="m480-261.54-158.77 68.15q-36.15 15.46-68.69-5.92T220-259.46v-488.23Q220-778 241-799t51.31-21h375.38Q698-820 719-799t21 51.31v488.23q0 38.77-32.54 60.15t-68.69 5.92z"></path></symbol></svg>
+
+<div class="app--root">
+  <div class="app--header">
+    <div class="app--row-content">
+      <header class="header--header">
+        <span class="ud-text-md header--header-text">Wrong Questions Test</span>
+        <div class="header--actions">
+          <span class="header--source" id="source-status"></span>
+          <button class="ud-btn ud-btn-medium ud-btn-white-outline" id="reload" type="button" hidden>Reload CSV files</button>
+        </div>
+      </header>
+    </div>
+  </div>
+
+  <div class="app--body">
+    <main class="app--main-column">
+      <div class="revamped-result-page--revamped-result-page">
+        <div class="quiz-page-layout--content">
+
+          <section class="load-panel" id="load-panel" hidden>
+            <h2 class="ud-heading-xl">Load your CSV files</h2>
+            <p>Choose the folder that holds your CSV files. Every .csv file in it is read each time, so new files are included automatically.</p>
+            <div class="load-panel-actions">
+              <button class="ud-btn ud-btn-medium ud-btn-primary" id="reopen-folder" type="button" hidden></button>
+              <button class="ud-btn ud-btn-medium ud-btn-primary" id="choose-folder" type="button">Choose folder</button>
+            </div>
+            <input class="ud-sr-only" id="folder-input" type="file" webkitdirectory multiple tabindex="-1" aria-hidden="true">
+          </section>
+
+          <section id="test-view" hidden>
+            <div class="results-header--results-title-wrapper">
+              <h2 class="ud-heading-xl results-header--title" id="view-title"></h2>
+            </div>
+            <div class="revamped-result-page--summary">
+              <span class="ud-heading-lg" id="view-count"></span>
+              <span class="ud-text-sm revamped-result-page--source-line" id="view-source"></span>
+            </div>
+            <div class="notice" id="problems" role="status" hidden></div>
+            <div class="revamped-result-page--filter-area">
+              <span class="domain-select-wrap">
+                <select class="domain-select" id="domain-filter" aria-label="Filter by domain"></select>
+                <svg class="ud-icon ud-icon-xsmall" aria-hidden="true" focusable="false"><use xlink:href="#icon-expand"></use></svg>
+              </span>
+              <ul class="pill-group-module--pill-group" id="status-filter"></ul>
+            </div>
+            <div class="result-pane--collapse-all-button">
+              <button class="ud-btn ud-btn-link" id="collapse-all" type="button">Collapse all questions</button>
+            </div>
+            <div id="question-list"></div>
+            <div id="list-end" aria-hidden="true"></div>
+            <p class="empty-state" id="empty-state" hidden>No questions match these filters.</p>
+          </section>
+
+        </div>
+      </div>
+
+      <footer class="curriculum-item-footer" id="footer" hidden>
+        <span class="curriculum-item-footer--progress" id="progress"></span>
+        <span class="curriculum-item-footer--confirm" id="retake-confirm" hidden>
+          <span id="retake-question"></span>
+          <button class="ud-btn ud-btn-small ud-btn-secondary" id="retake-yes" type="button">Retake</button>
+          <button class="ud-btn ud-btn-small ud-btn-ghost" id="retake-no" type="button">Cancel</button>
+        </span>
+        <button class="ud-btn ud-btn-small ud-btn-secondary" id="retake" type="button">Retake test</button>
+      </footer>
+    </main>
+
+    <aside class="app--sidebar-column" id="sidebar" hidden>
+      <div class="sidebar--title">Test papers</div>
+      <ul id="paper-list"></ul>
+    </aside>
+  </div>
+</div>
+
+<script>
+(() => {
+  'use strict';
+
+  /* ---------- CSV format: the only place that knows the column names ---------- */
+
+  const COL = {
+    paper: 'Test Paper',
+    attempt: 'Attempt',
+    source: 'Source File',
+    number: 'Question Number',
+    result: 'Result',
+    marked: 'Marked Unsure (#icon-saved)',
+    domain: 'Domain',
+    question: 'Question',
+    correct: 'Correct Answer(s)',
+    tip: 'Keyword Tip (Correct Answer)',
+    yours: 'Your Answer(s)',
+    overall: 'Overall Explanation',
+    images: 'Explanation Images',
+  };
+  const OPTION_COLUMN = /^Option (\d+)$/;
+  const RESULT_WRONG = 'Incorrect';
+  const RESULT_NOT_WRONG = 'Correct';
+  const MARKED_YES = 'Yes';
+  const JOIN_ANSWERS = '\n\n';
+
+  // What each Option N Label means, and so which options are correct.
+  const LABELS = new Map([
+    ['Your answer is correct', { correct: true, chosen: true }],
+    ['Your selection is correct', { correct: true, chosen: true }],
+    ['Correct answer', { correct: true, chosen: false }],
+    ['Correct selection', { correct: true, chosen: false }],
+    ['Your answer is incorrect', { correct: false, chosen: true }],
+    ['Your selection is incorrect', { correct: false, chosen: true }],
+    ['', { correct: false, chosen: false }],
+  ]);
+
+  const STORAGE_ANSWERS = 'wrongQuestionsTest.answers.v1';
+  const BATCH_SIZE = 25;
+
+  const state = {
+    bank: null,
+    folder: null,
+    sourceName: '',
+    answers: {},
+    drafts: new Map(),
+    collapsed: new Set(),
+    paper: null,
+    domain: '',
+    status: 'all',
+    list: [],
+    rendered: 0,
+  };
+
+  const $ = (selector) => document.querySelector(selector);
+  const naturalOrder = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' }).compare;
+  const plural = (count, word) => `${count} ${word}${count === 1 ? '' : 's'}`;
+
+  /* ---------- Reading CSV text ---------- */
+
+  function parseCSV(source) {
+    const text = source.charCodeAt(0) === 0xfeff ? source.slice(1) : source;
+    const rows = [];
+    let row = [];
+    let field = '';
+    let quoted = false;
+    let i = 0;
+    while (i < text.length) {
+      const c = text[i];
+      if (quoted) {
+        if (c !== '"') {
+          const next = text.indexOf('"', i);
+          if (next < 0) throw new Error('a quoted field never ends');
+          field += text.slice(i, next);
+          i = next;
+        } else if (text[i + 1] === '"') {
+          field += '"';
+          i += 2;
+        } else {
+          quoted = false;
+          i += 1;
+        }
+      } else if (c === '"' && field === '') {
+        quoted = true;
+        i += 1;
+      } else if (c === ',') {
+        row.push(field);
+        field = '';
+        i += 1;
+      } else if (c === '\n' || c === '\r') {
+        row.push(field);
+        rows.push(row);
+        row = [];
+        field = '';
+        i += c === '\r' && text[i + 1] === '\n' ? 2 : 1;
+      } else {
+        field += c;
+        i += 1;
+      }
+    }
+    if (quoted) throw new Error('a quoted field never ends');
+    if (field !== '' || row.length) {
+      row.push(field);
+      rows.push(row);
+    }
+    return rows;
+  }
+
+  function hashText(text) {
+    let a = 0x811c9dc5;
+    let b = 0x1b873593;
+    for (let i = 0; i < text.length; i += 1) {
+      const code = text.charCodeAt(i);
+      a = Math.imul(a ^ code, 0x01000193);
+      b = Math.imul(b ^ code, 0x85ebca6b);
+    }
+    return (a >>> 0).toString(16).padStart(8, '0') + (b >>> 0).toString(16).padStart(8, '0');
+  }
+
+  const baseName = (path) => path.slice(path.lastIndexOf('/') + 1);
+  const listImages = (cell) => cell.split('\n').filter(Boolean);
+
+  // Reads one wrong row. Returns the reason instead when the row contradicts
+  // itself, so that a bad row is reported rather than tested on a guess.
+  function readWrongRow(row, optionNumbers) {
+    const options = [];
+    for (const n of optionNumbers) {
+      const text = row[`Option ${n}`] ?? '';
+      const label = row[`Option ${n} Label`] ?? '';
+      if (text === '') {
+        if (label !== '') return 'a label has no option';
+        continue;
+      }
+      if (!LABELS.has(label)) return `unknown option label "${label}"`;
+      options.push({
+        text,
+        label,
+        explanation: row[`Option ${n} Explanation`] ?? '',
+        ...LABELS.get(label),
+      });
+    }
+    const correct = options.filter((o) => o.correct);
+    const chosen = options.filter((o) => o.chosen);
+    if (row[COL.question] === '') return 'no question text';
+    if (options.length < 2) return 'fewer than two options';
+    if (!correct.length) return 'no option is labelled correct';
+    if (new Set(options.map((o) => o.text)).size !== options.length) return 'two options have the same text';
+    if (correct.map((o) => o.text).join(JOIN_ANSWERS) !== row[COL.correct]) {
+      return `the labels disagree with ${COL.correct}`;
+    }
+    if (chosen.map((o) => o.text).join(JOIN_ANSWERS) !== row[COL.yours]) {
+      return `the labels disagree with ${COL.yours}`;
+    }
+    if (correct.length === chosen.length && correct.every((o) => o.chosen)) {
+      return `${COL.result} is ${RESULT_WRONG} but the chosen answers are correct`;
+    }
+    return { options, correct };
+  }
+
+  // Rows combine only when everything but the attempt details is identical.
+  // Attempts shuffle the options and hold images in their own folders, so option
+  // order and image folders are ignored. Any other difference keeps them apart.
+  function fingerprintOf(row, options) {
+    return JSON.stringify([
+      row[COL.paper], row[COL.domain], row[COL.question], row[COL.overall],
+      options.map((o) => [o.text, o.correct, o.explanation]).sort((x, y) => (x[0] < y[0] ? -1 : 1)),
+      listImages(row[COL.images]).map(baseName),
+      row[COL.tip].split(JOIN_ANSWERS).sort(),
+    ]);
+  }
+
+  function buildBank(files) {
+    const problems = [];
+    const stats = { files: 0, rows: 0, wrongRows: 0, notWrongRows: 0, skippedRows: 0 };
+    const merged = new Map();
+    const rowFile = new WeakMap();
+    const required = Object.values(COL);
+    const extraColumns = new Set();
+
+    for (const file of [...files].sort((x, y) => naturalOrder(x.name, y.name))) {
+      let table;
+      try {
+        table = parseCSV(file.text);
+      } catch (error) {
+        problems.push(`${file.name}: not read, because ${error.message}.`);
+        continue;
+      }
+      const header = table[0] ?? [];
+      const missing = required.filter((name) => !header.includes(name));
+      const optionNumbers = header
+        .map((name) => OPTION_COLUMN.exec(name)?.[1])
+        .filter(Boolean)
+        .map(Number)
+        .sort((x, y) => x - y);
+      if (missing.length || !optionNumbers.length) {
+        const what = missing.length ? missing.join(', ') : 'Option columns';
+        problems.push(`${file.name}: not read, because it has no ${what}.`);
+        continue;
+      }
+      stats.files += 1;
+      const isOptionColumn = (name) => /^Option \d+( Label| Explanation)?$/.test(name);
+      header.filter((name) => !required.includes(name) && !isOptionColumn(name)).forEach((name) => extraColumns.add(name));
+
+      for (const cells of table.slice(1)) {
+        if (cells.length === 1 && cells[0] === '') continue;
+        stats.rows += 1;
+        const row = Object.fromEntries(header.map((name, k) => [name, cells[k] ?? '']));
+        const where = `${file.name}, ${row[COL.attempt]}, ${row[COL.number]}`;
+        if (cells.length !== header.length) {
+          stats.skippedRows += 1;
+          problems.push(`${where}: left out, because the row has ${cells.length} cells, not ${header.length}.`);
+          continue;
+        }
+        if (row[COL.result] === RESULT_NOT_WRONG) {
+          stats.notWrongRows += 1;
+          continue;
+        }
+        if (row[COL.result] !== RESULT_WRONG) {
+          stats.skippedRows += 1;
+          problems.push(`${where}: left out, because ${COL.result} is "${row[COL.result]}".`);
+          continue;
+        }
+        const read = readWrongRow(row, optionNumbers);
+        if (typeof read === 'string') {
+          stats.skippedRows += 1;
+          problems.push(`${where}: left out, because ${read}.`);
+          continue;
+        }
+        const print = fingerprintOf(row, read.options);
+        const existing = merged.get(print);
+        const sameAttempt = (other) => other[COL.attempt] === row[COL.attempt] && other[COL.number] === row[COL.number];
+        const earlier = existing?.rows.find(sameAttempt);
+        if (earlier) {
+          stats.skippedRows += 1;
+          problems.push(`${where}: left out, because the same attempt is already in ${rowFile.get(earlier)}.`);
+          continue;
+        }
+        stats.wrongRows += 1;
+        rowFile.set(row, file.name);
+        if (existing) {
+          existing.rows.push(row);
+          existing.marked = existing.marked || row[COL.marked] === MARKED_YES;
+          existing.images.forEach((image, k) => image.paths.push(listImages(row[COL.images])[k]));
+        } else {
+          merged.set(print, {
+            key: hashText(print),
+            paper: row[COL.paper],
+            domain: row[COL.domain],
+            text: row[COL.question],
+            number: row[COL.number],
+            options: read.options,
+            multi: read.correct.length > 1 || read.options.some((o) => o.label.includes('selection')),
+            tip: row[COL.tip],
+            overall: row[COL.overall],
+            images: listImages(row[COL.images]).map((path) => ({ paths: [path] })),
+            marked: row[COL.marked] === MARKED_YES,
+            rows: [row],
+          });
+        }
+      }
+    }
+
+    const papers = [...new Set([...merged.values()].map((q) => q.paper))].sort(naturalOrder);
+    const paperRank = new Map(papers.map((paper, i) => [paper, i]));
+    const firstNumber = (value) => Number(/\d+/.exec(value)?.[0] ?? 0);
+    const questions = [...merged.values()].sort((x, y) => (
+      paperRank.get(x.paper) - paperRank.get(y.paper)
+      || firstNumber(x.rows[0][COL.attempt]) - firstNumber(y.rows[0][COL.attempt])
+      || firstNumber(x.number) - firstNumber(y.number)
+    ));
+    return { questions, papers, stats, problems, extraColumns: [...extraColumns] };
+  }
+
+  /* ---------- Saved answers ---------- */
+
+  function readStored(key, fallback) {
+    try {
+      const value = localStorage.getItem(key);
+      return value === null ? fallback : JSON.parse(value);
+    } catch {
+      return fallback;
+    }
+  }
+
+  function saveAnswers() {
+    try {
+      localStorage.setItem(STORAGE_ANSWERS, JSON.stringify(state.answers));
+    } catch {
+      /* Answers still work for this visit when the browser blocks storage. */
+    }
+  }
+
+  function gradeOf(q) {
+    const saved = state.answers[q.key];
+    if (!Array.isArray(saved) || !saved.length) return null;
+    if (saved.some((text) => !q.options.some((o) => o.text === text))) return null;
+    const chosen = new Set(saved);
+    return { chosen, right: q.options.every((o) => o.correct === chosen.has(o.text)) };
+  }
+
+  function statusOf(q) {
+    const grade = gradeOf(q);
+    if (!grade) return 'unanswered';
+    return grade.right ? 'correct' : 'incorrect';
+  }
+
+  /* ---------- Building elements: text only ever enters as text nodes ---------- */
+
+  function h(tag, attributes, ...children) {
+    const element = document.createElement(tag);
+    for (const [name, value] of Object.entries(attributes ?? {})) {
+      if (value === false || value === null || value === undefined) continue;
+      if (name.startsWith('on')) element.addEventListener(name.slice(2), value);
+      else element.setAttribute(name, value === true ? '' : value);
+    }
+    element.append(...children.flat().filter((child) => child !== null && child !== undefined && child !== false && child !== ''));
+    return element;
+  }
+
+  function icon(name, className, label) {
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('class', className);
+    svg.setAttribute('focusable', 'false');
+    if (label) {
+      svg.setAttribute('role', 'img');
+      svg.setAttribute('aria-label', label);
+    } else {
+      svg.setAttribute('aria-hidden', 'true');
+    }
+    const use = document.createElementNS('http://www.w3.org/2000/svg', 'use');
+    use.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', `#${name}`);
+    svg.append(use);
+    return svg;
+  }
+
+  const INDENTED = /^[ \t ]+\S/;
+  const BLANK = /^[ \t ]*$/;
+  const CLOSER = /^[\]})]+[,;]?$/;
+  const looksLikeHeaderLine = (line) => line.length < 60 && !/[.:?!,;]$/.test(line);
+
+  // The CSVs keep no record of which lines were a code block, so this picks them
+  // out by shape. It decides only how a line looks; the text is never altered.
+  function markCode(lines) {
+    const indented = lines.map((line) => INDENTED.test(line));
+    if (!indented.includes(true)) return indented;
+    const code = [...indented];
+    indented.forEach((isIndented, i) => {
+      if (isIndented && i > 0 && !indented[i - 1]) code[i - 1] = true;
+    });
+    for (let i = 1; i < lines.length; i += 1) {
+      if (code[i - 1] && !code[i] && (CLOSER.test(lines[i]) || BLANK.test(lines[i]))) code[i] = true;
+    }
+    for (let i = lines.length - 2; i >= 0; i -= 1) {
+      if (code[i + 1] && !code[i] && (BLANK.test(lines[i]) || looksLikeHeaderLine(lines[i]))) code[i] = true;
+    }
+    return code;
+  }
+
+  function linkedText(line) {
+    const parts = [];
+    let last = 0;
+    for (const match of line.matchAll(/https?:\/\/[^\s"'<>]+/g)) {
+      const url = match[0].replace(/[.,;:)\]]+$/, '');
+      parts.push(line.slice(last, match.index));
+      parts.push(h('a', { href: url, target: '_blank', rel: 'noopener noreferrer' }, url));
+      last = match.index + url.length;
+    }
+    parts.push(line.slice(last));
+    return parts.filter((part) => part !== '');
+  }
+
+  function richText(value) {
+    const lines = value.split('\n');
+    const code = markCode(lines);
+    const blocks = [];
+    for (let i = 0; i < lines.length;) {
+      if (code[i]) {
+        let end = i;
+        while (end < lines.length && code[end]) end += 1;
+        blocks.push(h('pre', null, lines.slice(i, end).join('\n')));
+        i = end;
+      } else {
+        blocks.push(h('p', null, linkedText(lines[i])));
+        i += 1;
+      }
+    }
+    return blocks;
+  }
+
+  function explanationImage(image) {
+    const paths = [...new Set(image.paths)];
+    const picture = h('img', { src: paths[0], alt: '', loading: 'lazy' });
+    const holder = h('a', { href: paths[0], target: '_blank', rel: 'noopener noreferrer' }, picture);
+    const shell = h('div', { class: 'open-full-size-image--wrapper', 'data-purpose': 'open-full-size-image' }, holder);
+    let tried = 0;
+    picture.addEventListener('error', () => {
+      tried += 1;
+      if (tried < paths.length) {
+        picture.src = paths[tried];
+        holder.href = paths[tried];
+      } else {
+        shell.replaceWith(h('div', { class: 'image-missing', 'data-field': 'image-missing' }, `Image file not found: ${paths[0]}`));
+      }
+    });
+    return h('span', { class: 'ud-component--base-components--open-full-size-image', 'data-field': 'image', 'data-image-src': paths[0] }, shell);
+  }
+
+  /* ---------- One question pane ---------- */
+
+  function selectionIcon(q, kind, chosen) {
+    if (q.multi) {
+      if (kind === 'answer-incorrect') return 'icon-wrong-selection';
+      return chosen ? 'icon-checkbox-filled' : 'icon-checkbox-empty';
+    }
+    if (kind === 'answer-incorrect') return 'icon-cancel';
+    return chosen ? 'icon-success' : 'icon-radio-empty';
+  }
+
+  function resultLabel(q, option, chosen) {
+    const noun = q.multi ? 'selection' : 'answer';
+    if (option.correct) return chosen ? `Your ${noun} is correct` : `Correct ${noun}`;
+    return chosen ? `Your ${noun} is incorrect` : '';
+  }
+
+  function resultOption(q, option, grade) {
+    const chosen = grade.chosen.has(option.text);
+    let kind = 'answer-skipped';
+    if (option.correct) kind = 'answer-correct';
+    else if (chosen) kind = 'answer-incorrect';
+    const label = resultLabel(q, option, chosen);
+    return h('div', { class: 'result-pane--answer-result-pane' },
+      h('div', { class: `answer-result-pane--${kind}`, 'data-purpose': 'answer' },
+        label && h('div', null, h('span', {
+          class: `result-pane--answer-by-user-label ud-heading-xs ${option.correct ? 'label-correct' : 'label-incorrect'}`,
+          'data-purpose': 'answer-result-header-user-label',
+        }, label)),
+        h('div', { class: 'answer-result-pane--answer-body', 'data-purpose': 'answer-body' },
+          h('span', { class: 'answer-result-pane--answer-selection-icon', 'data-purpose': 'answer-result-body-selection-icon' },
+            icon(selectionIcon(q, kind, chosen), 'ud-icon ud-icon-small')),
+          h('div', { class: 'ud-heading-md rt-scaffolding answer-text', 'data-field': 'answer-text' }, richText(option.text)))),
+      option.explanation && h('div', { class: 'answer-result-pane--answer-feedback' },
+        h('h4', { class: 'ud-heading-sm' }, 'Explanation'),
+        h('div', { class: 'ud-text-md rt-scaffolding rich-block', 'data-field': 'question-explanation' }, richText(option.explanation))));
+  }
+
+  function answerableOption(q, option, index, panel) {
+    const draft = state.drafts.get(q.key) ?? new Set();
+    const selected = draft.has(index);
+    const emptyIcon = q.multi ? 'icon-checkbox-empty' : 'icon-radio-empty';
+    const fullIcon = q.multi ? 'icon-checkbox-filled' : 'icon-radio-filled';
+    const input = h('input', {
+      class: 'ud-sr-only',
+      type: q.multi ? 'checkbox' : 'radio',
+      name: `answer-${q.key}`,
+      value: index,
+      checked: selected,
+      onchange: () => updateDraft(q, panel),
+    });
+    return h('div', { class: 'result-pane--answer-result-pane' },
+      h('label', { class: `answer-result-pane--answer-skipped is-answerable${selected ? ' is-selected' : ''}`, 'data-purpose': 'answer' },
+        h('div', { class: 'answer-result-pane--answer-body', 'data-purpose': 'answer-body' },
+          input,
+          h('span', { class: 'answer-result-pane--answer-selection-icon', 'data-purpose': 'answer-result-body-selection-icon', 'data-empty': emptyIcon, 'data-full': fullIcon },
+            icon(selected ? fullIcon : emptyIcon, 'ud-icon ud-icon-small')),
+          h('div', { class: 'ud-heading-md rt-scaffolding answer-text', 'data-field': 'answer-text' }, richText(option.text)))));
+  }
+
+  function updateDraft(q, panel) {
+    const inputs = [...panel.querySelectorAll('input')];
+    const draft = new Set(inputs.filter((input) => input.checked).map((input) => Number(input.value)));
+    state.drafts.set(q.key, draft);
+    inputs.forEach((input) => {
+      const option = input.closest('[data-purpose="answer"]');
+      const iconHolder = option.querySelector('[data-purpose="answer-result-body-selection-icon"]');
+      option.classList.toggle('is-selected', input.checked);
+      iconHolder.replaceChildren(icon(input.checked ? iconHolder.dataset.full : iconHolder.dataset.empty, 'ud-icon ud-icon-small'));
+    });
+    panel.querySelector('[data-action="check-answer"]').disabled = draft.size === 0;
+  }
+
+  function checkAnswer(q, wrapper) {
+    const draft = state.drafts.get(q.key);
+    if (!draft || !draft.size) return;
+    state.answers[q.key] = q.options.filter((_, index) => draft.has(index)).map((o) => o.text);
+    state.drafts.delete(q.key);
+    saveAnswers();
+    const replacement = questionPane(q, Number(wrapper.dataset.position));
+    wrapper.replaceWith(replacement);
+    replacement.querySelector('[data-purpose="question-result-header-status-label"]').focus({ preventScroll: true });
+    refreshCounts();
+  }
+
+  function attemptsPane(q) {
+    const columns = [COL.attempt, COL.number, COL.result, COL.marked, COL.source, ...state.bank.extraColumns];
+    return h('div', { class: 'domain-pane--domain-pane', 'data-purpose': 'attempts-pane' },
+      h('div', { class: 'ud-heading-md pane-heading' }, 'Your earlier attempts'),
+      q.rows.map((row) => h('div', { class: 'attempt-record', 'data-field': 'attempt-record' },
+        h('dl', { class: 'attempt-fields' }, columns.flatMap((name) => [
+          h('dt', null, name),
+          h('dd', { 'data-column': name }, row[name] ?? ''),
+        ])),
+        h('div', { class: 'ud-heading-sm pane-heading' }, COL.yours),
+        h('div', { class: 'ud-text-md rt-scaffolding rich-block', 'data-field': 'your-answers' }, richText(row[COL.yours])))));
+  }
+
+  function relatedFields(q) {
+    return h('div', { class: 'result-pane--question-related-fields' },
+      q.tip && h('div', { class: 'domain-pane--domain-pane', 'data-purpose': 'tip-pane' },
+        h('div', { class: 'ud-heading-md pane-heading' }, COL.tip),
+        h('div', { class: 'ud-text-md rt-scaffolding rich-block', 'data-field': 'keyword-tip' }, richText(q.tip))),
+      h('div', { class: 'overall-explanation-pane--overall-explanation' },
+        h('div', { class: 'ud-heading-md pane-heading' }, 'Overall explanation'),
+        h('div', { class: 'ud-text-md rt-scaffolding rich-block', 'data-field': 'overall-explanation' }, richText(q.overall)),
+        h('div', { class: 'explanation-images' }, q.images.map(explanationImage))),
+      h('div', { class: 'domain-pane--domain-pane', 'data-purpose': 'domain-pane' },
+        h('div', { class: 'ud-heading-md pane-heading' }, 'Domain'),
+        h('div', { class: 'ud-text-md', 'data-field': 'domain' }, q.domain)),
+      attemptsPane(q));
+  }
+
+  function questionPane(q, position) {
+    const grade = gradeOf(q);
+    const status = statusOf(q);
+    const collapsed = state.collapsed.has(q.key);
+    const statusIcons = { unanswered: 'icon-radio-empty', correct: 'icon-success', incorrect: 'icon-error' };
+    const wrapper = h('div', { class: 'result-pane--question-result-pane-wrapper', 'data-question-key': q.key, 'data-position': position });
+    const panel = h('div', { class: 'result-pane--question-result-pane result-pane--accordion-panel' });
+
+    if (q.marked) wrapper.append(icon('icon-saved', 'ud-icon ud-icon-medium ud-icon-color-warning result-pane--star-rating-icon', COL.marked));
+
+    const toggle = h('button', {
+      class: 'ud-btn ud-btn-large ud-btn-ghost ud-btn-icon',
+      type: 'button',
+      'aria-expanded': String(!collapsed),
+      'aria-label': collapsed ? 'Expand question' : 'Collapse question',
+      onclick: () => {
+        if (state.collapsed.has(q.key)) state.collapsed.delete(q.key);
+        else state.collapsed.add(q.key);
+        wrapper.replaceWith(questionPane(q, position));
+      },
+    }, icon(collapsed ? 'icon-expand' : 'icon-collapse', 'ud-icon ud-icon-medium'));
+
+    panel.append(h('div', { class: 'result-pane--question-header-wrapper' },
+      h('div', { class: 'result-pane--question-header' },
+        h('span', { class: 'result-pane--question-header-collapsed-text' },
+          h('span', { class: 'result-pane--pane-title ud-heading-md' },
+            h('span', { class: 'result-pane--answer-status-icon', 'data-purpose': 'question-result-header-status-icon' },
+              h('span', { class: 'result-pane--question-icon-background', 'data-purpose': 'question-result-header-status-icon-background' },
+                icon(statusIcons[status], `ud-icon ud-icon-medium status-${status}`))),
+            h('span', { 'data-field': 'question-number' }, q.number),
+            grade && h('span', {
+              class: `status-label-${status}`,
+              'data-purpose': 'question-result-header-status-label',
+              tabindex: '-1',
+              'aria-live': 'polite',
+            }, grade.right ? 'Correct' : 'Incorrect')),
+          h('span', { class: 'result-pane--pane-end' },
+            h('span', { class: 'result-pane--position', 'data-ui': 'position' }, `${position} / ${state.list.length}`),
+            toggle)),
+        h('div', { class: 'result-pane--paper-caption', 'data-field': 'test-paper' }, q.paper),
+        !collapsed && h('div', { class: 'result-pane--question-format ud-text-md rt-scaffolding', 'data-field': 'question-prompt' }, richText(q.text)))));
+
+    if (!collapsed) {
+      const content = h('div', { class: 'result-pane--question-result-pane-expanded-content' });
+      if (grade) {
+        content.append(...q.options.map((option) => resultOption(q, option, grade)), relatedFields(q));
+      } else {
+        const draft = state.drafts.get(q.key);
+        content.append(
+          ...q.options.map((option, index) => answerableOption(q, option, index, panel)),
+          h('div', { class: 'answer-actions' }, h('button', {
+            class: 'ud-btn ud-btn-medium ud-btn-primary',
+            type: 'button',
+            'data-action': 'check-answer',
+            disabled: !draft || !draft.size,
+            onclick: () => checkAnswer(q, wrapper),
+          }, 'Check answer')),
+        );
+      }
+      panel.append(content);
+    }
+    wrapper.append(panel);
+    return wrapper;
+  }
+
+  /* ---------- The list, filters and sidebar ---------- */
+
+  const inPaper = (q) => state.paper === null || q.paper === state.paper;
+  const inScope = (q) => inPaper(q) && (state.domain === '' || q.domain === state.domain);
+  const matchesStatus = (q, status) => {
+    if (status === 'all') return true;
+    if (status === 'marked') return q.marked;
+    return statusOf(q) === status;
+  };
+
+  function appendBatch() {
+    const stop = Math.min(state.rendered + BATCH_SIZE, state.list.length);
+    const fragment = document.createDocumentFragment();
+    for (let i = state.rendered; i < stop; i += 1) fragment.append(questionPane(state.list[i], i + 1));
+    $('#question-list').append(fragment);
+    state.rendered = stop;
+  }
+
+  const listObserver = 'IntersectionObserver' in window
+    ? new IntersectionObserver((entries) => {
+      if (entries.some((entry) => entry.isIntersecting) && state.rendered < state.list.length) {
+        appendBatch();
+        // Re-arm: a short batch can leave the end of the list still in view.
+        listObserver.unobserve($('#list-end'));
+        listObserver.observe($('#list-end'));
+      }
+    }, { rootMargin: '900px 0px' })
+    : null;
+
+  function renderList() {
+    state.list = state.bank.questions.filter((q) => inScope(q) && matchesStatus(q, state.status));
+    state.rendered = 0;
+    $('#question-list').replaceChildren();
+    $('#empty-state').hidden = state.list.length > 0;
+    appendBatch();
+    if (listObserver) {
+      listObserver.unobserve($('#list-end'));
+      listObserver.observe($('#list-end'));
+    } else {
+      while (state.rendered < state.list.length) appendBatch();
+    }
+    updateCollapseLabel();
+    hideRetakeConfirm();
+    refreshCounts();
+  }
+
+  function renderSidebar() {
+    const items = [null, ...state.bank.papers];
+    $('#paper-list').replaceChildren(...items.map((paper) => {
+      const title = paper ?? 'All test papers';
+      return h('li', { class: `curriculum-item-link--curriculum-item${paper === state.paper ? ' is-current' : ''}` },
+        h('button', {
+          class: 'item-link',
+          type: 'button',
+          'data-paper': title,
+          'aria-current': paper === state.paper ? 'true' : null,
+          onclick: () => selectPaper(paper),
+        },
+        h('span', { class: 'ud-fake-toggle-checkbox', 'data-role': 'complete' }),
+        h('span', { class: 'curriculum-item-link--item-container' },
+          h('span', { 'data-purpose': 'item-title' }, title),
+          h('span', { class: 'curriculum-item-link--meta', 'data-role': 'progress' }, ''))));
+    }));
+  }
+
+  function refreshSidebar() {
+    [...$('#paper-list').children].forEach((item, i) => {
+      const paper = i === 0 ? null : state.bank.papers[i - 1];
+      const pool = state.bank.questions.filter((q) => paper === null || q.paper === paper);
+      const answered = pool.filter((q) => gradeOf(q)).length;
+      const box = item.querySelector('[data-role="complete"]');
+      const complete = pool.length > 0 && answered === pool.length;
+      box.classList.toggle('is-complete', complete);
+      box.replaceChildren(...(complete ? [icon('icon-tick', 'ud-icon')] : []));
+      item.querySelector('[data-role="progress"]').textContent = `${answered} of ${plural(pool.length, 'question')} answered`;
+    });
+  }
+
+  function renderDomains() {
+    const pool = state.bank.questions.filter(inPaper);
+    const domains = [...new Set(pool.map((q) => q.domain))].sort(naturalOrder);
+    if (!domains.includes(state.domain)) state.domain = '';
+    $('#domain-filter').replaceChildren(
+      h('option', { value: '' }, 'All domains'),
+      ...domains.map((domain) => h('option', { value: domain }, domain)),
+    );
+    $('#domain-filter').value = state.domain;
+  }
+
+  function renderStatusPills() {
+    const pills = [['all', 'all'], ['correct', 'correct'], ['incorrect', 'incorrect'], ['unanswered', 'unanswered'], ['marked', 'marked']];
+    $('#status-filter').replaceChildren(...pills.map(([status, word]) => h('li', null,
+      h('label', null,
+        h('input', {
+          class: 'pill-input ud-sr-only',
+          type: 'radio',
+          name: 'status-filter',
+          value: status,
+          checked: state.status === status,
+          onchange: () => {
+            state.status = status;
+            renderList();
+          },
+        }),
+        h('span', { class: 'pill', 'data-status': status, 'data-word': word }, '')))));
+  }
+
+  function refreshCounts() {
+    const scoped = state.bank.questions.filter(inScope);
+    for (const pill of document.querySelectorAll('.pill')) {
+      const { status, word } = pill.dataset;
+      const count = scoped.filter((q) => matchesStatus(q, status)).length;
+      pill.textContent = `${count} ${word}`;
+      pill.previousElementSibling.disabled = count === 0 && state.status !== status;
+    }
+    const answered = scoped.filter((q) => gradeOf(q)).length;
+    $('#progress').textContent = `${answered} of ${plural(scoped.length, 'question')} answered`;
+    $('#retake').disabled = !state.list.some((q) => gradeOf(q));
+    refreshSidebar();
+  }
+
+  function renderHeadings() {
+    const { stats, papers, questions } = state.bank;
+    const scoped = questions.filter(inScope);
+    $('#view-title').textContent = `${state.paper ?? 'All test papers'} - Wrong questions`;
+    $('#view-count').textContent = plural(scoped.length, 'question');
+    const parts = [
+      plural(stats.files, 'CSV file'),
+      plural(stats.rows, 'row'),
+      plural(stats.wrongRows, 'wrong answer'),
+      plural(questions.length, 'question'),
+    ];
+    if (stats.notWrongRows) parts.push(`${stats.notWrongRows} not wrong, so left out`);
+    if (stats.skippedRows) parts.push(`${stats.skippedRows} could not be used`);
+    $('#view-source').textContent = parts.join(' · ');
+    $('#source-status').textContent = state.sourceName;
+    $('#reload').hidden = false;
+  }
+
+  function renderProblems() {
+    const { problems } = state.bank;
+    const box = $('#problems');
+    box.hidden = problems.length === 0;
+    box.replaceChildren(
+      h('strong', null, `${plural(problems.length, 'problem')} found in the CSV files`),
+      h('ul', null, problems.map((problem) => h('li', null, problem))),
+    );
+  }
+
+  function selectPaper(paper) {
+    state.paper = paper;
+    [...$('#paper-list').children].forEach((item, i) => {
+      const current = (i === 0 ? null : state.bank.papers[i - 1]) === paper;
+      item.classList.toggle('is-current', current);
+      const button = item.querySelector('.item-link');
+      if (current) button.setAttribute('aria-current', 'true');
+      else button.removeAttribute('aria-current');
+    });
+    renderDomains();
+    renderHeadings();
+    renderList();
+    window.scrollTo(0, 0);
+  }
+
+  function allCollapsed() {
+    return state.list.length > 0 && state.list.every((q) => state.collapsed.has(q.key));
+  }
+
+  function updateCollapseLabel() {
+    $('#collapse-all').textContent = allCollapsed() ? 'Expand all questions' : 'Collapse all questions';
+  }
+
+  function repaintList() {
+    const position = window.scrollY;
+    const shown = state.rendered;
+    state.rendered = 0;
+    $('#question-list').replaceChildren();
+    while (state.rendered < shown) appendBatch();
+    window.scrollTo(0, position);
+  }
+
+  function showRetakeConfirm() {
+    const count = state.list.filter((q) => gradeOf(q)).length;
+    $('#retake-question').textContent = `Clear your ${plural(count, 'answer')} for the listed questions?`;
+    $('#retake-confirm').hidden = false;
+    $('#retake').hidden = true;
+    $('#retake-no').focus();
+  }
+
+  function hideRetakeConfirm() {
+    $('#retake-confirm').hidden = true;
+    $('#retake').hidden = false;
+  }
+
+  function retake() {
+    state.list.forEach((q) => {
+      delete state.answers[q.key];
+      state.drafts.delete(q.key);
+    });
+    saveAnswers();
+    if (state.status === 'correct' || state.status === 'incorrect') state.status = 'unanswered';
+    renderStatusPills();
+    renderList();
+    window.scrollTo(0, 0);
+  }
+
+  /* ---------- Finding the CSV files ---------- */
+
+  function showLoadPanel(message) {
+    $('#load-panel').hidden = false;
+    $('#test-view').hidden = true;
+    $('#footer').hidden = true;
+    $('#sidebar').hidden = true;
+    const reopen = $('#reopen-folder');
+    reopen.hidden = !state.folder;
+    reopen.textContent = state.folder ? `Reopen ${state.folder.name}` : '';
+    $('#choose-folder').className = `ud-btn ud-btn-medium ${state.folder ? 'ud-btn-secondary' : 'ud-btn-primary'}`;
+    $('#load-panel p').textContent = message
+      ?? 'Choose the folder that holds your CSV files. Every .csv file in it is read each time, so new files are included automatically.';
+  }
+
+  function useFiles(files, sourceName) {
+    if (!files.length) {
+      showLoadPanel(`No .csv files were found in ${sourceName}. Choose the folder that holds them.`);
+      return;
+    }
+    const bank = buildBank(files);
+    if (!bank.questions.length && bank.problems.length) {
+      state.bank = bank;
+      showLoadPanel(`No questions could be read. ${bank.problems.slice(0, 5).join(' ')}`);
+      return;
+    }
+    state.bank = bank;
+    state.sourceName = `${sourceName} · ${plural(bank.stats.files, 'CSV file')}`;
+    state.answers = readStored(STORAGE_ANSWERS, {});
+    state.drafts.clear();
+    if (!bank.papers.includes(state.paper)) state.paper = null;
+    $('#load-panel').hidden = true;
+    $('#test-view').hidden = false;
+    $('#footer').hidden = false;
+    $('#sidebar').hidden = false;
+    renderSidebar();
+    renderDomains();
+    renderStatusPills();
+    renderHeadings();
+    renderProblems();
+    renderList();
+  }
+
+  async function filesFromFolder(folder) {
+    const files = [];
+    for await (const [name, entry] of folder.entries()) {
+      if (entry.kind === 'file' && /\.csv$/i.test(name)) {
+        const file = await entry.getFile();
+        files.push({ name, text: await file.text() });
+      }
+    }
+    return files;
+  }
+
+  async function filesFromServer() {
+    const response = await fetch('./', { cache: 'no-store' });
+    if (!response.ok) return [];
+    const listing = new DOMParser().parseFromString(await response.text(), 'text/html');
+    const names = [...listing.querySelectorAll('a[href]')]
+      .map((link) => decodeURIComponent(link.getAttribute('href')))
+      .filter((href) => /^[^/?#]+\.csv$/i.test(href));
+    return Promise.all([...new Set(names)].map(async (name) => {
+      const file = await fetch(encodeURIComponent(name), { cache: 'no-store' });
+      if (!file.ok) throw new Error(`${name} could not be fetched`);
+      return { name, text: await file.text() };
+    }));
+  }
+
+  // One small database entry, so the chosen folder can be reopened next time.
+  function folderStore(mode, action) {
+    return new Promise((resolve, reject) => {
+      const opening = indexedDB.open('wrong-questions-test', 1);
+      opening.onupgradeneeded = () => opening.result.createObjectStore('folders');
+      opening.onerror = () => reject(opening.error);
+      opening.onsuccess = () => {
+        const database = opening.result;
+        const transaction = database.transaction('folders', mode);
+        const request = action(transaction.objectStore('folders'));
+        transaction.oncomplete = () => {
+          database.close();
+          resolve(request.result);
+        };
+        transaction.onabort = () => {
+          database.close();
+          reject(transaction.error);
+        };
+      };
+    });
+  }
+
+  async function readFolder(folder) {
+    state.folder = folder;
+    useFiles(await filesFromFolder(folder), folder.name);
+  }
+
+  async function chooseFolder() {
+    if (window.showDirectoryPicker) {
+      try {
+        const folder = await window.showDirectoryPicker({ id: 'wrong-questions-test', mode: 'read' });
+        await folderStore('readwrite', (store) => store.put(folder, 'folder')).catch(() => {});
+        await readFolder(folder);
+        return;
+      } catch (error) {
+        if (error.name === 'AbortError') return;
+      }
+    }
+    $('#folder-input').click();
+  }
+
+  async function reopenFolder() {
+    const folder = state.folder;
+    const permission = await folder.requestPermission({ mode: 'read' });
+    if (permission === 'granted') await readFolder(folder);
+    else showLoadPanel(`Permission to read ${folder.name} was not given. Choose the folder to continue.`);
+  }
+
+  async function reload() {
+    if (location.protocol.startsWith('http')) {
+      useFiles(await filesFromServer(), 'This folder');
+    } else if (state.folder) {
+      await reopenFolder();
+    } else {
+      await chooseFolder();
+    }
+  }
+
+  function guarded(task) {
+    return (...args) => task(...args).catch((error) => showLoadPanel(`The CSV files could not be read: ${error.message}`));
+  }
+
+  async function start() {
+    if (location.protocol.startsWith('http')) {
+      const served = await filesFromServer().catch(() => []);
+      if (served.length) {
+        useFiles(served, 'This folder');
+        return;
+      }
+    }
+    const saved = await folderStore('readonly', (store) => store.get('folder')).catch(() => null);
+    if (saved) {
+      state.folder = saved;
+      const permission = await saved.queryPermission({ mode: 'read' }).catch(() => 'prompt');
+      if (permission === 'granted') {
+        await readFolder(saved);
+        return;
+      }
+    }
+    showLoadPanel();
+  }
+
+  $('#choose-folder').addEventListener('click', guarded(chooseFolder));
+  $('#reopen-folder').addEventListener('click', guarded(reopenFolder));
+  $('#reload').addEventListener('click', guarded(reload));
+  $('#folder-input').addEventListener('change', guarded(async (event) => {
+    const picked = [...event.target.files].filter((file) => (
+      /\.csv$/i.test(file.name) && file.webkitRelativePath.split('/').length <= 2
+    ));
+    const folderName = event.target.files[0]?.webkitRelativePath.split('/')[0] || 'the chosen folder';
+    const files = await Promise.all(picked.map(async (file) => ({ name: file.name, text: await file.text() })));
+    useFiles(files, folderName);
+    event.target.value = '';
+  }));
+  $('#domain-filter').addEventListener('change', (event) => {
+    state.domain = event.target.value;
+    renderHeadings();
+    renderList();
+  });
+  $('#collapse-all').addEventListener('click', () => {
+    if (allCollapsed()) state.list.forEach((q) => state.collapsed.delete(q.key));
+    else state.list.forEach((q) => state.collapsed.add(q.key));
+    updateCollapseLabel();
+    repaintList();
+  });
+  $('#retake').addEventListener('click', showRetakeConfirm);
+  $('#retake-no').addEventListener('click', hideRetakeConfirm);
+  $('#retake-yes').addEventListener('click', retake);
+
+  guarded(start)();
+})();
+</script>
+</body>
+</html>

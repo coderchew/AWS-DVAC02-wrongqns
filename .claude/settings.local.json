@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Get-ChildItem -Force | Select-Object Name, Length, LastWriteTime, @{n='IsDir';e={$_.PSIsContainer}} | Format-Table -AutoSize | Out-String -Width 200)",
+      "PowerShell(Get-ChildItem -Directory | ForEach-Object { $c = \\(Get-ChildItem $_.FullName -Recurse -File\\); \"$\\($_.Name\\): $\\($c.Count\\) files; ext: \" + \\(\\($c | Group-Object Extension | Sort-Object Count -Descending | Select-Object -First 8 | ForEach-Object { \"$\\($_.Name\\)=$\\($_.Count\\)\" }\\) -join ', '\\) })"
+    ]
+  }
+}
